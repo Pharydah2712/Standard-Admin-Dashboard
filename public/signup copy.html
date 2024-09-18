@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="output.css">
   </head>
 
-  <body class="bg-gray-200"
+  <body
     x-data="{ page: 'signup', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
     x-init="
           darkMode = JSON.parse(localStorage.getItem('darkMode'));
@@ -18,20 +18,20 @@
   >
 
     <!-- ===== Page Wrapper Start ===== -->
-    <div class="flex h-screen bg-gray-200">
+    <div class="flex justify-center h-screen overflow-hidden bg-gray-200">
 
       <!-- ===== Content Area Start ===== -->
       <div
-        class="m-auto"
+        class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden"
       >
 
         <!-- ===== Main Content Start ===== -->
-        <main class="flex-grow">
-          <div>
+        <main>
+          <div class="flex justify-center mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
 
             <!-- ====== Forms Section Start -->
             <div
-              class="rounded-lg border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
+              class="rounded-lg border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark xl:w-1/2"
             >
               <div class="flex flex-wrap items-center">
                 <div
@@ -39,7 +39,6 @@
                 >
                   <div class="w-full p-4 sm:p-12.5 xl:p-17.5">
                     <span class="mb-1.5 block font-medium text-gray-500">Start for free</span>
-                    <div class="pr-96"><div class="pr-96"></div></div>
                     <h2
                       class="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2"
                     >
