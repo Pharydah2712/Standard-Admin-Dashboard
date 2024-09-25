@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calendar | TailAdmin - Tailwind CSS Admin Dashboard Template</title>
-    <link src="stlesheet" href="output.css">
+    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
   </head>
 
   <body
@@ -15,10 +16,7 @@
           $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
     :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}"
   >
-    <!-- ===== Preloader Start ===== -->
-    <include src="./partials/preloader.html"></include>
-    <!-- ===== Preloader End ===== -->
-
+    
     <!-- ===== Page Wrapper Start ===== -->
     <div class="flex h-screen overflow-hidden">
       <!-- ===== Sidebar Start ===== -->
@@ -27,7 +25,7 @@
 
       <!-- ===== Content Area Start ===== -->
       <div
-        class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden"
+        class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden bg-gray-200"
       >
         <!-- ===== Header Start ===== -->
         <include src="./partials/header.html" />
@@ -36,21 +34,21 @@
         <!-- ===== Main Content Start ===== -->
         <main>
           <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
-            <div class="mx-auto max-w-7xl">
+            <div class="mx-auto max-w-7xl bg-white">
               <!-- Breadcrumb Start -->
               <div
-                class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+                class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between bg-gray-200"
               >
-                <h2 class="text-title-md2 font-bold text-black dark:text-white">
+                <h2 class="text-xl font-bold text-black dark:text-white">
                   Calendar
                 </h2>
 
                 <nav>
                   <ol class="flex items-center gap-2">
                     <li>
-                      <a class="font-medium" href="index.html">Dashboard /</a>
+                      <a class="font-medium text-gray-500" href="index.html">Dashboard /</a>
                     </li>
-                    <li class="text-primary">Calendar</li>
+                    <li class="text-royal-blue">Calendar</li>
                   </ol>
                 </nav>
               </div>
@@ -58,12 +56,12 @@
 
               <!-- ====== Calendar Section Start -->
               <div
-                class="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
+                class="w-full max-w-full rounded-sm border border-stroke shadow-default dark:border-strokedark dark:bg-boxdark"
               >
                 <table class="w-full">
                   <thead>
                     <tr
-                      class="grid grid-cols-7 rounded-t-sm bg-primary text-white"
+                      class="grid grid-cols-7 rounded-t-sm bg-primary text-white bg-royal-blue"
                     >
                       <th
                         class="flex h-15 items-center justify-center rounded-tl-sm p-1 text-xs font-semibold sm:text-base xl:p-5"
@@ -125,7 +123,7 @@
                             More
                           </span>
                           <div
-                            class="event invisible absolute left-2 z-99 mb-1 flex w-[200%] flex-col rounded-sm border-l-[3px] border-primary bg-gray px-3 py-1 text-left opacity-0 group-hover:visible group-hover:opacity-100 dark:bg-meta-4 md:visible md:w-[190%] md:opacity-100"
+                            class="event invisible absolute left-2 z-99 mb-1 flex w-[200%] flex-col rounded-sm border-l-[3px] border-royal-blue bg-gray-200 px-3 py-1 text-left group-hover:visible group-hover:opacity-100 text-black md:visible md:w-[190%] md:opacity-100"
                           >
                             <span
                               class="event-name text-sm font-semibold text-black dark:text-white"
@@ -326,7 +324,7 @@
                             More
                           </span>
                           <div
-                            class="event invisible absolute left-2 z-99 mb-1 flex w-[300%] flex-col rounded-sm border-l-[3px] border-primary bg-gray px-3 py-1 text-left opacity-0 group-hover:visible group-hover:opacity-100 dark:bg-meta-4 md:visible md:w-[290%] md:opacity-100"
+                            class="event invisible absolute left-2 z-99 mb-1 flex w-[300%] flex-col rounded-sm border-l-[3px] border-royal-blue bg-gray-200 px-3 py-1 text-left opacity-0 group-hover:visible group-hover:opacity-100 dark:bg-meta-4 md:visible md:w-[290%] md:opacity-100"
                           >
                             <span
                               class="event-name text-sm font-semibold text-black dark:text-white"
