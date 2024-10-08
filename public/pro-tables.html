@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,22 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template
+      Pro Tables | TailAdmin - Tailwind CSS Admin Dashboard Template
     </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
     <link rel="stylesheet" href="output.css">
   </head>
 
-  <!-- <body
-    x-data="{ page: 'ecommerce', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+  <body
+    x-data="{ page: 'proTables', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
     x-init="
-         darkMode = JSON.parse(localStorage.getItem('darkMode'));
-         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+          darkMode = JSON.parse(localStorage.getItem('darkMode'));
+          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
     :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}"
-  > -->
-  <body>
+  >
     <!-- ===== Preloader Start ===== -->
-    <include src="./partials/preloader.html"></include>
+    <div
+  x-show="loaded"
+  x-init="window.addEventListener('DOMContentLoaded', () => {setTimeout(() => loaded = false, 500)})"
+  class="fixed left-0 top-0 z-999999 flex h-screen w-screen items-center justify-center bg-white dark:bg-black"
+>
+  <div
+    class="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent"
+  ></div>
+</div>
+
     <!-- ===== Preloader End ===== -->
 
     <!-- ===== Page Wrapper Start ===== -->
@@ -65,16 +74,16 @@
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="analytics.html" :class="page === 'analytics' && 'text-white'">Analytics
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="marketing.html" :class="page === 'marketing' && 'text-white'">Marketing
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="stocks.html" :class="page === 'stocks' && '!text-white'">Stocks
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium bg-royal-blue text-white">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium bg-royal-blue text-white">Pro</span></a>
                       </li>
                       
                     </ul>
@@ -118,11 +127,11 @@
                     <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="task-list.html" :class="page === 'list' && '!text-white'">List
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="task-kanban.html" :class="page === 'kanban' && '!text-white'">Kanban
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue"></span>Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue"></span>Pro</span></a>
                       </li>
                     </ul>
                   </div>
@@ -148,14 +157,14 @@
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pro-form-elements.html" :class="page === 'proFormElements' && 'text-white'">Pro Form Elements
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="form-layout.html" :class="page === 'formLayout' && 'text-white'">Form Layout</a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pro-form-layout.html" :class="page === 'proFormLayout' && 'text-white'">Pro Form Layout
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                     </ul>
                   </div>
@@ -183,7 +192,7 @@
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pro-tables.html" :class="page === 'proTables' && 'text-black hover:text-white'">Pro Tables
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                     </ul>
                   </div>
@@ -209,34 +218,37 @@
                           Settings
                         </a>
                       </li>
-                      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="file-manager.html" :class="page === 'fileManager' && 'text-white'">File Manager
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="data-tables.html" :class="page === 'dataTables' && 'text-white'">Data Tables
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pricing-tables.html" :class="page === 'pricingTables' && '!text-white'">Pricing Tables
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="error-page.html" :class="page === 'errorPage' && '!text-white'">Error Page
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="faq.html" :class="page === 'faq' && 'text-white'">Faq's
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="team.html" :class="page === 'team' && 'text-white'">Teams
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="terms-conditions.html" :class="page === 'termsCondition' && 'text-white'">Terms & Conditions
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="mail-success.html" :class="page === 'mailSuccess' && 'text-white'">Mail Success
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <!-- Menu Item Invoice -->
                 
@@ -251,7 +263,7 @@
                 <a class="group relative flex items-center gap-2.5 rounded-sm px-4 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="invoice.html" @click="selected = (selected === 'Invoice' ? '':'Invoice')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Invoice') && (page === 'Invoice') }">
                   <i class="fa-solid fa-file-invoice"></i>
                   Invoice
-                  <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span>
+                  <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span>
                 </a>
               </li>
               </ul>
@@ -281,7 +293,7 @@
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="advanced-chart.html" :class="page === 'advancedChart' && 'text-black'">Advanced Chart
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                     </ul>
                   </div>
@@ -291,7 +303,7 @@
       
                 <!-- Menu Item Ui Elements -->
                 <li>
-                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4" href="#" @click.prevent="selected = (selected === 'UiElements' ? '':'UiElements')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'UiElements') || (page === 'alerts' || page === 'buttons' || page === 'buttonsGroup' || page === 'badge' || page === 'breadcrumb' || page === 'card'|| page === 'dropdowns' || page === 'Modals' || page === 'tabs' || page === 'tooltips' || page === 'popovers' || page === 'accordion' || page === 'notifications' || page === 'pagination' || page === 'progress' || page === 'carousel' || page === 'images' || page === 'videos' || page === 'spinners' || page === 'uiList' || page === 'avatars') }">
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-blue-100" href="#" @click.prevent="selected = (selected === 'UiElements' ? '':'UiElements')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'UiElements') || (page === 'alerts' || page === 'buttons' || page === 'buttonsGroup' || page === 'badge' || page === 'breadcrumb' || page === 'card'|| page === 'dropdowns' || page === 'Modals' || page === 'tabs' || page === 'tooltips' || page === 'popovers' || page === 'accordion' || page === 'notifications' || page === 'pagination' || page === 'progress' || page === 'carousel' || page === 'images' || page === 'videos' || page === 'spinners' || page === 'uiList' || page === 'avatars') }">
                     <i class="fa-brands fa-elementor"></i>
       
                     UI Elements
@@ -303,7 +315,7 @@
                     <ul class="mb-3 mt-4 flex flex-col gap-2 pl-6">
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="accordion.html" :class="page === 'accordion' && '!text-white'">Accordion
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
@@ -312,17 +324,17 @@
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="avatars.html" :class="page === 'avatars' && '!text-white'">Avatars
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="badge.html" :class="page === 'badge' && '!text-white'">Badge
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="breadcrumb.html" :class="page === 'breadcrumb' &&'!text-white'">Breadcrumb
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
@@ -331,77 +343,77 @@
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="buttons-group.html" :class="page === 'buttonsGroup' && '!text-white'">Buttons Group
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="cards.html" :class="page === 'card' && '!text-white'">Cards
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="carousel.html" :class="page === 'carousel' && '!text-white'">Carousel
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400
                          duration-300 ease-in-out hover:text-white" href="dropdowns.html" :class="page === 'dropdowns' &&'!text-white'">Dropdowns
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="images.html" :class="page === 'images' && '!text-white'">Images
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="list.html" :class="page === 'uiList' && '!text-white'">List
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="modals.html" :class="page === 'Modals' && '!text-white'">Modals
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="notifications.html" :class="page === 'notifications' && '!text-white'">Notifications
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pagination.html" :class="page === 'pagination' && '!text-white'">Pagination
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="popovers.html" :class="page === 'popovers' && '!text-white'">Popovers
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="progress.html" :class="page === 'progress' && '!text-white'">Progress
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="spinners.html" :class="page === 'spinners' && '!text-white'">Spinners
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="tabs.html" :class="page === 'tabs' && '!text-white'">Tabs
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="tooltips.html" :class="page === 'tooltips' && '!text-white'">Tooltips
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="videos.html" :class="page === 'videos' && '!text-white'">Videos
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                     </ul>
                   </div>
@@ -411,7 +423,7 @@
       
                 <!-- Menu Item Auth Pages -->
                 <li>
-                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4" href="#" @click.prevent="selected = (selected === 'AuthPages' ? '':'AuthPages')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'AuthPages') || (page === 'register' || page === 'login' || page === 'forgetPassword' || page === 'comingSoon' || page === 'twoStepVerification' || page === 'underMaintenance') }">
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white dark:hover:bg-blue-100" href="#" @click.prevent="selected = (selected === 'AuthPages' ? '':'AuthPages')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'AuthPages') || (page === 'register' || page === 'login' || page === 'forgetPassword' || page === 'comingSoon' || page === 'twoStepVerification' || page === 'underMaintenance') }">
                     <i class="fa-solid fa-arrow-right-to-bracket"></i>
       
                     Authentication
@@ -430,19 +442,19 @@
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="reset-password.html" :class="page === 'resetPassword' && '!text-white'">Reset Password
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="coming-soon.html" :class="page === 'comingSoon' && '!text-black'">Coming Soon
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="two-step-verification.html" :class="page === 'twoStepVerification' && 'text-black'">2 Step Verification
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="under-maintenance.html" :class="page === 'underMaintenance' && '!text-white'">Under Maintenance
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                     </ul>
                   </div>
@@ -473,322 +485,565 @@
         class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden"
       >
         
-
         <!-- ===== Main Content Start ===== -->
-        <main class="bg-gray-200">
-          <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+        <main>
+          <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 bg-gray-200">
+            <!-- Breadcrumb Start -->
             <div
-              class="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6  2xl:gap-7.5"
+              class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
             >
-              <!-- Card Item Start -->
-              <div
-                class="rounded-md border border-stroke bg-white px-6 py-6 shadow-default dark:border-strokedark dark:bg-boxdark"
-              >
-             <div class="flex items-center justify-center w-12 h-12 rounded-full bg-gray-200 py-4"> 
-              <i class="fa-regular fa-eye text-royal-blue"></i></div>
-                <div class="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">  
-                </div>
+              <h2 class="text-title-md2 font-bold text-black dark:text-white">
+                Pro Tables
+              </h2>
 
-                <div class="mt-4 flex items-end justify-between">
-                  <div>
-                    <h4 class="text-title-md font-bold text-black dark:text-white" >$3.456K</h4>
-                    <span class="text-sm font-medium text-gray-400">Total views</span>
-                  </div>
-
-                  <span
-                    class="flex items-center gap-1 text-sm font-medium text-meta-3 text-green-500"
-                  > 0.43%
-                  <i class="fa-solid fa-arrow-up text-green-500"></i></span>
-                </div>
-              </div>
-              <!-- Card Item End -->
-
-              <!-- Card Item Start -->
-              <div
-                class="rounded-md border border-stroke bg-white px-6 py-6 shadow-default dark:border-strokedark dark:bg-boxdark"
-              >
-              <div class="flex items-center justify-center w-12 h-12 border-2 rounded-full p-3 bg-gray-200"><i class="fa-solid fa-cart-shopping text-royal-blue text-3x1"></i></div>
-
-
-                <div class="mt-4 flex items-end justify-between">
-                  <div>
-                    <h4
-                      class="text-title-md font-bold text-black dark:text-white"
-                    >
-                      $45,2K
-                    </h4>
-                    <span class="text-sm font-medium text-gray-400">Total Profit</span>
-                  </div>
-
-                  <span
-                    class="flex items-center gap-1 text-sm font-medium text-meta-2 text-green-500"
-                  >
-                    4.35%
-                    <i class="fa-solid fa-arrow-up text-green-500"></i>
-                  </span>
-                </div>
-              </div>
-              <!-- Card Item End -->
-
-              <!-- Card Item Start -->
-              <div
-                class="rounded-md border border-stroke bg-white px-6 py-6 shadow-default dark:border-strokedark dark:bg-boxdark"
-              >
-
-              <div class="flex items-center justify-center w-12 h-12 border-2 rounded-full p-3 bg-gray-200"><i class="fa-solid fa-bag-shopping text-royal-blue"></i></div>
-
-                <div
-                  class="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4"
-                >
-
-                </div>
-
-                <div class="mt-4 flex items-end justify-between">
-                  <div>
-                    <h4
-                      class="text-title-md font-bold text-black dark:text-white"
-                    >
-                      2.450
-                    </h4>
-                    <span class="text-sm font-medium text-gray-400">Total Product</span>
-                  </div>
-
-                  <span
-                    class="flex items-center gap-1 text-sm font-medium text-meta-3 text-green-500">
-                    2.59%
-                    <i class="fa-solid fa-arrow-up text-green-500"></i>
-                  </span>
-                </div>
-              </div>
-              <!-- Card Item End -->
-
-              <!-- Card Item Start -->
-              <div
-                class="rounded-md border border-stroke bg-white px-6 py-6 shadow-default dark:border-strokedark dark:bg-boxdark"
-              >
-
-              <div class="flex items-center justify-center w-12 h-12 border-2 rounded-full p-3 bg-gray-200"><i class="fa-solid fa-user text-royal-blue"></i></div>
-
-                <div
-                  class="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4"
-                >
-                  
-                </div>
-
-                <div class="mt-4 flex items-end justify-between">
-                  <div>
-                    <h4
-                      class="text-title-md font-bold text-black dark:text-white"
-                    >
-                      3.456
-                    </h4>
-                    <span class="text-sm font-medium text-gray-400">Total Users</span>
-                  </div>
-
-                  <span
-                    class="flex items-center gap-1 text-sm font-medium text-meta-5 text-blue-400"
-                  >
-                    0.95%
-                    <i class="fa-solid fa-arrow-down text-blue-400"></i>
-                  </span>
-                </div>
-              </div>
-              <!-- Card Item End -->
+              <nav>
+                <ol class="flex items-center gap-2">
+                  <li>
+                    <a class="font-medium" href="index.html">Dashboard /</a>
+                  </li>
+                  <li class="font-medium text-royal-blue">Pro Tables</li>
+                </ol>
+              </nav>
             </div>
+            <!-- Breadcrumb End -->
+
+            <!-- ====== Table Section Start -->
+            <div class="flex flex-col gap-10">
+              <!-- ====== Table Four Start -->
+              <div class="overflow-hidden rounded-[10px]">
+  <div class="max-w-full overflow-x-auto">
+    <div class="min-w-[1170px]">
+      <!-- table header start -->
+      <div
+        class="grid grid-cols-12 bg-[#F9FAFB] px-5 py-4 dark:bg-meta-4 lg:px-7.5 2xl:px-11"
+      >
+        <div class="col-span-3">
+          <h5 class="font-medium text-[#637381] dark:text-bodydark">NAME</h5>
+        </div>
+
+        <div class="col-span-3">
+          <h5 class="font-medium text-[#637381] dark:text-bodydark">TITLE</h5>
+        </div>
+
+        <div class="col-span-3">
+          <h5 class="font-medium text-[#637381] dark:text-bodydark">EMAIL</h5>
+        </div>
+
+        <div class="col-span-2">
+          <h5 class="font-medium text-[#637381] dark:text-bodydark">ROLE</h5>
+        </div>
+      </div>
+      <!-- table header end -->
+
+      <!-- table body start -->
+      <div class="bg-white dark:bg-boxdark">
+        <!-- table row item -->
+        <div
+          class="grid grid-cols-12 border-t border-[#EEEEEE] px-5 py-4 dark:border-strokedark lg:px-7.5 2xl:px-11"
+        >
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">Musharof Chowdhury</p>
+          </div>
+
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">
+              Multidisciplinary Web Entrepreneur
+            </p>
+          </div>
+
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">
+              <a>musharof@example.com</a>
+            </p>
+          </div>
+
+          <div class="col-span-2">
+            <p class="text-[#637381] dark:text-bodydark">Owner</p>
+          </div>
+
+          <div class="col-span-1">
+            <button class="float-right text-royal-blue">Edit</button>
+          </div>
+        </div>
+
+        <!-- table row item -->
+        <div
+          class="grid grid-cols-12 border-t border-[#EEEEEE] px-5 py-4 dark:border-strokedark lg:px-7.5 2xl:px-11"
+        >
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">Naimur Rahman</p>
+          </div>
+
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">
+              Website Front-end Developer
+            </p>
+          </div>
+
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">
+              <a>naimurrahman@example.com</a>
+            </p>
+          </div>
+
+          <div class="col-span-2">
+            <p class="text-[#637381] dark:text-bodydark">Member</p>
+          </div>
+
+          <div class="col-span-1">
+            <button class="float-right text-royal-blue">Edit</button>
+          </div>
+        </div>
+
+        <!-- table row item -->
+        <div
+          class="grid grid-cols-12 border-t border-[#EEEEEE] px-5 py-4 dark:border-strokedark lg:px-7.5 2xl:px-11"
+        >
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">Shafiq Hammad</p>
+          </div>
+
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">
+              Regional Paradigm Technician
+            </p>
+          </div>
+
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">
+              <a>shafiq.hd@example.com</a>
+            </p>
+          </div>
+
+          <div class="col-span-2">
+            <p class="text-[#637381] dark:text-bodydark">Moderator</p>
+          </div>
+
+          <div class="col-span-1">
+            <button class="float-right text-royal-blue">Edit</button>
+          </div>
+        </div>
+
+        <!-- table row item -->
+        <div
+          class="grid grid-cols-12 border-t border-[#EEEEEE] px-5 py-4 dark:border-strokedark lg:px-7.5 2xl:px-11"
+        >
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">Alex Semuyel</p>
+          </div>
+
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">
+              Applications Engineer
+            </p>
+          </div>
+
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">
+              <a>alex.semuyel@example.com</a>
+            </p>
+          </div>
+
+          <div class="col-span-2">
+            <p class="text-[#637381] dark:text-bodydark">Admin</p>
+          </div>
+
+          <div class="col-span-1">
+            <button class="float-right text-royal-blue">Edit</button>
+          </div>
+        </div>
+
+        <!-- table row item -->
+        <div
+          class="grid grid-cols-12 border-t border-[#EEEEEE] px-5 py-4 dark:border-strokedark lg:px-7.5 2xl:px-11"
+        >
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">Sulium Keliym</p>
+          </div>
+
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">
+              Lead Implementation Liaison
+            </p>
+          </div>
+
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">
+              <a>suliym.info@example.com</a>
+            </p>
+          </div>
+
+          <div class="col-span-2">
+            <p class="text-[#637381] dark:text-bodydark">Member</p>
+          </div>
+
+          <div class="col-span-1">
+            <button class="float-right text-royal-blue">Edit</button>
+          </div>
+        </div>
+
+        <!-- table row item -->
+        <div
+          class="grid grid-cols-12 border-t border-[#EEEEEE] px-5 py-4 dark:border-strokedark lg:px-7.5 2xl:px-11"
+        >
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">Jhon Smith</p>
+          </div>
+
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">
+              Regional Paradigm Technician
+            </p>
+          </div>
+
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">
+              <a>jhon.smith@example.com</a>
+            </p>
+          </div>
+
+          <div class="col-span-2">
+            <p class="text-[#637381] dark:text-bodydark">Admin</p>
+          </div>
+
+          <div class="col-span-1">
+            <button class="float-right text-royal-blue">Edit</button>
+          </div>
+        </div>
+
+        <!-- table row item -->
+        <div
+          class="grid grid-cols-12 border-t border-[#EEEEEE] px-5 py-4 dark:border-strokedark lg:px-7.5 2xl:px-11"
+        >
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">Jenifer Lofess</p>
+          </div>
+
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">
+              Multidisciplinary Web Entrepreneur
+            </p>
+          </div>
+
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">
+              <a>loffes.cooper@example.com</a>
+            </p>
+          </div>
+
+          <div class="col-span-2">
+            <p class="text-[#637381] dark:text-bodydark">Member</p>
+          </div>
+
+          <div class="col-span-1">
+            <button class="float-right text-royal-blue">Edit</button>
+          </div>
+        </div>
+
+        <!-- table row item -->
+        <div
+          class="grid grid-cols-12 border-t border-[#EEEEEE] px-5 py-4 dark:border-strokedark lg:px-7.5 2xl:px-11"
+        >
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">Devid Deekook</p>
+          </div>
+
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">
+              Central Security Manager
+            </p>
+          </div>
+
+          <div class="col-span-3">
+            <p class="text-[#637381] dark:text-bodydark">
+              <a>devid.decok@example.com</a>
+            </p>
+          </div>
+
+          <div class="col-span-2">
+            <p class="text-[#637381] dark:text-bodydark">Moderator</p>
+          </div>
+
+          <div class="col-span-1">
+            <button class="float-right text-royal-blue">Edit</button>
+          </div>
+        </div>
+      </div>
+      <!-- table body end -->
+    </div>
+  </div>
+</div>
+
+              <!-- ====== Table Four End -->
+
+              <!-- ====== Table Five Start -->
+              <div class="w-full overflow-x-auto">
+  <div class="min-w-[1170px]">
+    <!-- table header start -->
+    <div
+      class="grid grid-cols-12 rounded-t-[10px] bg-royal-blue px-5 py-4 lg:px-7.5 2xl:px-11"
+    >
+      <div class="col-span-3">
+        <h5 class="font-medium text-white">Name</h5>
+      </div>
+
+      <div class="col-span-3">
+        <h5 class="font-medium text-white">Position</h5>
+      </div>
+
+      <div class="col-span-3">
+        <h5 class="font-medium text-white">Email</h5>
+      </div>
+
+      <div class="col-span-2">
+        <h5 class="font-medium text-white">Role</h5>
+      </div>
+
+      <div class="col-span-1">
+        <h5 class="text-right font-medium text-white">Edit</h5>
+      </div>
+    </div>
+    <!-- table header end -->
+
+    <!-- table body start -->
+    <div class="bg-white dark:bg-boxdark rounded-b-[10px]">
+      <!-- table row item -->
+      <div
+        class="grid grid-cols-12 border-t border-[#EEEEEE] px-5 py-4 dark:border-strokedark lg:px-7.5 2xl:px-11"
+      >
+        <div class="col-span-3">
+          <p class="text-[#637381] dark:text-bodydark">Musharof Chowdhury</p>
+        </div>
+
+        <div class="col-span-3">
+          <p class="text-[#637381] dark:text-bodydark">
+            Multidisciplinary Web Entrepreneur
+          </p>
+        </div>
+
+        <div class="col-span-3">
+          <p class="text-[#637381] dark:text-bodydark"><a>musharof@example.com</a></p>
+        </div>
+
+        <div class="col-span-2">
+          <p class="text-[#637381] dark:text-bodydark">Owner</p>
+        </div>
+
+        <div class="col-span-1 relative">
+          <div x-data="{ isOpen: false }">
+            <button
+              @click.prevent="isOpen = !isOpen"
+              class="float-right inline-flex items-center gap-1 rounded-md px-3 py-1 text-sm text-black shadow-11 hover:text-royal-blue dark:bg-meta-4 dark:text-white dark:shadow-none"
+            >
+              Action
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
 
             <div
-              class="grid gap-4 mt-4 2x1:mt-7.5"
+              @click.outside="isOpen = false"
+              x-show="isOpen"
+              class="absolute right-0 top-full z-1 mt-1 w-full max-w-39.5 rounded-[5px] bg-white py-2.5 shadow-12 dark:bg-boxdark"
             >
-              <!-- ====== Chart One Start -->
-              <include src="./partials/chart-01.html" />
-              <!-- ====== Chart One End -->
-
-              <!-- ====== Chart Two Start -->
-              <include src="./partials/chart-02.html" />
-              <!-- ====== Chart Two End -->
-
-              <!-- ====== Chart Three Start -->
-              <include src="./partials/chart-03.html" />
-              <!-- ====== Chart Three End -->
-
-              
-              <!-- ====== Table One Start -->
-              <div class="col-span-12 xl:col-span-8">
-                <include src="./partials/table-01.html" />
-              </div>
-              <!-- ====== Table One End -->
-
-              <!-- ====== Chat Card Start -->
-              <div
-                class="col-span-12 rounded-sm border border-stroke bg-white py-6 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4"
+              <button
+                class="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-royal-blue dark:hover:bg-blue-100"
               >
-                <h4
-                  class="mb-6 px-7.5 text-xl font-bold text-black dark:text-white"
-                >
-
-                <!--Chat section starts-->
-                  Chats
-                </h4>
-
-                <div>
-                  <a
-                    href="messages.html"
-                    class="flex items-center gap-5 px-7.5 py-3 hover:bg-gray-100"
-                  >
-                    <div class="relative h-14 w-14 rounded-full">
-                      <img src="./images/user/user-01.png" alt="User" />
-                      <span
-                        class="absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-green-400"
-                      ></span>
-                    </div>
-
-                    <div class="flex flex-1 items-center justify-between">
-                      <div>
-                        <h5 class="font-medium text-black dark:text-white">
-                          Devid Heilo
-                        </h5>
-                        <p>
-                          <span
-                            class="text-sm font-medium text-gray-500"
-                            >Hello, how are you?</span
-                          >
-                          <span class="text-xs text-gray-400"> . 12 min</span>
-                        </p>
-                      </div>
-                      <div
-                        class="flex h-6 w-6 items-center justify-center rounded-full bg-primary"
-                      >
-                        <span class="text-sm flex justify-center items-center w-8 h-6 p-2 font-medium text-white bg-royal-blue rounded-full ">3</span>
-                      </div>
-                    </div>
-                  </a>
-                  <a
-                    href="messages.html"
-                    class="flex items-center gap-5 hover:bg-gray-100 px-7.5 py-3"
-                  >
-                    <div class="relative h-14 w-14 rounded-full">
-                      <img src="./images/user/user-04.png" alt="User" />
-                      <span
-                        class="absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-red-400"
-                      ></span>
-                    </div>
-
-                    <div class="flex flex-1 items-center justify-between">
-                      <div>
-                        <h5 class="font-medium">Henry Fisher</h5>
-                        <p>
-                          <span class="text-sm font-medium text-gray-500"
-                            >I am waiting for you</span
-                          >
-                          <span class="text-xs text-gray-400"> . 5:54 PM</span>
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                  <a
-                    href="messages.html"
-                    class="flex items-center gap-5 px-7.5 py-3 hover:bg-gray-100"
-                  >
-                    <div class="relative h-14 w-14 rounded-full">
-                      <img src="./images/user/user-05.png" alt="User" />
-                      <span
-                        class="absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-yellow-400"
-                      ></span>
-                    </div>
-
-                    <div class="flex flex-1 items-center justify-between">
-                      <div>
-                        <h5 class="font-medium">Wilium Smith</h5>
-                        <p>
-                          <span class="text-sm font-medium text-gray-500"
-                            >Where are you now?</span
-                          >
-                          <span class="text-xs text-gray-400"> . 10:12 PM</span>
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                  <a
-                    href="messages.html"
-                    class="flex items-center gap-5 px-7.5 py-3 hover:bg-gray-100"
-                  >
-                    <div class="relative h-14 w-14 rounded-full">
-                      <img src="./images/user/user-01.png" alt="User" />
-                      <span
-                        class="absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-green-400"
-                      ></span>
-                    </div>
-
-                    <div class="flex flex-1 items-center justify-between">
-                      <div>
-                        <h5 class="font-medium text-black dark:text-white">
-                          Henry Deco
-                        </h5>
-                        <p>
-                          <span
-                            class="text-sm font-medium text-gray-500"
-                            >Thank you so much!</span
-                          >
-                          <span class="text-xs text-gray-400"> . Sun</span>
-                        </p>
-                      </div>
-                      <div
-                        class="flex h-6 w-6 items-center justify-center rounded-full bg-primary"
-                      >
-                        <span class="text-sm font-medium text-white flex items-center justify-center w-10 h-6  p-2 rounded-full bg-royal-blue ">2</span>
-                      </div>
-                    </div>
-                  </a>
-                  <a
-                    href="messages.html"
-                    class="flex items-center gap-5 px-7.5 py-3 hover:bg-gray-100"
-                  >
-                    <div class="relative h-14 w-14 rounded-full">
-                      <img src="./images/user/user-02.png" alt="User" />
-                      <span
-                        class="absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-red-400"
-                      ></span>
-                    </div>
-
-                    <div class="flex flex-1 items-center justify-between">
-                      <div>
-                        <h5 class="font-medium">Jubin Jack</h5>
-                        <p>
-                          <span class="text-sm font-medium text-gray-500"
-                            >I really love that!</span
-                          >
-                          <span class="text-xs text-gray-400"> . Oct 23</span>
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                  <a
-                    href="messages.html"
-                    class="flex items-center gap-5 px-7.5 py-3 hover:bg-gray-100"
-                  >
-                    <div class="relative h-14 w-14 rounded-full">
-                      <img src="./images/user/user-05.png" alt="User" />
-                      <span
-                        class="absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-yellow-400"
-                      ></span>
-                    </div>
-
-                    <div class="flex flex-1 items-center justify-between">
-                      <div>
-                        <h5 class="font-medium">Wilium Smith</h5>
-                        <p>
-                          <span class="text-sm font-medium text-gray-500"
-                            >Where are you now?</span
-                          >
-                          <span class="text-xs text-gray-400"> . Sep 20</span>
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </div>
-              <!-- ====== Chat Card End -->
+                Edit
+              </button>
+              <button
+                class="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-royal-blue dark:hover:bg-blue-100"
+              >
+                Delete
+              </button>
+              <button
+                class="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-royal-blue dark:hover:bg-blue-100"
+              >
+                Details
+              </button>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- table row item -->
+      <div
+        class="grid grid-cols-12 border-t border-[#EEEEEE] px-5 py-4 dark:border-strokedark lg:px-7.5 2xl:px-11"
+      >
+        <div class="col-span-3">
+          <p class="text-[#637381] dark:text-bodydark">Naimur Rahman</p>
+        </div>
+
+        <div class="col-span-3">
+          <p class="text-[#637381] dark:text-bodydark">
+            Website Front-end Developer
+          </p>
+        </div>
+
+        <div class="col-span-3">
+          <p class="text-[#637381] dark:text-bodydark">
+            <a>naimurrahman@example.com</a>
+          </p>
+        </div>
+
+        <div class="col-span-2">
+          <p class="text-[#637381] dark:text-bodydark">Member</p>
+        </div>
+
+        <div class="col-span-1 relative">
+          <div x-data="{ isOpen: false }">
+            <button
+              @click.prevent="isOpen = !isOpen"
+              class="float-right inline-flex items-center gap-1 rounded-md px-3 py-1 text-sm text-black shadow-11 hover:text-royal-blue dark:bg-meta-4 dark:text-white dark:shadow-none"
+            >
+              Action
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <div
+              @click.outside="isOpen = false"
+              x-show="isOpen"
+              class="absolute right-0 top-full z-1 mt-1 w-full max-w-39 rounded-[5px] bg-white py-2 shadow-12 dark:bg-boxdark"
+            >
+              <button
+                class="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-royal-blue dark:hover:bg-blue-100"
+              >
+                Edit
+              </button>
+              <button
+                class="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-royal-blue dark:hover:bg-blue-100"
+              >
+                Delete
+              </button>
+              <button
+                class="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-royal-blue dark:hover:bg-blue-100"
+              >
+                Details
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- table row item -->
+      <div
+        class="grid grid-cols-12 border-t border-[#EEEEEE] px-5 py-4 dark:border-strokedark lg:px-7.5 2xl:px-11"
+      >
+        <div class="col-span-3">
+          <p class="text-[#637381] dark:text-bodydark">Shafiq Hammad</p>
+        </div>
+
+        <div class="col-span-3">
+          <p class="text-[#637381] dark:text-bodydark">
+            Regional Paradigm Technician
+          </p>
+        </div>
+
+        <div class="col-span-3">
+          <p class="text-[#637381] dark:text-bodydark"><a>shafiq.hd@example.com</a></p>
+        </div>
+
+        <div class="col-span-2">
+          <p class="text-[#637381] dark:text-bodydark">Moderator</p>
+        </div>
+
+        <div class="col-span-1 relative">
+          <div x-data="{ isOpen: false }">
+            <button
+              @click.prevent="isOpen = !isOpen"
+              class="float-right inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm text-black shadow-11 hover:text-royal-blue dark:bg-meta-4 dark:text-white dark:shadow-none"
+            >
+              Action
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <div
+              x-show="isOpen"
+              @click.outside="isOpen = false"
+              class="absolute right-0 bottom-full z-1 mb-1 w-full max-w-39.5 rounded-[5px] bg-white py-2.5 shadow-12 dark:bg-boxdark"
+            >
+              <button
+                class="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-royal-blue dark:hover:bg-blue-100"
+              >
+                Edit
+              </button>
+              <button
+                class="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-royal-blue dark:hover:bg-blue-100"
+              >
+                Delete
+              </button>
+              <button
+                class="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-royal-blue dark:hover:bg-blue-100"
+              >
+                Details
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- table row item -->
+      <div
+        class="grid grid-cols-12 border-t border-[#EEEEEE] px-5 py-4 dark:border-strokedark lg:px-7.5 2xl:px-11"
+      >
+        <div class="col-span-3">
+          <p class="text-[#637381] dark:text-bodydark">Alex Semuyel</p>
+        </div>
+
+        <div class="col-span-3">
+          <p class="text-[#637381] dark:text-bodydark">Applications Engineer</p>
+        </div>
+
+        <div class="col-span-3">
+          <p class="text-[#637381] dark:text-bodydark">
+            <a>alex.semuel@example.com</a>
+          </p>
+        </div>
+
+        <div class="col-span-2">
+          <p class="text-[#637381] dark:text-bodydark">Admin</p>
+        </div>
+
+        <div class="col-span-1 relative">
+          <div x-data="{ isOpen: false }">
+            <button
+              @click.prevent="isOpen = !isOpen"
+              class="float-right inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm text-black shadow-11 hover:text-royal-blue dark:bg-meta-4 dark:text-white dark:shadow-none"
+            >
+              Action
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <div
+              x-show="isOpen"
+              @click.outside="isOpen = false"
+              class="absolute right-0 bottom-full z-1 mb-1 w-full max-w-39.5 rounded-[5px] bg-white py-2.5 shadow-12 dark:bg-boxdark"
+            >
+              <button
+                class="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-royal-blue dark:hover:bg-blue-100"
+              >
+                Edit
+              </button>
+              <button
+                class="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-royal-blue dark:hover:bg-blue-100"
+              >
+                Delete
+              </button>
+              <button
+                class="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-royal-blue dark:hover:bg-blue-100"
+              >
+                Details
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- table body end -->
+  </div>
+</div>
+
+              <!-- ====== Table Five End -->
+            </div>
+            <!-- ====== Table Section End -->
           </div>
         </main>
         <!-- ===== Main Content End ===== -->
@@ -796,6 +1051,6 @@
       <!-- ===== Content Area End ===== -->
     </div>
     <!-- ===== Page Wrapper End ===== -->
-  </body>
-  <script src="./js/index.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script defer src="bundle.js"></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8cf4f77d79b6942b","version":"2024.8.0","r":1,"token":"67f7a278e3374824ae6dd92295d38f77","serverTiming":{"name":{"cfExtPri":true,"cfL4":true}}}' crossorigin="anonymous"></script>
+</body>
 </html>

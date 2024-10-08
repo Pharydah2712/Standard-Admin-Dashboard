@@ -6,6 +6,8 @@
     <title>Markting Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
     <link rel="stylesheet" href="output.css">
+    <script src="./js/apexcharts-bundle/dist/apexcharts.min.js"></script>
+    <script src="./js/components/chart-04.js"></script>
 </head>
 
   <body
@@ -180,7 +182,7 @@
                     </div>
                     <div x-data="{openDropDown: false}" class="relative">
                       <button @click="openDropDown = !openDropDown">
-                        
+                        <i class="fa-solid fa-ellipsis" style="color: #818283"></i>
                       </button>
                       <div
                         x-show="openDropDown"
@@ -188,58 +190,14 @@
                         class="absolute right-0 top-full z-40 w-40 space-y-1 rounded-sm border border-stroke bg-white p-1.5 shadow-default dark:border-strokedark dark:bg-boxdark"
                       >
                         <button
-                          class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray dark:hover:bg-meta-4"
-                        >
-                          <svg
-                            class="fill-current"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 16 16"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <g clip-path="url(#clip0_62_9787)">
-                              <path
-                                d="M15.55 2.97499C15.55 2.77499 15.475 2.57499 15.325 2.42499C15.025 2.12499 14.725 1.82499 14.45 1.52499C14.175 1.24999 13.925 0.974987 13.65 0.724987C13.525 0.574987 13.375 0.474986 13.175 0.449986C12.95 0.424986 12.75 0.474986 12.575 0.624987L10.875 2.32499H2.02495C1.17495 2.32499 0.449951 3.02499 0.449951 3.89999V14C0.449951 14.85 1.14995 15.575 2.02495 15.575H12.15C13 15.575 13.725 14.875 13.725 14V5.12499L15.35 3.49999C15.475 3.34999 15.55 3.17499 15.55 2.97499ZM8.19995 8.99999C8.17495 9.02499 8.17495 9.02499 8.14995 9.02499L6.34995 9.62499L6.94995 7.82499C6.94995 7.79999 6.97495 7.79999 6.97495 7.77499L11.475 3.27499L12.725 4.49999L8.19995 8.99999ZM12.575 14C12.575 14.25 12.375 14.45 12.125 14.45H2.02495C1.77495 14.45 1.57495 14.25 1.57495 14V3.87499C1.57495 3.62499 1.77495 3.42499 2.02495 3.42499H9.72495L6.17495 6.99999C6.04995 7.12499 5.92495 7.29999 5.87495 7.49999L4.94995 10.3C4.87495 10.5 4.92495 10.675 5.02495 10.85C5.09995 10.95 5.24995 11.1 5.52495 11.1H5.62495L8.49995 10.15C8.67495 10.1 8.84995 9.97499 8.97495 9.84999L12.575 6.24999V14ZM13.5 3.72499L12.25 2.49999L13.025 1.72499C13.225 1.92499 14.05 2.74999 14.25 2.97499L13.5 3.72499Z"
-                                fill=""
-                              />
-                            </g>
-                            <defs>
-                              <clipPath id="clip0_62_9787">
-                                <rect width="16" height="16" fill="white" />
-                              </clipPath>
-                            </defs>
-                          </svg>
+                          class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray-200 text-gray-400">
+                        <i class="fa-solid fa-pen-to-square" style="color: #9e9c9c;"></i> 
                           Edit
                         </button>
                         <button
-                          class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray dark:hover:bg-meta-4"
+                          class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray-200 text-gray-400"
                         >
-                          <svg
-                            class="fill-current"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 16 16"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M12.225 2.20005H10.3V1.77505C10.3 1.02505 9.70005 0.425049 8.95005 0.425049H7.02505C6.27505 0.425049 5.67505 1.02505 5.67505 1.77505V2.20005H3.75005C3.02505 2.20005 2.42505 2.80005 2.42505 3.52505V4.27505C2.42505 4.82505 2.75005 5.27505 3.22505 5.47505L3.62505 13.75C3.67505 14.775 4.52505 15.575 5.55005 15.575H10.4C11.425 15.575 12.275 14.775 12.325 13.75L12.75 5.45005C13.225 5.25005 13.55 4.77505 13.55 4.25005V3.50005C13.55 2.80005 12.95 2.20005 12.225 2.20005ZM6.82505 1.77505C6.82505 1.65005 6.92505 1.55005 7.05005 1.55005H8.97505C9.10005 1.55005 9.20005 1.65005 9.20005 1.77505V2.20005H6.85005V1.77505H6.82505ZM3.57505 3.52505C3.57505 3.42505 3.65005 3.32505 3.77505 3.32505H12.225C12.325 3.32505 12.425 3.40005 12.425 3.52505V4.27505C12.425 4.37505 12.35 4.47505 12.225 4.47505H3.77505C3.67505 4.47505 3.57505 4.40005 3.57505 4.27505V3.52505V3.52505ZM10.425 14.45H5.57505C5.15005 14.45 4.80005 14.125 4.77505 13.675L4.40005 5.57505H11.625L11.25 13.675C11.2 14.1 10.85 14.45 10.425 14.45Z"
-                              fill=""
-                            />
-                            <path
-                              d="M8.00005 8.1001C7.70005 8.1001 7.42505 8.3501 7.42505 8.6751V11.8501C7.42505 12.1501 7.67505 12.4251 8.00005 12.4251C8.30005 12.4251 8.57505 12.1751 8.57505 11.8501V8.6751C8.57505 8.3501 8.30005 8.1001 8.00005 8.1001Z"
-                              fill=""
-                            />
-                            <path
-                              d="M9.99994 8.60004C9.67494 8.57504 9.42494 8.80004 9.39994 9.12504L9.24994 11.325C9.22494 11.625 9.44994 11.9 9.77494 11.925C9.79994 11.925 9.79994 11.925 9.82494 11.925C10.1249 11.925 10.3749 11.7 10.3749 11.4L10.5249 9.20004C10.5249 8.87504 10.2999 8.62504 9.99994 8.60004Z"
-                              fill=""
-                            />
-                            <path
-                              d="M5.97497 8.60004C5.67497 8.62504 5.42497 8.90004 5.44997 9.20004L5.62497 11.4C5.64997 11.7 5.89997 11.925 6.17497 11.925C6.19997 11.925 6.19997 11.925 6.22497 11.925C6.52497 11.9 6.77497 11.625 6.74997 11.325L6.57497 9.12504C6.57497 8.80004 6.29997 8.57504 5.97497 8.60004Z"
-                              fill=""
-                            />
-                          </svg>
+                        <i class="fa-solid fa-trash" style="color: #9e9c9c;"></i> 
                           Delete
                         </button>
                       </div>
@@ -248,25 +206,25 @@
 
                   <div class="flex flex-col">
                     <div
-                      class="grid grid-cols-3 rounded-sm bg-gray-2 dark:bg-meta-4 sm:grid-cols-4"
+                      class="grid grid-cols-3 rounded-sm bg-gray-200  sm:grid-cols-4"
                     >
                       <div class="p-2.5 xl:p-4">
-                        <h5 class="text-sm font-medium uppercase xsm:text-base">
+                        <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-600">
                           Source
                         </h5>
                       </div>
                       <div class="p-2.5 text-center xl:p-4">
-                        <h5 class="text-sm font-medium uppercase xsm:text-base">
+                        <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-600">
                           Visitors
                         </h5>
                       </div>
                       <div class="p-2.5 text-center xl:p-4">
-                        <h5 class="text-sm font-medium uppercase xsm:text-base">
+                        <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-600">
                           Revenues
                         </h5>
                       </div>
                       <div class="hidden p-2.5 text-center sm:block xl:p-4">
-                        <h5 class="text-sm font-medium uppercase xsm:text-base">
+                        <h5 class="text-sm font-medium uppercase xsm:text-base text-gray-600">
                           Conversion
                         </h5>
                       </div>
@@ -277,7 +235,7 @@
                     >
                       <div class="flex items-center gap-3 p-2.5 xl:p-5">
                         <div class="h-9 w-full max-w-9 flex-shrink-0">
-                          <img src="src/images/brand/brand-01.svg" alt="Brand" />
+                          <img src="./images/brand/brand-01.svg" alt="Brand" />
                         </div>
                         <p
                           class="hidden font-medium text-black dark:text-white sm:block"
@@ -297,13 +255,13 @@
                       <div
                         class="flex items-center justify-center p-2.5 xl:p-5"
                       >
-                        <p class="font-medium text-meta-3">$5,768</p>
+                        <p class="font-medium text-green-500">$5,768</p>
                       </div>
 
                       <div
                         class="hidden items-center justify-center p-2.5 sm:flex xl:p-5"
                       >
-                        <p class="font-medium text-meta-5">4.8%</p>
+                        <p class="font-medium text-blue-500">4.8%</p>
                       </div>
                     </div>
 
@@ -312,7 +270,7 @@
                     >
                       <div class="flex items-center gap-3 p-2.5 xl:p-5">
                         <div class="h-9 w-full max-w-9 flex-shrink-0">
-                          <img src="src/images/brand/brand-02.svg" alt="Brand" />
+                          <img src="./images/brand/brand-02.svg" alt="Brand" />
                         </div>
                         <p
                           class="hidden font-medium text-black dark:text-white sm:block"
@@ -332,13 +290,13 @@
                       <div
                         class="flex items-center justify-center p-2.5 xl:p-5"
                       >
-                        <p class="font-medium text-meta-3">$4,635</p>
+                        <p class="font-medium text-green-500">$4,635</p>
                       </div>
 
                       <div
                         class="hidden items-center justify-center p-2.5 sm:flex xl:p-5"
                       >
-                        <p class="font-medium text-meta-5">4.3%</p>
+                        <p class="font-medium text-blue-500">4.3%</p>
                       </div>
                     </div>
 
@@ -347,7 +305,7 @@
                     >
                       <div class="flex items-center gap-3 p-2.5 xl:p-5">
                         <div class="h-9 w-full max-w-9 flex-shrink-0">
-                          <img src="src/images/brand/brand-06.svg" alt="Brand" />
+                          <img src="./images/brand/brand-06.png" alt="Brand" />
                         </div>
                         <p
                           class="hidden font-medium text-black dark:text-white sm:block"
@@ -367,13 +325,13 @@
                       <div
                         class="flex items-center justify-center p-2.5 xl:p-5"
                       >
-                        <p class="font-medium text-meta-3">$4,290</p>
+                        <p class="font-medium text-green-500">$4,290</p>
                       </div>
 
                       <div
                         class="hidden items-center justify-center p-2.5 sm:flex xl:p-5"
                       >
-                        <p class="font-medium text-meta-5">3.7%</p>
+                        <p class="font-medium text-blue-500">3.7%</p>
                       </div>
                     </div>
 
@@ -382,7 +340,7 @@
                     >
                       <div class="flex items-center gap-3 p-2.5 xl:p-5">
                         <div class="h-9 w-full max-w-9 flex-shrink-0">
-                          <img src="src/images/brand/brand-04.svg" alt="Brand" />
+                          <img src="./images/brand/brand-04.svg" alt="Brand" />
                         </div>
                         <p
                           class="hidden font-medium text-black dark:text-white sm:block"
@@ -402,20 +360,20 @@
                       <div
                         class="flex items-center justify-center p-2.5 xl:p-5"
                       >
-                        <p class="font-medium text-meta-3">$3,580</p>
+                        <p class="font-medium text-green-500">$3,580</p>
                       </div>
 
                       <div
                         class="hidden items-center justify-center p-2.5 sm:flex xl:p-5"
                       >
-                        <p class="font-medium text-meta-5">2.5%</p>
+                        <p class="font-medium text-blue-500">2.5%</p>
                       </div>
                     </div>
 
                     <div class="grid grid-cols-3 sm:grid-cols-4">
                       <div class="flex items-center gap-3 p-2.5 xl:p-5">
                         <div class="h-9 w-full max-w-9 flex-shrink-0">
-                          <img src="src/images/brand/brand-05.svg" alt="Brand" />
+                          <img src="./images/brand/brand-05.svg" alt="Brand" />
                         </div>
                         <p
                           class="hidden font-medium text-black dark:text-white sm:block"
@@ -435,13 +393,13 @@
                       <div
                         class="flex items-center justify-center p-2.5 xl:p-5"
                       >
-                        <p class="font-medium text-meta-3">$2,740</p>
+                        <p class="font-medium text-green-500">$2,740</p>
                       </div>
 
                       <div
                         class="hidden items-center justify-center p-2.5 sm:flex xl:p-5"
                       >
-                        <p class="font-medium text-meta-5">1.9%</p>
+                        <p class="font-medium text-blue-500">1.9%</p>
                       </div>
                     </div>
                   </div>
@@ -449,7 +407,7 @@
               </div>
               <!-- ====== Table One End -->
 
-              <!-- ===== Chart Five Start ===== -->
+              <!-- ===== Chart Four Start ===== -->
               <div
   class="col-span-12 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-5"
 >
@@ -460,7 +418,7 @@
       <h2 class="mb-1.5 text-title-md2 font-bold text-black dark:text-white">
         Campaign Visitors
       </h2>
-      <p class="text-sm font-medium">Last Campaign Performance</p>
+      <p class="text-sm font-medium text-gray-600">Last Campaign Performance</p>
     </div>
     <div>
       <h3 class="mb-1.5 text-title-md2 font-bold text-black dark:text-white">
@@ -479,17 +437,17 @@
             fill="#FB5454"
           />
         </svg>
-        <span class="text-sm font-medium text-red">-1.5%</span>
+        <span class="text-sm font-medium text-red-500">-1.5%</span>
       </p>
     </div>
   </div>
 
   <div class="px-6 py-7.5">
-    <div id="chartFive" class="-ml-5"></div>
+    <div id="chartFour" class="-ml-5"></div>
   </div>
 </div>
 
-              <!-- ===== Chart Five End ===== -->
+              <!-- ===== Chart Four End ===== -->
 
               <!-- ===== External Links Start ===== -->
               <div
@@ -504,30 +462,11 @@
                     >
                       External Links
                     </h2>
-                    <p class="text-sm font-medium">Most used resources</p>
+                    <p class="text-sm font-medium text-gray-600">Most used resources</p>
                   </div>
                   <div x-data="{openDropDown: false}" class="relative">
                     <button @click="openDropDown = !openDropDown">
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 18 18"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M2.25 11.25C3.49264 11.25 4.5 10.2426 4.5 9C4.5 7.75736 3.49264 6.75 2.25 6.75C1.00736 6.75 0 7.75736 0 9C0 10.2426 1.00736 11.25 2.25 11.25Z"
-                          fill="#98A6AD"
-                        />
-                        <path
-                          d="M9 11.25C10.2426 11.25 11.25 10.2426 11.25 9C11.25 7.75736 10.2426 6.75 9 6.75C7.75736 6.75 6.75 7.75736 6.75 9C6.75 10.2426 7.75736 11.25 9 11.25Z"
-                          fill="#98A6AD"
-                        />
-                        <path
-                          d="M15.75 11.25C16.9926 11.25 18 10.2426 18 9C18 7.75736 16.9926 6.75 15.75 6.75C14.5074 6.75 13.5 7.75736 13.5 9C13.5 10.2426 14.5074 11.25 15.75 11.25Z"
-                          fill="#98A6AD"
-                        />
-                      </svg>
+                        <i class="fa-solid fa-ellipsis" style="color: #818283"></i>
                     </button>
                     <div
                       x-show="openDropDown"
@@ -535,58 +474,15 @@
                       class="absolute right-0 top-full z-40 w-40 space-y-1 rounded-sm border border-stroke bg-white p-1.5 shadow-default dark:border-strokedark dark:bg-boxdark"
                     >
                       <button
-                        class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray dark:hover:bg-meta-4"
+                        class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray-200 text-gray-400"
                       >
-                        <svg
-                          class="fill-current"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g clip-path="url(#clip0_62_9787)">
-                            <path
-                              d="M15.55 2.97499C15.55 2.77499 15.475 2.57499 15.325 2.42499C15.025 2.12499 14.725 1.82499 14.45 1.52499C14.175 1.24999 13.925 0.974987 13.65 0.724987C13.525 0.574987 13.375 0.474986 13.175 0.449986C12.95 0.424986 12.75 0.474986 12.575 0.624987L10.875 2.32499H2.02495C1.17495 2.32499 0.449951 3.02499 0.449951 3.89999V14C0.449951 14.85 1.14995 15.575 2.02495 15.575H12.15C13 15.575 13.725 14.875 13.725 14V5.12499L15.35 3.49999C15.475 3.34999 15.55 3.17499 15.55 2.97499ZM8.19995 8.99999C8.17495 9.02499 8.17495 9.02499 8.14995 9.02499L6.34995 9.62499L6.94995 7.82499C6.94995 7.79999 6.97495 7.79999 6.97495 7.77499L11.475 3.27499L12.725 4.49999L8.19995 8.99999ZM12.575 14C12.575 14.25 12.375 14.45 12.125 14.45H2.02495C1.77495 14.45 1.57495 14.25 1.57495 14V3.87499C1.57495 3.62499 1.77495 3.42499 2.02495 3.42499H9.72495L6.17495 6.99999C6.04995 7.12499 5.92495 7.29999 5.87495 7.49999L4.94995 10.3C4.87495 10.5 4.92495 10.675 5.02495 10.85C5.09995 10.95 5.24995 11.1 5.52495 11.1H5.62495L8.49995 10.15C8.67495 10.1 8.84995 9.97499 8.97495 9.84999L12.575 6.24999V14ZM13.5 3.72499L12.25 2.49999L13.025 1.72499C13.225 1.92499 14.05 2.74999 14.25 2.97499L13.5 3.72499Z"
-                              fill=""
-                            />
-                          </g>
-                          <defs>
-                            <clipPath id="clip0_62_9787">
-                              <rect width="16" height="16" fill="white" />
-                            </clipPath>
-                          </defs>
-                        </svg>
+                      <i class="fa-solid fa-pen-to-square" style="color: #9e9c9c;"></i> 
                         Edit
                       </button>
                       <button
-                        class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray dark:hover:bg-meta-4"
+                        class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray-200 text-gray-400"
                       >
-                        <svg
-                          class="fill-current"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M12.225 2.20005H10.3V1.77505C10.3 1.02505 9.70005 0.425049 8.95005 0.425049H7.02505C6.27505 0.425049 5.67505 1.02505 5.67505 1.77505V2.20005H3.75005C3.02505 2.20005 2.42505 2.80005 2.42505 3.52505V4.27505C2.42505 4.82505 2.75005 5.27505 3.22505 5.47505L3.62505 13.75C3.67505 14.775 4.52505 15.575 5.55005 15.575H10.4C11.425 15.575 12.275 14.775 12.325 13.75L12.75 5.45005C13.225 5.25005 13.55 4.77505 13.55 4.25005V3.50005C13.55 2.80005 12.95 2.20005 12.225 2.20005ZM6.82505 1.77505C6.82505 1.65005 6.92505 1.55005 7.05005 1.55005H8.97505C9.10005 1.55005 9.20005 1.65005 9.20005 1.77505V2.20005H6.85005V1.77505H6.82505ZM3.57505 3.52505C3.57505 3.42505 3.65005 3.32505 3.77505 3.32505H12.225C12.325 3.32505 12.425 3.40005 12.425 3.52505V4.27505C12.425 4.37505 12.35 4.47505 12.225 4.47505H3.77505C3.67505 4.47505 3.57505 4.40005 3.57505 4.27505V3.52505V3.52505ZM10.425 14.45H5.57505C5.15005 14.45 4.80005 14.125 4.77505 13.675L4.40005 5.57505H11.625L11.25 13.675C11.2 14.1 10.85 14.45 10.425 14.45Z"
-                            fill=""
-                          />
-                          <path
-                            d="M8.00005 8.1001C7.70005 8.1001 7.42505 8.3501 7.42505 8.6751V11.8501C7.42505 12.1501 7.67505 12.4251 8.00005 12.4251C8.30005 12.4251 8.57505 12.1751 8.57505 11.8501V8.6751C8.57505 8.3501 8.30005 8.1001 8.00005 8.1001Z"
-                            fill=""
-                          />
-                          <path
-                            d="M9.99994 8.60004C9.67494 8.57504 9.42494 8.80004 9.39994 9.12504L9.24994 11.325C9.22494 11.625 9.44994 11.9 9.77494 11.925C9.79994 11.925 9.79994 11.925 9.82494 11.925C10.1249 11.925 10.3749 11.7 10.3749 11.4L10.5249 9.20004C10.5249 8.87504 10.2999 8.62504 9.99994 8.60004Z"
-                            fill=""
-                          />
-                          <path
-                            d="M5.97497 8.60004C5.67497 8.62504 5.42497 8.90004 5.44997 9.20004L5.62497 11.4C5.64997 11.7 5.89997 11.925 6.17497 11.925C6.19997 11.925 6.19997 11.925 6.22497 11.925C6.52497 11.9 6.77497 11.625 6.74997 11.325L6.57497 9.12504C6.57497 8.80004 6.29997 8.57504 5.97497 8.60004Z"
-                            fill=""
-                          />
-                        </svg>
+                      <i class="fa-solid fa-trash" style="color: #9e9c9c;"></i> 
                         Delete
                       </button>
                     </div>
@@ -595,7 +491,7 @@
 
                 <div class="px-3 pb-5">
                   <div
-                    class="group flex items-center justify-between rounded-md p-4.5 hover:bg-gray-2 dark:hover:bg-graydark"
+                    class="group flex items-center justify-between rounded-md p-4.5 hover:bg-gray-200 dark pb-5 pt-5"
                   >
                     <div class="flex items-center gap-4">
                       <svg
@@ -621,14 +517,14 @@
 
                       <a href="#">
                         <h4
-                          class="font-medium text-black group-hover:text-primary dark:text-white dark:group-hover:text-primary"
+                          class="font-medium text-black group-hover:text-blue-500 dark:text-white dark:group-hover:text-blue-500"
                         >
                           Google Analytics
                         </h4>
                       </a>
                     </div>
 
-                    <a href="#" class="inline-block hover:text-primary">
+                    <a href="#" class="inline-block hover:text-blue-500">
                       <svg
                         class="fill-current"
                         width="16"
@@ -640,7 +536,7 @@
                         <g clip-path="url(#clip0_552_42876)">
                           <path
                             d="M14.4339 9.44989C14.4339 9.03453 14.7719 8.69729 15.1883 8.69729C15.6046 8.69729 15.9426 9.03453 15.9426 9.44989V13.7715C15.9426 14.3848 15.692 14.9421 15.2874 15.3457C14.8829 15.7494 14.3243 15.9994 13.7096 15.9994H2.23295C1.61827 15.9994 1.05971 15.7494 0.655139 15.3457C0.250571 14.9421 0 14.3848 0 13.7715V2.23765C0 1.62437 0.250571 1.06708 0.655139 0.663433C1.05971 0.259787 1.61827 0.00978681 2.23295 0.00978681H6.53703C6.95334 0.00978681 7.29135 0.347026 7.29135 0.762391C7.29135 1.17776 6.95334 1.515 6.53703 1.515H2.23295C2.03458 1.515 1.85449 1.59703 1.72268 1.72723C1.59086 1.85875 1.50995 2.03843 1.50995 2.23635V13.7702C1.50995 13.9681 1.59217 14.1478 1.72268 14.2793C1.85449 14.4108 2.03458 14.4916 2.23295 14.4916H13.7109C13.9093 14.4916 14.0894 14.4095 14.2212 14.2793C14.353 14.1491 14.4339 13.9681 14.4339 13.7702V9.44989ZM14.6715 2.27281L7.04861 9.97333C6.75759 10.2689 6.27993 10.2728 5.98369 9.98244C5.68744 9.69208 5.68352 9.21552 5.97455 8.91994L13.3038 1.515H10.2525C9.83622 1.515 9.49821 1.17776 9.49821 0.762391C9.49821 0.347026 9.83622 0.00978681 10.2525 0.00978681H13.7109C14.3791 0.00978681 15.2405 -0.103494 15.7533 0.413433C16.077 0.740256 16.0052 3.34572 15.9635 4.85484C15.953 5.24546 15.9439 5.54364 15.9439 5.75718C15.9439 6.17255 15.6059 6.50979 15.1896 6.50979C14.7732 6.50979 14.4352 6.17255 14.4352 5.75718C14.4352 5.71682 14.4457 5.32489 14.46 4.81447C14.4809 4.02802 14.6075 2.98635 14.6715 2.27281Z"
-                            fill=""
+                            fill="#9e9c9c"
                           />
                         </g>
                         <defs>
@@ -653,7 +549,8 @@
                   </div>
 
                   <div
-                    class="group flex items-center justify-between rounded-md p-4.5 hover:bg-gray-2 dark:hover:bg-graydark"
+                    class="group flex items-center justify-between rounded-md p-4.5 hover:bg-gray-200-200 dark:hover:bg-gray-200dark pb-5 pt-5
+                    "
                   >
                     <div class="flex items-center gap-4">
                       <svg
@@ -678,14 +575,14 @@
 
                       <a href="#">
                         <h4
-                          class="font-medium text-black group-hover:text-primary dark:text-white dark:group-hover:text-primary"
+                          class="font-medium text-black group-hover:text-blue-500 dark:text-white dark:group-hover:text-blue-500"
                         >
                           Facebook Ads
                         </h4>
                       </a>
                     </div>
 
-                    <a href="#" class="inline-block hover:text-primary">
+                    <a href="#" class="inline-block hover:text-blue-500">
                       <svg
                         class="fill-current"
                         width="16"
@@ -697,7 +594,7 @@
                         <g clip-path="url(#clip0_552_42876)">
                           <path
                             d="M14.4339 9.44989C14.4339 9.03453 14.7719 8.69729 15.1883 8.69729C15.6046 8.69729 15.9426 9.03453 15.9426 9.44989V13.7715C15.9426 14.3848 15.692 14.9421 15.2874 15.3457C14.8829 15.7494 14.3243 15.9994 13.7096 15.9994H2.23295C1.61827 15.9994 1.05971 15.7494 0.655139 15.3457C0.250571 14.9421 0 14.3848 0 13.7715V2.23765C0 1.62437 0.250571 1.06708 0.655139 0.663433C1.05971 0.259787 1.61827 0.00978681 2.23295 0.00978681H6.53703C6.95334 0.00978681 7.29135 0.347026 7.29135 0.762391C7.29135 1.17776 6.95334 1.515 6.53703 1.515H2.23295C2.03458 1.515 1.85449 1.59703 1.72268 1.72723C1.59086 1.85875 1.50995 2.03843 1.50995 2.23635V13.7702C1.50995 13.9681 1.59217 14.1478 1.72268 14.2793C1.85449 14.4108 2.03458 14.4916 2.23295 14.4916H13.7109C13.9093 14.4916 14.0894 14.4095 14.2212 14.2793C14.353 14.1491 14.4339 13.9681 14.4339 13.7702V9.44989ZM14.6715 2.27281L7.04861 9.97333C6.75759 10.2689 6.27993 10.2728 5.98369 9.98244C5.68744 9.69208 5.68352 9.21552 5.97455 8.91994L13.3038 1.515H10.2525C9.83622 1.515 9.49821 1.17776 9.49821 0.762391C9.49821 0.347026 9.83622 0.00978681 10.2525 0.00978681H13.7109C14.3791 0.00978681 15.2405 -0.103494 15.7533 0.413433C16.077 0.740256 16.0052 3.34572 15.9635 4.85484C15.953 5.24546 15.9439 5.54364 15.9439 5.75718C15.9439 6.17255 15.6059 6.50979 15.1896 6.50979C14.7732 6.50979 14.4352 6.17255 14.4352 5.75718C14.4352 5.71682 14.4457 5.32489 14.46 4.81447C14.4809 4.02802 14.6075 2.98635 14.6715 2.27281Z"
-                            fill=""
+                            fill="#9e9c9c"
                           />
                         </g>
                         <defs>
@@ -710,7 +607,7 @@
                   </div>
 
                   <div
-                    class="group flex items-center justify-between rounded-md p-4.5 hover:bg-gray-2 dark:hover:bg-graydark"
+                    class="group flex items-center justify-between rounded-md p-4.5 hover:bg-gray-200-200 dark:hover:bg-gray-200dark pb-5 pt-5"
                   >
                     <div class="flex items-center gap-4">
                       <svg
@@ -728,14 +625,14 @@
 
                       <a href="#">
                         <h4
-                          class="font-medium text-black group-hover:text-primary dark:text-white dark:group-hover:text-primary"
+                          class="font-medium text-black group-hover:text-blue-500 dark:text-white dark:group-hover:text-blue-500"
                         >
                           Seranking
                         </h4>
                       </a>
                     </div>
 
-                    <a href="#" class="inline-block hover:text-primary">
+                    <a href="#" class="inline-block hover:text-blue-500">
                       <svg
                         class="fill-current"
                         width="16"
@@ -747,7 +644,7 @@
                         <g clip-path="url(#clip0_552_42876)">
                           <path
                             d="M14.4339 9.44989C14.4339 9.03453 14.7719 8.69729 15.1883 8.69729C15.6046 8.69729 15.9426 9.03453 15.9426 9.44989V13.7715C15.9426 14.3848 15.692 14.9421 15.2874 15.3457C14.8829 15.7494 14.3243 15.9994 13.7096 15.9994H2.23295C1.61827 15.9994 1.05971 15.7494 0.655139 15.3457C0.250571 14.9421 0 14.3848 0 13.7715V2.23765C0 1.62437 0.250571 1.06708 0.655139 0.663433C1.05971 0.259787 1.61827 0.00978681 2.23295 0.00978681H6.53703C6.95334 0.00978681 7.29135 0.347026 7.29135 0.762391C7.29135 1.17776 6.95334 1.515 6.53703 1.515H2.23295C2.03458 1.515 1.85449 1.59703 1.72268 1.72723C1.59086 1.85875 1.50995 2.03843 1.50995 2.23635V13.7702C1.50995 13.9681 1.59217 14.1478 1.72268 14.2793C1.85449 14.4108 2.03458 14.4916 2.23295 14.4916H13.7109C13.9093 14.4916 14.0894 14.4095 14.2212 14.2793C14.353 14.1491 14.4339 13.9681 14.4339 13.7702V9.44989ZM14.6715 2.27281L7.04861 9.97333C6.75759 10.2689 6.27993 10.2728 5.98369 9.98244C5.68744 9.69208 5.68352 9.21552 5.97455 8.91994L13.3038 1.515H10.2525C9.83622 1.515 9.49821 1.17776 9.49821 0.762391C9.49821 0.347026 9.83622 0.00978681 10.2525 0.00978681H13.7109C14.3791 0.00978681 15.2405 -0.103494 15.7533 0.413433C16.077 0.740256 16.0052 3.34572 15.9635 4.85484C15.953 5.24546 15.9439 5.54364 15.9439 5.75718C15.9439 6.17255 15.6059 6.50979 15.1896 6.50979C14.7732 6.50979 14.4352 6.17255 14.4352 5.75718C14.4352 5.71682 14.4457 5.32489 14.46 4.81447C14.4809 4.02802 14.6075 2.98635 14.6715 2.27281Z"
-                            fill=""
+                            fill="#9e9c9c"
                           />
                         </g>
                         <defs>
@@ -760,7 +657,7 @@
                   </div>
 
                   <div
-                    class="group flex items-center justify-between rounded-md p-4.5 hover:bg-gray-2 dark:hover:bg-graydark"
+                    class="group flex items-center justify-between rounded-md p-4.5 hover:bg-gray-200-200 dark:hover:bg-gray-200dark pb-5 pt-5"
                   >
                     <div class="flex items-center gap-4">
                       <svg
@@ -835,14 +732,14 @@
 
                       <a href="">
                         <h4
-                          class="font-medium text-black group-hover:text-primary dark:text-white dark:group-hover:text-primary"
+                          class="font-medium text-black group-hover:text-blue-500 dark:text-white dark:group-hover:text-blue-500"
                         >
                           Instagram Ads
                         </h4>
                       </a>
                     </div>
 
-                    <a href="#" class="inline-block hover:text-primary">
+                    <a href="#" class="inline-block hover:text-blue-500">
                       <svg
                         class="fill-current"
                         width="16"
@@ -854,7 +751,7 @@
                         <g clip-path="url(#clip0_552_42876)">
                           <path
                             d="M14.4339 9.44989C14.4339 9.03453 14.7719 8.69729 15.1883 8.69729C15.6046 8.69729 15.9426 9.03453 15.9426 9.44989V13.7715C15.9426 14.3848 15.692 14.9421 15.2874 15.3457C14.8829 15.7494 14.3243 15.9994 13.7096 15.9994H2.23295C1.61827 15.9994 1.05971 15.7494 0.655139 15.3457C0.250571 14.9421 0 14.3848 0 13.7715V2.23765C0 1.62437 0.250571 1.06708 0.655139 0.663433C1.05971 0.259787 1.61827 0.00978681 2.23295 0.00978681H6.53703C6.95334 0.00978681 7.29135 0.347026 7.29135 0.762391C7.29135 1.17776 6.95334 1.515 6.53703 1.515H2.23295C2.03458 1.515 1.85449 1.59703 1.72268 1.72723C1.59086 1.85875 1.50995 2.03843 1.50995 2.23635V13.7702C1.50995 13.9681 1.59217 14.1478 1.72268 14.2793C1.85449 14.4108 2.03458 14.4916 2.23295 14.4916H13.7109C13.9093 14.4916 14.0894 14.4095 14.2212 14.2793C14.353 14.1491 14.4339 13.9681 14.4339 13.7702V9.44989ZM14.6715 2.27281L7.04861 9.97333C6.75759 10.2689 6.27993 10.2728 5.98369 9.98244C5.68744 9.69208 5.68352 9.21552 5.97455 8.91994L13.3038 1.515H10.2525C9.83622 1.515 9.49821 1.17776 9.49821 0.762391C9.49821 0.347026 9.83622 0.00978681 10.2525 0.00978681H13.7109C14.3791 0.00978681 15.2405 -0.103494 15.7533 0.413433C16.077 0.740256 16.0052 3.34572 15.9635 4.85484C15.953 5.24546 15.9439 5.54364 15.9439 5.75718C15.9439 6.17255 15.6059 6.50979 15.1896 6.50979C14.7732 6.50979 14.4352 6.17255 14.4352 5.75718C14.4352 5.71682 14.4457 5.32489 14.46 4.81447C14.4809 4.02802 14.6075 2.98635 14.6715 2.27281Z"
-                            fill=""
+                            fill="#9e9c9c"
                           />
                         </g>
                         <defs>
@@ -869,145 +766,7 @@
               </div>
               <!-- ===== External Links End ===== -->
 
-              <!-- ===== Chart Six Start ===== -->
-              <div class="col-span-12 xl:col-span-7">
-                <div
-  class="col-span-12 rounded-sm border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-8"
->
-  <div class="mb-6 flex items-start justify-between">
-    <div>
-      <h4 class="text-title-sm2 font-bold text-black dark:text-white">
-        Campaign Visitors
-      </h4>
-      <div class="mt-2.5 flex gap-2.5">
-        <h3 class="mb-1.5 text-title-lg font-bold text-black dark:text-white">
-          $560.93
-        </h3>
-        <span class="flex items-center gap-1 text-sm font-medium text-meta-3">
-          <svg
-            width="15"
-            height="15"
-            viewBox="0 0 15 15"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g clip-path="url(#clip0_554_43030)">
-              <path
-                d="M13.4731 5.62415H9.95118C9.68868 5.62415 9.46993 5.8429 9.46993 6.1054C9.46993 6.3679 9.68868 6.58665 9.95118 6.58665H12.1168L9.3168 8.4679C9.20743 8.5554 9.0543 8.5554 8.92305 8.4679L6.03555 6.56477C5.57618 6.25852 5.00743 6.25852 4.54805 6.56477L1.1793 8.8179C0.960552 8.97102 0.894927 9.27727 1.04805 9.49602C1.13555 9.62727 1.28868 9.71477 1.46368 9.71477C1.55118 9.71477 1.66055 9.6929 1.72618 9.62727L5.1168 7.37415C5.22618 7.28665 5.3793 7.28665 5.51055 7.37415L8.39805 9.29915C8.85743 9.6054 9.42618 9.6054 9.88555 9.29915L12.9699 7.22102V9.64915C12.9699 9.91165 13.1887 10.1304 13.4512 10.1304C13.7137 10.1304 13.9324 9.91165 13.9324 9.64915V6.1054C13.9762 5.8429 13.7356 5.62415 13.4731 5.62415Z"
-                fill="#10B981"
-              />
-            </g>
-            <defs>
-              <clipPath id="clip0_554_43030">
-                <rect
-                  width="14"
-                  height="14"
-                  fill="white"
-                  transform="translate(0.45752 0.877319)"
-                />
-              </clipPath>
-            </defs>
-          </svg>
-
-          +2.5%
-        </span>
-      </div>
-      <span class="mt-1 block font-medium">Average cost per interaction</span>
-    </div>
-    <div x-data="{openDropDown: false}" class="relative">
-      <button @click="openDropDown = !openDropDown">
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 18 18"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M2.25 11.25C3.49264 11.25 4.5 10.2426 4.5 9C4.5 7.75736 3.49264 6.75 2.25 6.75C1.00736 6.75 0 7.75736 0 9C0 10.2426 1.00736 11.25 2.25 11.25Z"
-            fill="#98A6AD"
-          />
-          <path
-            d="M9 11.25C10.2426 11.25 11.25 10.2426 11.25 9C11.25 7.75736 10.2426 6.75 9 6.75C7.75736 6.75 6.75 7.75736 6.75 9C6.75 10.2426 7.75736 11.25 9 11.25Z"
-            fill="#98A6AD"
-          />
-          <path
-            d="M15.75 11.25C16.9926 11.25 18 10.2426 18 9C18 7.75736 16.9926 6.75 15.75 6.75C14.5074 6.75 13.5 7.75736 13.5 9C13.5 10.2426 14.5074 11.25 15.75 11.25Z"
-            fill="#98A6AD"
-          />
-        </svg>
-      </button>
-      <div
-        x-show="openDropDown"
-        @click.outside="openDropDown = false"
-        class="absolute right-0 top-full z-40 w-40 space-y-1 rounded-sm border border-stroke bg-white p-1.5 shadow-default dark:border-strokedark dark:bg-boxdark"
-      >
-        <button
-          class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray dark:hover:bg-meta-4"
-        >
-          <svg
-            class="fill-current"
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g clip-path="url(#clip0_62_9787)">
-              <path
-                d="M15.55 2.97499C15.55 2.77499 15.475 2.57499 15.325 2.42499C15.025 2.12499 14.725 1.82499 14.45 1.52499C14.175 1.24999 13.925 0.974987 13.65 0.724987C13.525 0.574987 13.375 0.474986 13.175 0.449986C12.95 0.424986 12.75 0.474986 12.575 0.624987L10.875 2.32499H2.02495C1.17495 2.32499 0.449951 3.02499 0.449951 3.89999V14C0.449951 14.85 1.14995 15.575 2.02495 15.575H12.15C13 15.575 13.725 14.875 13.725 14V5.12499L15.35 3.49999C15.475 3.34999 15.55 3.17499 15.55 2.97499ZM8.19995 8.99999C8.17495 9.02499 8.17495 9.02499 8.14995 9.02499L6.34995 9.62499L6.94995 7.82499C6.94995 7.79999 6.97495 7.79999 6.97495 7.77499L11.475 3.27499L12.725 4.49999L8.19995 8.99999ZM12.575 14C12.575 14.25 12.375 14.45 12.125 14.45H2.02495C1.77495 14.45 1.57495 14.25 1.57495 14V3.87499C1.57495 3.62499 1.77495 3.42499 2.02495 3.42499H9.72495L6.17495 6.99999C6.04995 7.12499 5.92495 7.29999 5.87495 7.49999L4.94995 10.3C4.87495 10.5 4.92495 10.675 5.02495 10.85C5.09995 10.95 5.24995 11.1 5.52495 11.1H5.62495L8.49995 10.15C8.67495 10.1 8.84995 9.97499 8.97495 9.84999L12.575 6.24999V14ZM13.5 3.72499L12.25 2.49999L13.025 1.72499C13.225 1.92499 14.05 2.74999 14.25 2.97499L13.5 3.72499Z"
-                fill=""
-              />
-            </g>
-            <defs>
-              <clipPath id="clip0_62_9787">
-                <rect width="16" height="16" fill="white" />
-              </clipPath>
-            </defs>
-          </svg>
-          Edit
-        </button>
-        <button
-          class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray dark:hover:bg-meta-4"
-        >
-          <svg
-            class="fill-current"
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12.225 2.20005H10.3V1.77505C10.3 1.02505 9.70005 0.425049 8.95005 0.425049H7.02505C6.27505 0.425049 5.67505 1.02505 5.67505 1.77505V2.20005H3.75005C3.02505 2.20005 2.42505 2.80005 2.42505 3.52505V4.27505C2.42505 4.82505 2.75005 5.27505 3.22505 5.47505L3.62505 13.75C3.67505 14.775 4.52505 15.575 5.55005 15.575H10.4C11.425 15.575 12.275 14.775 12.325 13.75L12.75 5.45005C13.225 5.25005 13.55 4.77505 13.55 4.25005V3.50005C13.55 2.80005 12.95 2.20005 12.225 2.20005ZM6.82505 1.77505C6.82505 1.65005 6.92505 1.55005 7.05005 1.55005H8.97505C9.10005 1.55005 9.20005 1.65005 9.20005 1.77505V2.20005H6.85005V1.77505H6.82505ZM3.57505 3.52505C3.57505 3.42505 3.65005 3.32505 3.77505 3.32505H12.225C12.325 3.32505 12.425 3.40005 12.425 3.52505V4.27505C12.425 4.37505 12.35 4.47505 12.225 4.47505H3.77505C3.67505 4.47505 3.57505 4.40005 3.57505 4.27505V3.52505V3.52505ZM10.425 14.45H5.57505C5.15005 14.45 4.80005 14.125 4.77505 13.675L4.40005 5.57505H11.625L11.25 13.675C11.2 14.1 10.85 14.45 10.425 14.45Z"
-              fill=""
-            />
-            <path
-              d="M8.00005 8.1001C7.70005 8.1001 7.42505 8.3501 7.42505 8.6751V11.8501C7.42505 12.1501 7.67505 12.4251 8.00005 12.4251C8.30005 12.4251 8.57505 12.1751 8.57505 11.8501V8.6751C8.57505 8.3501 8.30005 8.1001 8.00005 8.1001Z"
-              fill=""
-            />
-            <path
-              d="M9.99994 8.60004C9.67494 8.57504 9.42494 8.80004 9.39994 9.12504L9.24994 11.325C9.22494 11.625 9.44994 11.9 9.77494 11.925C9.79994 11.925 9.79994 11.925 9.82494 11.925C10.1249 11.925 10.3749 11.7 10.3749 11.4L10.5249 9.20004C10.5249 8.87504 10.2999 8.62504 9.99994 8.60004Z"
-              fill=""
-            />
-            <path
-              d="M5.97497 8.60004C5.67497 8.62504 5.42497 8.90004 5.44997 9.20004L5.62497 11.4C5.64997 11.7 5.89997 11.925 6.17497 11.925C6.19997 11.925 6.19997 11.925 6.22497 11.925C6.52497 11.9 6.77497 11.625 6.74997 11.325L6.57497 9.12504C6.57497 8.80004 6.29997 8.57504 5.97497 8.60004Z"
-              fill=""
-            />
-          </svg>
-          Delete
-        </button>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div id="chartSix" class="-ml-5"></div>
-  </div>
-</div>
-
-              </div>
-              <!-- ===== Chart Six End ===== -->
-
+             
               <!-- ===== Featured Campaigns Start ===== -->
               <div
                 class="col-span-12 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-6"
@@ -1021,30 +780,11 @@
                     >
                       Featured Campaigns
                     </h2>
-                    <p class="text-sm font-medium">75% activity growth</p>
+                    <p class="text-sm font-medium text-gray-600">75% activity growth</p>
                   </div>
                   <div x-data="{openDropDown: false}" class="relative">
                     <button @click="openDropDown = !openDropDown">
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 18 18"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M2.25 11.25C3.49264 11.25 4.5 10.2426 4.5 9C4.5 7.75736 3.49264 6.75 2.25 6.75C1.00736 6.75 0 7.75736 0 9C0 10.2426 1.00736 11.25 2.25 11.25Z"
-                          fill="#98A6AD"
-                        />
-                        <path
-                          d="M9 11.25C10.2426 11.25 11.25 10.2426 11.25 9C11.25 7.75736 10.2426 6.75 9 6.75C7.75736 6.75 6.75 7.75736 6.75 9C6.75 10.2426 7.75736 11.25 9 11.25Z"
-                          fill="#98A6AD"
-                        />
-                        <path
-                          d="M15.75 11.25C16.9926 11.25 18 10.2426 18 9C18 7.75736 16.9926 6.75 15.75 6.75C14.5074 6.75 13.5 7.75736 13.5 9C13.5 10.2426 14.5074 11.25 15.75 11.25Z"
-                          fill="#98A6AD"
-                        />
-                      </svg>
+                        <i class="fa-solid fa-ellipsis" style="color: #818283"></i>
                     </button>
                     <div
                       x-show="openDropDown"
@@ -1052,58 +792,15 @@
                       class="absolute right-0 top-full z-40 w-40 space-y-1 rounded-sm border border-stroke bg-white p-1.5 shadow-default dark:border-strokedark dark:bg-boxdark"
                     >
                       <button
-                        class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray dark:hover:bg-meta-4"
+                        class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray-200 text-gray-400"
                       >
-                        <svg
-                          class="fill-current"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g clip-path="url(#clip0_62_9787)">
-                            <path
-                              d="M15.55 2.97499C15.55 2.77499 15.475 2.57499 15.325 2.42499C15.025 2.12499 14.725 1.82499 14.45 1.52499C14.175 1.24999 13.925 0.974987 13.65 0.724987C13.525 0.574987 13.375 0.474986 13.175 0.449986C12.95 0.424986 12.75 0.474986 12.575 0.624987L10.875 2.32499H2.02495C1.17495 2.32499 0.449951 3.02499 0.449951 3.89999V14C0.449951 14.85 1.14995 15.575 2.02495 15.575H12.15C13 15.575 13.725 14.875 13.725 14V5.12499L15.35 3.49999C15.475 3.34999 15.55 3.17499 15.55 2.97499ZM8.19995 8.99999C8.17495 9.02499 8.17495 9.02499 8.14995 9.02499L6.34995 9.62499L6.94995 7.82499C6.94995 7.79999 6.97495 7.79999 6.97495 7.77499L11.475 3.27499L12.725 4.49999L8.19995 8.99999ZM12.575 14C12.575 14.25 12.375 14.45 12.125 14.45H2.02495C1.77495 14.45 1.57495 14.25 1.57495 14V3.87499C1.57495 3.62499 1.77495 3.42499 2.02495 3.42499H9.72495L6.17495 6.99999C6.04995 7.12499 5.92495 7.29999 5.87495 7.49999L4.94995 10.3C4.87495 10.5 4.92495 10.675 5.02495 10.85C5.09995 10.95 5.24995 11.1 5.52495 11.1H5.62495L8.49995 10.15C8.67495 10.1 8.84995 9.97499 8.97495 9.84999L12.575 6.24999V14ZM13.5 3.72499L12.25 2.49999L13.025 1.72499C13.225 1.92499 14.05 2.74999 14.25 2.97499L13.5 3.72499Z"
-                              fill=""
-                            />
-                          </g>
-                          <defs>
-                            <clipPath id="clip0_62_9787">
-                              <rect width="16" height="16" fill="white" />
-                            </clipPath>
-                          </defs>
-                        </svg>
+                      <i class="fa-solid fa-pen-to-square" style="color: #9e9c9c;"></i> 
                         Edit
                       </button>
                       <button
-                        class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray dark:hover:bg-meta-4"
+                        class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray-200 text-gray-400"
                       >
-                        <svg
-                          class="fill-current"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M12.225 2.20005H10.3V1.77505C10.3 1.02505 9.70005 0.425049 8.95005 0.425049H7.02505C6.27505 0.425049 5.67505 1.02505 5.67505 1.77505V2.20005H3.75005C3.02505 2.20005 2.42505 2.80005 2.42505 3.52505V4.27505C2.42505 4.82505 2.75005 5.27505 3.22505 5.47505L3.62505 13.75C3.67505 14.775 4.52505 15.575 5.55005 15.575H10.4C11.425 15.575 12.275 14.775 12.325 13.75L12.75 5.45005C13.225 5.25005 13.55 4.77505 13.55 4.25005V3.50005C13.55 2.80005 12.95 2.20005 12.225 2.20005ZM6.82505 1.77505C6.82505 1.65005 6.92505 1.55005 7.05005 1.55005H8.97505C9.10005 1.55005 9.20005 1.65005 9.20005 1.77505V2.20005H6.85005V1.77505H6.82505ZM3.57505 3.52505C3.57505 3.42505 3.65005 3.32505 3.77505 3.32505H12.225C12.325 3.32505 12.425 3.40005 12.425 3.52505V4.27505C12.425 4.37505 12.35 4.47505 12.225 4.47505H3.77505C3.67505 4.47505 3.57505 4.40005 3.57505 4.27505V3.52505V3.52505ZM10.425 14.45H5.57505C5.15005 14.45 4.80005 14.125 4.77505 13.675L4.40005 5.57505H11.625L11.25 13.675C11.2 14.1 10.85 14.45 10.425 14.45Z"
-                            fill=""
-                          />
-                          <path
-                            d="M8.00005 8.1001C7.70005 8.1001 7.42505 8.3501 7.42505 8.6751V11.8501C7.42505 12.1501 7.67505 12.4251 8.00005 12.4251C8.30005 12.4251 8.57505 12.1751 8.57505 11.8501V8.6751C8.57505 8.3501 8.30005 8.1001 8.00005 8.1001Z"
-                            fill=""
-                          />
-                          <path
-                            d="M9.99994 8.60004C9.67494 8.57504 9.42494 8.80004 9.39994 9.12504L9.24994 11.325C9.22494 11.625 9.44994 11.9 9.77494 11.925C9.79994 11.925 9.79994 11.925 9.82494 11.925C10.1249 11.925 10.3749 11.7 10.3749 11.4L10.5249 9.20004C10.5249 8.87504 10.2999 8.62504 9.99994 8.60004Z"
-                            fill=""
-                          />
-                          <path
-                            d="M5.97497 8.60004C5.67497 8.62504 5.42497 8.90004 5.44997 9.20004L5.62497 11.4C5.64997 11.7 5.89997 11.925 6.17497 11.925C6.19997 11.925 6.19997 11.925 6.22497 11.925C6.52497 11.9 6.77497 11.625 6.74997 11.325L6.57497 9.12504C6.57497 8.80004 6.29997 8.57504 5.97497 8.60004Z"
-                            fill=""
-                          />
-                        </svg>
+                      <i class="fa-solid fa-trash" style="color: #9e9c9c;"></i> 
                         Delete
                       </button>
                     </div>
@@ -1114,16 +811,16 @@
                   x-data="
                       {
                       openTab: 1,
-                      activeClasses: 'bg-primary/[0.08] text-primary border-primary',
+                      activeClasses: 'bg-primary/[0.08] text-blue-500 border-primary',
                       inactiveClasses: 'border-stroke dark:border-strokedark',
                       }
                       "
                   class="px-6 pb-7.5 pt-6"
                 >
                   <!-- Featured Tab Buttons -->
-                  <div class="mb-5.5 flex flex-wrap items-center gap-3.5">
+                  <div class="pt-2 pb-2 ml-2 mr-2 mb-3 grid grid-cols-4 gap-4">
                     <button
-                      class="inline-flex items-center gap-3 rounded-md border px-4.5 py-2 font-medium hover:border-primary hover:bg-primary/[0.08] hover:text-primary"
+                      class="flex items-center gap-3 rounded-md border px-4 py-2 font-medium text-gray-600 hover:border-blue-600 hover:bg-blue-100 hover:text-blue-600"
                       @click.prevent="openTab = 1"
                       :class="openTab === 1 ? activeClasses : inactiveClasses"
                     >
@@ -1163,7 +860,7 @@
                     </button>
 
                     <button
-                      class="inline-flex items-center gap-3 rounded-md border px-4.5 py-2 font-medium hover:border-primary hover:bg-primary/[0.08] hover:text-primary"
+                      class="flex items-center gap-3 rounded-md border px-4 py-2 font-medium hover:border-blue-400 hover:bg-blue-100 hover:text-blue-600 text-gray-600"
                       @click.prevent="openTab = 2"
                       :class="openTab === 2 ? activeClasses : inactiveClasses"
                     >
@@ -1184,7 +881,7 @@
                     </button>
 
                     <button
-                      class="inline-flex items-center gap-3 rounded-md border px-4.5 py-2 font-medium hover:border-primary hover:bg-primary/[0.08] hover:text-primary"
+                      class="flex items-center gap-3 rounded-md border px-4 py-2 font-medium hover:border-blue-600 hover:bg-blue-100 hover:text-blue-600 text-gray-600"
                       @click.prevent="openTab = 3"
                       :class="openTab === 3 ? activeClasses : inactiveClasses"
                     >
@@ -1262,7 +959,7 @@
                     </button>
 
                     <button
-                      class="inline-flex items-center gap-3 rounded-md border px-4.5 py-2 font-medium hover:border-primary hover:bg-primary/[0.08] hover:text-primary"
+                      class="flex items-center gap-3 rounded-md border px-4 py-2 font-medium hover:border-blue-600 hover:bg-blue-100 hover:text-blue-600 text-gray-600"
                       @click.prevent="openTab = 4"
                       :class="openTab === 4 ? activeClasses : inactiveClasses"
                     >
@@ -1287,10 +984,10 @@
                   <div>
                     <!-- Featured Table Titles -->
                     <div
-                      class="grid gap-1 rounded bg-gray-2 px-4.5 py-2 dark:bg-graydark xsm:grid-cols-7 sm:grid-cols-5"
+                      class="rounded bg-gray-100 pb-2 pt-2 px-4 py-2 dark:bg-graydark grid grid-cols-3 gap-3 text-gray-600"
                     >
                       <div class="xsm:col-span-3">
-                        <h4 class="text-sm font-medium uppercase">
+                        <h4 class="text-sm font-medium uppercase items-start">
                           EMAIL TITLE
                         </h4>
                       </div>
@@ -1314,18 +1011,18 @@
                     >
                       <!-- Featured Tab Content Item -->
                       <div
-                        class="grid gap-1 px-4.5 xsm:grid-cols-7 sm:grid-cols-5"
+                        class="grid gap-1 px-4 grid-cols-3 pt-3 pb-1"
                       >
                         <div class="xsm:col-span-3">
                           <h5
-                            class="cursor-pointer text-sm font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                            class="cursor-pointer text-sm font-medium text-black hover:text-blue-600 dark:text-white"
                           >
                             Best Headsets Giveaway
                           </h5>
                         </div>
                         <div class="xsm:col-span-2 sm:col-span-1">
                           <span
-                            class="inline-block rounded bg-meta-8/[0.08] px-2.5 py-1 text-sm font-medium text-meta-8"
+                            class="inline-block rounded bg-yellow-100 px-2 py-1 text-sm font-medium text-yellow-500"
                             >In Queue</span
                           >
                         </div>
@@ -1341,18 +1038,19 @@
 
                       <!-- Featured Tab Content Item -->
                       <div
-                        class="grid gap-1 px-4.5 xsm:grid-cols-7 sm:grid-cols-5"
+                        class="grid gap-1 pb-1 pt-1
+                         px-4 grid-cols-3"
                       >
                         <div class="xsm:col-span-3">
                           <h5
-                            class="cursor-pointer text-sm font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                            class="cursor-pointer text-sm font-medium text-black hover:text-blue-500 dark:text-white"
                           >
                             iPhone 14 Plus Giveaway
                           </h5>
                         </div>
                         <div class="xsm:col-span-2 sm:col-span-1">
                           <span
-                            class="inline-block rounded bg-meta-3/[0.08] px-2.5 py-1 text-sm font-medium text-meta-3"
+                            class="inline-block rounded bg-green-100 px-2 py-1 text-sm font-medium text-green-500"
                             >Sent</span
                           >
                         </div>
@@ -1368,18 +1066,19 @@
 
                       <!-- Featured Tab Content Item -->
                       <div
-                        class="grid gap-1 px-4.5 xsm:grid-cols-7 sm:grid-cols-5"
+                        class="grid gap-1 px-4 grid-cols-3 pt-1 pb-1
+                        "
                       >
                         <div class="xsm:col-span-3">
                           <h5
-                            class="cursor-pointer text-sm font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                            class="cursor-pointer text-sm font-medium text-black hover:text-blue-500 dark:text-white"
                           >
                             Macbook Pro M1 Giveaway
                           </h5>
                         </div>
                         <div class="xsm:col-span-2 sm:col-span-1">
                           <span
-                            class="inline-block rounded bg-meta-3/[0.08] px-2.5 py-1 text-sm font-medium text-meta-3"
+                            class="inline-block rounded bg-green-100 px-2 py-1 text-sm font-medium text-green-500"
                             >Sent</span
                           >
                         </div>
@@ -1395,18 +1094,18 @@
 
                       <!-- Featured Tab Content Item -->
                       <div
-                        class="grid gap-1 px-4.5 xsm:grid-cols-7 sm:grid-cols-5"
+                        class="grid gap-1 px-4 pt-1 pb-1 grid-cols-3"
                       >
                         <div class="xsm:col-span-3">
                           <h5
-                            class="cursor-pointer text-sm font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                            class="cursor-pointer text-sm font-medium text-black hover:text-blue-500 dark:text-white dark:hover:text-blue-500"
                           >
                             Affiliation Program
                           </h5>
                         </div>
                         <div class="xsm:col-span-2 sm:col-span-1">
                           <span
-                            class="inline-block rounded bg-meta-3/[0.08] px-2.5 py-1 text-sm font-medium text-meta-3"
+                            class="inline-block rounded bg-green-100 px-2 py-1 text-sm font-medium text-green-500"
                             >Sent</span
                           >
                         </div>
@@ -1422,18 +1121,19 @@
 
                       <!-- Featured Tab Content Item -->
                       <div
-                        class="grid gap-1 px-4.5 xsm:grid-cols-7 sm:grid-cols-5"
+                        class="grid gap-1 px-4 grid-cols-3 pt-1 pb-1
+                        "
                       >
                         <div class="xsm:col-span-3">
                           <h5
-                            class="cursor-pointer text-sm font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                            class="cursor-pointer text-sm font-medium text-black hover:text-blue-500 dark:text-white dark:hover:text-blue-500"
                           >
                             Google AdSense
                           </h5>
                         </div>
                         <div class="xsm:col-span-2 sm:col-span-1">
                           <span
-                            class="inline-block rounded bg-primary/[0.08] px-2.5 py-1 text-sm font-medium text-primary"
+                            class="inline-block rounded bg-blue-100 px-2 py-1 text-sm font-medium text-blue-500"
                             >In Draft</span
                           >
                         </div>
@@ -1456,18 +1156,18 @@
                     >
                       <!-- Featured Tab Content Item -->
                       <div
-                        class="grid gap-1 px-4.5 xsm:grid-cols-7 sm:grid-cols-5"
+                        class="grid gap-1 px-4 grid-cols-3 pb-1 pt-2"
                       >
                         <div class="xsm:col-span-3">
                           <h5
-                            class="cursor-pointer text-sm font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                            class="cursor-pointer text-sm font-medium text-black hover:text-blue-500 dark:text-white dark:hover:text-blue-500"
                           >
                             iPhone 14 Plus Giveaway
                           </h5>
                         </div>
                         <div class="xsm:col-span-2 sm:col-span-1">
                           <span
-                            class="inline-block rounded bg-meta-3/[0.08] px-2.5 py-1 text-sm font-medium text-meta-3"
+                            class="inline-block rounded bg-green-100 px-2 py-1 text-sm font-medium text-green-500"
                             >Sent</span
                           >
                         </div>
@@ -1483,18 +1183,18 @@
 
                       <!-- Featured Tab Content Item -->
                       <div
-                        class="grid gap-1 px-4.5 xsm:grid-cols-7 sm:grid-cols-5"
+                        class="grid gap-1 px-4 grid-cols-3 pt-1 pb-1"
                       >
                         <div class="xsm:col-span-3">
                           <h5
-                            class="cursor-pointer text-sm font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                            class="cursor-pointer text-sm font-medium text-black hover:text-blue-500 dark:text-white"
                           >
                             Macbook Pro M1 Giveaway
                           </h5>
                         </div>
                         <div class="xsm:col-span-2 sm:col-span-1">
                           <span
-                            class="inline-block rounded bg-meta-3/[0.08] px-2.5 py-1 text-sm font-medium text-meta-3"
+                            class="inline-block rounded bg-green-100 px-2 py-1 text-sm font-medium text-green-500"
                             >Sent</span
                           >
                         </div>
@@ -1510,18 +1210,18 @@
 
                       <!-- Featured Tab Content Item -->
                       <div
-                        class="grid gap-1 px-4.5 xsm:grid-cols-7 sm:grid-cols-5"
+                        class="grid gap-1 px-4 grid-cols-3 pt-1 pb-1"
                       >
                         <div class="xsm:col-span-3">
                           <h5
-                            class="cursor-pointer text-sm font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                            class="cursor-pointer text-sm font-medium text-black hover:text-blue-500 dark:text-white"
                           >
                             Best Headsets Giveaway
                           </h5>
                         </div>
                         <div class="xsm:col-span-2 sm:col-span-1">
                           <span
-                            class="inline-block rounded bg-meta-8/[0.08] px-2.5 py-1 text-sm font-medium text-meta-8"
+                            class="inline-block rounded bg-yellow-100 px-2 py-1 text-sm font-medium text-yellow-500"
                             >In Queue</span
                           >
                         </div>
@@ -1537,18 +1237,18 @@
 
                       <!-- Featured Tab Content Item -->
                       <div
-                        class="grid gap-1 px-4.5 xsm:grid-cols-7 sm:grid-cols-5"
+                        class="grid gap-1 px-4 grid-cols-3 pb-1 pt-1"
                       >
                         <div class="xsm:col-span-3">
                           <h5
-                            class="cursor-pointer text-sm font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                            class="cursor-pointer text-sm font-medium text-black hover:text-blue-500 dark:text-white"
                           >
                             Google AdSense
                           </h5>
                         </div>
                         <div class="xsm:col-span-2 sm:col-span-1">
                           <span
-                            class="inline-block rounded bg-primary/[0.08] px-2.5 py-1 text-sm font-medium text-primary"
+                            class="inline-block rounded bg-blue-100 px-2 py-1 text-sm font-medium text-blue-500"
                             >In Draft</span
                           >
                         </div>
@@ -1564,18 +1264,18 @@
 
                       <!-- Featured Tab Content Item -->
                       <div
-                        class="grid gap-1 px-4.5 xsm:grid-cols-7 sm:grid-cols-5"
+                        class="grid gap-1 px-4 grid-cols-3 pt-1 pb-1"
                       >
                         <div class="xsm:col-span-3">
                           <h5
-                            class="cursor-pointer text-sm font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                            class="cursor-pointer text-sm font-medium text-black hover:text-blue-500 dark:text-white"
                           >
                             Affiliation Program
                           </h5>
                         </div>
                         <div class="xsm:col-span-2 sm:col-span-1">
                           <span
-                            class="inline-block rounded bg-meta-3/[0.08] px-2.5 py-1 text-sm font-medium text-meta-3"
+                            class="inline-block rounded bg-green-100 px-2 py-1 text-sm font-medium text-green-500"
                             >Sent</span
                           >
                         </div>
@@ -1598,18 +1298,18 @@
                     >
                       <!-- Featured Tab Content Item -->
                       <div
-                        class="grid gap-1 px-4.5 xsm:grid-cols-7 sm:grid-cols-5"
+                        class="grid gap-1 px-4 pt-2 pb-1 grid-cols-3"
                       >
                         <div class="xsm:col-span-3">
                           <h5
-                            class="cursor-pointer text-sm font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                            class="cursor-pointer text-sm font-medium text-black hover:text-blue-500 dark:text-white dark:hover:text-blue-500"
                           >
                             Best Headsets Giveaway
                           </h5>
                         </div>
                         <div class="xsm:col-span-2 sm:col-span-1">
                           <span
-                            class="inline-block rounded bg-meta-8/[0.08] px-2.5 py-1 text-sm font-medium text-meta-8"
+                            class="inline-block rounded bg-yellow-100 px-2 py-1 text-sm font-medium text-yellow-500"
                             >In Queue</span
                           >
                         </div>
@@ -1625,18 +1325,18 @@
 
                       <!-- Featured Tab Content Item -->
                       <div
-                        class="grid gap-1 px-4.5 xsm:grid-cols-7 sm:grid-cols-5"
+                        class="grid gap-1 px-4 grid-cols-3 pb-1 pt-1"
                       >
                         <div class="xsm:col-span-3">
                           <h5
-                            class="cursor-pointer text-sm font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                            class="cursor-pointer text-sm font-medium text-black hover:text-blue-500 dark:text-white dark:hover:text-blue-500"
                           >
                             Affiliation Program
                           </h5>
                         </div>
                         <div class="xsm:col-span-2 sm:col-span-1">
                           <span
-                            class="inline-block rounded bg-meta-3/[0.08] px-2.5 py-1 text-sm font-medium text-meta-3"
+                            class="inline-block rounded bg-green-100 px-2 py-1 text-sm font-medium text-green-500"
                             >Sent</span
                           >
                         </div>
@@ -1652,18 +1352,19 @@
 
                       <!-- Featured Tab Content Item -->
                       <div
-                        class="grid gap-1 px-4.5 xsm:grid-cols-7 sm:grid-cols-5"
+                        class="grid gap-1 px-4 grid-cols-3 pt-1
+                        pb-1"
                       >
                         <div class="xsm:col-span-3">
                           <h5
-                            class="cursor-pointer text-sm font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                            class="cursor-pointer text-sm font-medium text-black hover:text-blue-500 dark:text-white"
                           >
                             Macbook Pro M1 Giveaway
                           </h5>
                         </div>
                         <div class="xsm:col-span-2 sm:col-span-1">
                           <span
-                            class="inline-block rounded bg-meta-3/[0.08] px-2.5 py-1 text-sm font-medium text-meta-3"
+                            class="inline-block rounded bg-green-100 px-2 py-1 text-sm font-medium text-green-500"
                             >Sent</span
                           >
                         </div>
@@ -1679,18 +1380,18 @@
 
                       <!-- Featured Tab Content Item -->
                       <div
-                        class="grid gap-1 px-4.5 xsm:grid-cols-7 sm:grid-cols-5"
+                        class="grid gap-1 px-4 grid-cols-3 pt-1 pb-1"
                       >
                         <div class="xsm:col-span-3">
                           <h5
-                            class="cursor-pointer text-sm font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                            class="cursor-pointer text-sm font-medium text-black hover:text-blue-500 dark:text-white"
                           >
                             Google AdSense
                           </h5>
                         </div>
                         <div class="xsm:col-span-2 sm:col-span-1">
                           <span
-                            class="inline-block rounded bg-primary/[0.08] px-2.5 py-1 text-sm font-medium text-primary"
+                            class="inline-block rounded bg-blue-100 px-2 py-1 text-sm font-medium text-blue-500"
                             >In Draft</span
                           >
                         </div>
@@ -1706,18 +1407,18 @@
 
                       <!-- Featured Tab Content Item -->
                       <div
-                        class="grid gap-1 px-4.5 xsm:grid-cols-7 sm:grid-cols-5"
+                        class="grid gap-1 px-4 pt-1 pb-1 grid-cols-3"
                       >
                         <div class="xsm:col-span-3">
                           <h5
-                            class="cursor-pointer text-sm font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                            class="cursor-pointer text-sm font-medium text-black hover:text-blue-500 dark:text-white"
                           >
                             iPhone 14 Plus Giveaway
                           </h5>
                         </div>
                         <div class="xsm:col-span-2 sm:col-span-1">
                           <span
-                            class="inline-block rounded bg-meta-3/[0.08] px-2.5 py-1 text-sm font-medium text-meta-3"
+                            class="inline-block rounded bg-green-100 px-2 py-1 text-sm font-medium text-green-500"
                             >Sent</span
                           >
                         </div>
@@ -1740,18 +1441,18 @@
                     >
                       <!-- Featured Tab Content Item -->
                       <div
-                        class="grid gap-1 px-4.5 xsm:grid-cols-7 sm:grid-cols-5"
+                        class="grid gap-1 px-4 grid-cols-3 pt-2 pb-1"
                       >
                         <div class="xsm:col-span-3">
                           <h5
-                            class="cursor-pointer text-sm font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                            class="cursor-pointer text-sm font-medium text-black hover:text-blue-500 dark:text-white"
                           >
                             iPhone 14 Plus Giveaway
                           </h5>
                         </div>
                         <div class="xsm:col-span-2 sm:col-span-1">
                           <span
-                            class="inline-block rounded bg-meta-3/[0.08] px-2.5 py-1 text-sm font-medium text-meta-3"
+                            class="inline-block rounded bg-green-100 px-2 py-1 text-sm font-medium text-green-500"
                             >Sent</span
                           >
                         </div>
@@ -1767,18 +1468,19 @@
 
                       <!-- Featured Tab Content Item -->
                       <div
-                        class="grid gap-1 px-4.5 xsm:grid-cols-7 sm:grid-cols-5"
+                        class="grid gap-1 px-4 grid-cols-3 pt-1 pb-1
+                        "
                       >
                         <div class="xsm:col-span-3">
                           <h5
-                            class="cursor-pointer text-sm font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                            class="cursor-pointer text-sm font-medium text-black hover:text-blue-500 dark:text-white"
                           >
                             Best Headsets Giveaway
                           </h5>
                         </div>
                         <div class="xsm:col-span-2 sm:col-span-1">
                           <span
-                            class="inline-block rounded bg-meta-8/[0.08] px-2.5 py-1 text-sm font-medium text-meta-8"
+                            class="inline-block rounded bg-yellow-100 px-2 py-1 text-sm font-medium text-yellow-500"
                             >In Queue</span
                           >
                         </div>
@@ -1794,18 +1496,19 @@
 
                       <!-- Featured Tab Content Item -->
                       <div
-                        class="grid gap-1 px-4.5 xsm:grid-cols-7 sm:grid-cols-5"
+                        class="grid gap-1 px-4 grid-cols-3 pt-1
+                         pb-1"
                       >
                         <div class="xsm:col-span-3">
                           <h5
-                            class="cursor-pointer text-sm font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                            class="cursor-pointer text-sm font-medium text-black hover:text-blue-500 dark:text-white"
                           >
                             Google AdSense
                           </h5>
                         </div>
                         <div class="xsm:col-span-2 sm:col-span-1">
                           <span
-                            class="inline-block rounded bg-primary/[0.08] px-2.5 py-1 text-sm font-medium text-primary"
+                            class="inline-block rounded bg-blue-100 px-2 py-1 text-sm font-medium text-blue-500"
                             >In Draft</span
                           >
                         </div>
@@ -1821,18 +1524,18 @@
 
                       <!-- Featured Tab Content Item -->
                       <div
-                        class="grid gap-1 px-4.5 xsm:grid-cols-7 sm:grid-cols-5"
+                        class="grid gap-1 px-4 grid-cols-3 pt-1 pb-1"
                       >
                         <div class="xsm:col-span-3">
                           <h5
-                            class="cursor-pointer text-sm font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                            class="cursor-pointer text-sm font-medium text-black hover:text-blue-500 dark:text-white"
                           >
                             Affiliation Program
                           </h5>
                         </div>
                         <div class="xsm:col-span-2 sm:col-span-1">
                           <span
-                            class="inline-block rounded bg-meta-3/[0.08] px-2.5 py-1 text-sm font-medium text-meta-3"
+                            class="inline-block rounded bg-green-100 px-2 py-1 text-sm font-medium text-green-500"
                             >Sent</span
                           >
                         </div>
@@ -1848,18 +1551,19 @@
 
                       <!-- Featured Tab Content Item -->
                       <div
-                        class="grid gap-1 px-4.5 xsm:grid-cols-7 sm:grid-cols-5"
+                        class="grid gap-1 px-4 grid-cols-3 pb-1 pt-1
+                        "
                       >
                         <div class="xsm:col-span-3">
                           <h5
-                            class="cursor-pointer text-sm font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                            class="cursor-pointer text-sm font-medium text-black hover:text-blue-500 dark:text-white"
                           >
                             Macbook Pro M1 Giveaway
                           </h5>
                         </div>
                         <div class="xsm:col-span-2 sm:col-span-1">
                           <span
-                            class="inline-block rounded bg-meta-3/[0.08] px-2.5 py-1 text-sm font-medium text-meta-3"
+                            class="inline-block rounded bg-green-100 px-2 py-1 text-sm font-medium text-green-500"
                             >Sent</span
                           >
                         </div>
@@ -1895,26 +1599,7 @@
                   </div>
                   <div x-data="{openDropDown: false}" class="relative">
                     <button @click="openDropDown = !openDropDown">
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 18 18"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M2.25 11.25C3.49264 11.25 4.5 10.2426 4.5 9C4.5 7.75736 3.49264 6.75 2.25 6.75C1.00736 6.75 0 7.75736 0 9C0 10.2426 1.00736 11.25 2.25 11.25Z"
-                          fill="#98A6AD"
-                        />
-                        <path
-                          d="M9 11.25C10.2426 11.25 11.25 10.2426 11.25 9C11.25 7.75736 10.2426 6.75 9 6.75C7.75736 6.75 6.75 7.75736 6.75 9C6.75 10.2426 7.75736 11.25 9 11.25Z"
-                          fill="#98A6AD"
-                        />
-                        <path
-                          d="M15.75 11.25C16.9926 11.25 18 10.2426 18 9C18 7.75736 16.9926 6.75 15.75 6.75C14.5074 6.75 13.5 7.75736 13.5 9C13.5 10.2426 14.5074 11.25 15.75 11.25Z"
-                          fill="#98A6AD"
-                        />
-                      </svg>
+                        <i class="fa-solid fa-ellipsis" style="color: #818283"></i>
                     </button>
                     <div
                       x-show="openDropDown"
@@ -1922,58 +1607,15 @@
                       class="absolute right-0 top-full z-40 w-40 space-y-1 rounded-sm border border-stroke bg-white p-1.5 shadow-default dark:border-strokedark dark:bg-boxdark"
                     >
                       <button
-                        class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray dark:hover:bg-meta-4"
+                        class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray-200 text-gray-400"
                       >
-                        <svg
-                          class="fill-current"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g clip-path="url(#clip0_62_9787)">
-                            <path
-                              d="M15.55 2.97499C15.55 2.77499 15.475 2.57499 15.325 2.42499C15.025 2.12499 14.725 1.82499 14.45 1.52499C14.175 1.24999 13.925 0.974987 13.65 0.724987C13.525 0.574987 13.375 0.474986 13.175 0.449986C12.95 0.424986 12.75 0.474986 12.575 0.624987L10.875 2.32499H2.02495C1.17495 2.32499 0.449951 3.02499 0.449951 3.89999V14C0.449951 14.85 1.14995 15.575 2.02495 15.575H12.15C13 15.575 13.725 14.875 13.725 14V5.12499L15.35 3.49999C15.475 3.34999 15.55 3.17499 15.55 2.97499ZM8.19995 8.99999C8.17495 9.02499 8.17495 9.02499 8.14995 9.02499L6.34995 9.62499L6.94995 7.82499C6.94995 7.79999 6.97495 7.79999 6.97495 7.77499L11.475 3.27499L12.725 4.49999L8.19995 8.99999ZM12.575 14C12.575 14.25 12.375 14.45 12.125 14.45H2.02495C1.77495 14.45 1.57495 14.25 1.57495 14V3.87499C1.57495 3.62499 1.77495 3.42499 2.02495 3.42499H9.72495L6.17495 6.99999C6.04995 7.12499 5.92495 7.29999 5.87495 7.49999L4.94995 10.3C4.87495 10.5 4.92495 10.675 5.02495 10.85C5.09995 10.95 5.24995 11.1 5.52495 11.1H5.62495L8.49995 10.15C8.67495 10.1 8.84995 9.97499 8.97495 9.84999L12.575 6.24999V14ZM13.5 3.72499L12.25 2.49999L13.025 1.72499C13.225 1.92499 14.05 2.74999 14.25 2.97499L13.5 3.72499Z"
-                              fill=""
-                            />
-                          </g>
-                          <defs>
-                            <clipPath id="clip0_62_9787">
-                              <rect width="16" height="16" fill="white" />
-                            </clipPath>
-                          </defs>
-                        </svg>
+                      <i class="fa-solid fa-pen-to-square" style="color: #9e9c9c;"></i> 
                         Edit
                       </button>
                       <button
-                        class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray dark:hover:bg-meta-4"
+                        class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray-200 text-gray-400"
                       >
-                        <svg
-                          class="fill-current"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M12.225 2.20005H10.3V1.77505C10.3 1.02505 9.70005 0.425049 8.95005 0.425049H7.02505C6.27505 0.425049 5.67505 1.02505 5.67505 1.77505V2.20005H3.75005C3.02505 2.20005 2.42505 2.80005 2.42505 3.52505V4.27505C2.42505 4.82505 2.75005 5.27505 3.22505 5.47505L3.62505 13.75C3.67505 14.775 4.52505 15.575 5.55005 15.575H10.4C11.425 15.575 12.275 14.775 12.325 13.75L12.75 5.45005C13.225 5.25005 13.55 4.77505 13.55 4.25005V3.50005C13.55 2.80005 12.95 2.20005 12.225 2.20005ZM6.82505 1.77505C6.82505 1.65005 6.92505 1.55005 7.05005 1.55005H8.97505C9.10005 1.55005 9.20005 1.65005 9.20005 1.77505V2.20005H6.85005V1.77505H6.82505ZM3.57505 3.52505C3.57505 3.42505 3.65005 3.32505 3.77505 3.32505H12.225C12.325 3.32505 12.425 3.40005 12.425 3.52505V4.27505C12.425 4.37505 12.35 4.47505 12.225 4.47505H3.77505C3.67505 4.47505 3.57505 4.40005 3.57505 4.27505V3.52505V3.52505ZM10.425 14.45H5.57505C5.15005 14.45 4.80005 14.125 4.77505 13.675L4.40005 5.57505H11.625L11.25 13.675C11.2 14.1 10.85 14.45 10.425 14.45Z"
-                            fill=""
-                          />
-                          <path
-                            d="M8.00005 8.1001C7.70005 8.1001 7.42505 8.3501 7.42505 8.6751V11.8501C7.42505 12.1501 7.67505 12.4251 8.00005 12.4251C8.30005 12.4251 8.57505 12.1751 8.57505 11.8501V8.6751C8.57505 8.3501 8.30005 8.1001 8.00005 8.1001Z"
-                            fill=""
-                          />
-                          <path
-                            d="M9.99994 8.60004C9.67494 8.57504 9.42494 8.80004 9.39994 9.12504L9.24994 11.325C9.22494 11.625 9.44994 11.9 9.77494 11.925C9.79994 11.925 9.79994 11.925 9.82494 11.925C10.1249 11.925 10.3749 11.7 10.3749 11.4L10.5249 9.20004C10.5249 8.87504 10.2999 8.62504 9.99994 8.60004Z"
-                            fill=""
-                          />
-                          <path
-                            d="M5.97497 8.60004C5.67497 8.62504 5.42497 8.90004 5.44997 9.20004L5.62497 11.4C5.64997 11.7 5.89997 11.925 6.17497 11.925C6.19997 11.925 6.19997 11.925 6.22497 11.925C6.52497 11.9 6.77497 11.625 6.74997 11.325L6.57497 9.12504C6.57497 8.80004 6.29997 8.57504 5.97497 8.60004Z"
-                            fill=""
-                          />
-                        </svg>
+                      <i class="fa-solid fa-trash" style="color: #9e9c9c;"></i> 
                         Delete
                       </button>
                     </div>
@@ -1986,7 +1628,7 @@
                       <div
                         class="h-16 w-full max-w-16 rounded-full border-[3px] border-stroke dark:border-strokedark"
                       >
-                        <img src="src/images/user/user-14.png" alt="User" />
+                        <img src="./images/user/user-06.png" alt="User" />
                       </div>
 
                       <div>
@@ -1995,8 +1637,8 @@
                           Commented on Cloud
                           <span class="font-medium">Killan James</span>
                         </p>
-                        <span class="mt-1 block text-sm">1 hour ago</span>
-                        <p class="mt-2.5 text-black dark:text-white">
+                        <span class="mt-1 block text-sm text-gray-500">1 hour ago</span>
+                        <p class="mt-2.5 text-gray-600 dark:text-white">
                           It's an Affiliate commissions SaaS application that
                           allows you to track your affiliate revenue.
                         </p>
@@ -2011,7 +1653,7 @@
                       <div
                         class="h-16 w-full max-w-16 rounded-full border-[3px] border-stroke dark:border-strokedark"
                       >
-                        <img src="src/images/user/user-15.png" alt="User" />
+                        <img src="./images/user/user-04.png" alt="User" />
                       </div>
 
                       <div>
@@ -2020,8 +1662,8 @@
                           Commented on Cloud
                           <span class="font-medium">Matney</span>
                         </p>
-                        <span class="mt-1 block text-sm">2 hour ago</span>
-                        <p class="mt-2.5 text-black dark:text-white">
+                        <span class="mt-1 block text-sm text-gray-500">2 hour ago</span>
+                        <p class="mt-2.5 text-gray-600 dark:text-white">
                           There are many variations of passages of Lorem Ipsum
                           available, but the majority have suffered.
                         </p>
@@ -2032,7 +1674,7 @@
                       <div
                         class="h-16 w-full max-w-16 rounded-full border-[3px] border-stroke dark:border-strokedark"
                       >
-                        <img src="src/images/user/user-16.png" alt="User" />
+                        <img src="./images/user/user-03.png" alt="User" />
                       </div>
 
                       <div>
@@ -2041,8 +1683,9 @@
                           Commented on
                           <span class="font-medium">Williams Son</span>
                         </p>
-                        <span class="mt-1 block text-sm">3 hour ago</span>
-                        <p class="mt-2.5 text-black dark:text-white">
+                        <span class="mt-1 block text-sm text-gray-500">3 hour ago</span>
+                        <p class="mt-2.5 text-gray-600
+                         dark:text-white">
                           There are many variations of passages of Lorem Ipsum.
                         </p>
                       </div>
@@ -2059,7 +1702,7 @@
       <!-- ===== Content Area End ===== -->
     </div>
     <!-- ===== Page Wrapper End ===== -->
-  <script defer src="bundle.js"></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"></script>
+  <script defer src="bundle.js"></s><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"></script>
 
   
 </body>

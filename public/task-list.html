@@ -1,0 +1,700 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task List | TailAdmin - Tailwind CSS Admin Dashboard Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+    <link rel="stylesheet" href="output.css">
+  </head>
+
+  <body
+    x-data="{ page: 'list', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+    x-init="
+         darkMode = JSON.parse(localStorage.getItem('darkMode'));
+         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+    :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}"
+  >
+    <!-- ===== Preloader Start ===== -->
+    <div
+  x-show="loaded"
+  x-init="window.addEventListener('DOMContentLoaded', () => {setTimeout(() => loaded = false, 500)})"
+  class="fixed left-0 top-0 z-999999 flex h-screen w-screen items-center justify-center bg-white dark:bg-black"
+>
+  <div
+    class="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent"
+  ></div>
+</div>
+
+    <!-- ===== Preloader End ===== -->
+
+    <!-- ===== Page Wrapper Start ===== -->
+    
+      <!-- ===== Content Area Start ===== -->
+      <div
+        class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden"
+      >
+        
+        <!-- ===== Main Content Start ===== -->
+        <main>
+          <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 px-4 py-4">
+            <div class="mx-auto max-w-5xl bg-gray-200">
+              <!-- Breadcrumb Start -->
+              <div
+                class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+              >
+                <h2 class="text-title-md2 font-bold text-black dark:text-white ">
+                  Task List
+                </h2>
+
+                <nav>
+                  <ol class="flex items-center gap-2">
+                    <li>
+                      <a class="font-medium" href="index.html">Dashboard /</a>
+                    </li>
+                    <li class="font-medium text-royal-blue">Task List</li>
+                  </ol>
+                </nav>
+              </div>
+              <!-- Breadcrumb End -->
+
+              <!-- Task Header Start -->
+              <div
+                class="flex flex-col gap-y-4 rounded-sm border border-stroke bg-white p-3 shadow-default dark:border-strokedark dark:bg-boxdark sm:flex-row sm:items-center sm:justify-between"
+              >
+                <div>
+                  <h3
+                    class="text-title-lg font-bold text-black dark:text-white"
+                  >
+                    Tasks
+                  </h3>
+                </div>
+                <div
+                  class="flex flex-col gap-4 2xsm:flex-row 2xsm:items-center"
+                >
+                  <div class="flex -space-x-2">
+                    <button
+                      class="h-9 w-9 rounded-full border-2 border-white dark:border-boxdark"
+                    >
+                      <img src="./images/user/user-07.png" alt="User" />
+                    </button>
+                    <button
+                      class="h-9 w-9 rounded-full border-2 border-white dark:border-boxdark"
+                    >
+                      <img src="./images/user/user-08.png" alt="User" />
+                    </button>
+                    <button
+                      class="h-9 w-9 rounded-full border-2 border-white dark:border-boxdark"
+                    >
+                      <img src="./images/user/user-09.png" alt="User" />
+                    </button>
+                    <button
+                      class="h-9 w-9 rounded-full border-2 border-white dark:border-boxdark"
+                    >
+                      <img src="./images/user/user-10.png" alt="User" />
+                    </button>
+                    <button
+                      class="flex h-9 w-9 items-center justify-center rounded-full border border-stroke bg-white text-primary dark:border-strokedark dark:bg-boxdark"
+                    >
+                    <i class="fa-regular fa-plus" style="color: #1d5ac3;"></i>
+                    </button>
+                  </div>
+
+                  <div x-data="{popupOpen: false}">
+                    <button
+                      @click="popupOpen = true"
+                      class="flex items-center gap-2 rounded bg-blue-500 px-4 py-2 font-medium text-white hover:bg-opacity-80"
+                    >
+                    <i class="fa-regular fa-plus" style="color: #f2f2f3;"></i>
+                      Add task
+                    </button>
+
+                    <!-- ===== Task Popup Start ===== -->
+                    <div
+  x-show="popupOpen"
+  x-transition
+  class="fixed left-0 top-0 z-99999 flex h-screen w-full justify-center overflow-y-scroll bg-black bg-transparent px-4 py-5"
+>
+  <div
+    @click.outside="popupOpen = false"
+    class="relative m-auto w-full max-w-180 rounded-sm border border-stroke bg-gray-200 p-4 shadow-default dark:border-strokedark dark:bg-meta-4 sm:p-8 xl:p-10 "
+  >
+    <button
+      @click="popupOpen = false"
+      class="absolute right-1 top-1 sm:right-5 sm:top-5"
+    >
+    <i class="fa-solid fa-xmark fa-2xl" style="color: #b3b3b3;"></i>
+    </button>
+
+    <form action="#">
+      <div class="mb-5">
+        <label
+          for="taskTitle"
+          class="mb-2.5 block font-medium text-black dark:text-white"
+          >Task title</label
+        >
+        <input
+          type="text"
+          name="taskTitle"
+          id="taskTitle"
+          placeholder="Enter task title"
+          class="w-full rounded-sm border border-stroke bg-white px-4 py-3 text-black focus:border-blue-500 focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:text-white dark:focus:border-blue-500"
+        />
+      </div>
+
+      <div class="mb-5">
+        <label
+          for="taskDescription"
+          class="mb-2.5 block font-medium text-black dark:text-white"
+          >Task description</label
+        >
+        <textarea
+          name="taskDescription"
+          id="taskDescription"
+          cols="30"
+          rows="7"
+          placeholder="Enter task description"
+          class="w-full rounded-sm border border-stroke bg-white px-5 py-3 text-black focus:border-blue-500 dark:focus:border-blue-500 focus-visible:outline-none dark:bg-blue-500 dark:text-white"
+        ></textarea>
+      </div>
+
+      <div class="mb-5">
+        <label
+          for="taskList"
+          class="mb-2.5 block font-medium text-black dark:text-white"
+          >Task list</label
+        >
+        <div class="flex flex-col gap-3.5">
+          <div class="flex items-center gap-2.5">
+            <input
+              type="text"
+              name="taskList"
+              id="taskList"
+              placeholder="Enter list text"
+              class="w-full rounded-sm border border-stroke bg-white px-4 py-3 text-black focus:border-blue-500 focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:text-white dark:focus:border-blue-500"
+            />
+
+            <button
+              class="flex h-12.5 w-12.5 items-center justify-center rounded-sm border border-stroke bg-white p-4 hover:text-blue-500 dark:border-strokedark dark:bg-boxdark"
+            >
+            <i class="fa-regular fa-plus fa-xl hover:text-blue-500"></i> 
+            </button>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <input
+              type="text"
+              name="taskList"
+              id="taskList"
+              placeholder="Enter list text"
+              class="w-full rounded-sm border border-stroke bg-white px-4 py-3 text-black focus:border-blue-500 focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:text-white dark:focus:border-blue-500"
+            />
+
+            <button
+              class="flex h-12.5 w-12.5 items-center justify-center rounded-sm border border-stroke bg-white p-4 hover:text-primary dark:border-strokedark dark:bg-boxdark"
+            >
+            <i class="fa-solid fa-minus fa-xl hover:text-blue-500"></i>
+            </button>
+            <button
+              class="flex h-12.5 w-12.5 items-center justify-center rounded-sm border border-stroke bg-white p-4 hover:text-blue-500 dark:border-strokedark dark:bg-boxdark"
+            >
+            <i class="fa-regular fa-plus fa-xl"></i>
+            </button>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <input
+              type="text"
+              name="taskList"
+              id="taskList"
+              placeholder="Enter list text"
+              class="w-full rounded-sm border border-stroke bg-white px-4 py-3 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:text-white dark:focus:border-primary"
+            />
+
+            <button
+              class="flex h-12.5 w-12.5 items-center justify-center rounded-sm border border-stroke bg-white p-4 hover:text-primary dark:border-strokedark dark:bg-boxdark"
+            >
+            <i class="fa-solid fa-minus fa-xl hover:text-blue-500"></i>
+            </button>
+            <button
+              class="flex h-12.5 w-12.5 items-center justify-center rounded-sm border border-stroke bg-white p-4 hover:text-primary dark:border-strokedark dark:bg-boxdark"
+            >
+            <i class="fa-regular fa-plus fa-xl hover:text-blue-500"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="mb-5">
+        <label
+          for="taskImg"
+          class="mb-2.5 block font-medium text-black dark:text-white"
+          >Add image</label
+        >
+        <div x-data="{ files: null }">
+          <div
+            id="FileUpload"
+            class="relative block w-full appearance-none rounded-sm border border-dashed border-stroke bg-white px-4 py-4 dark:border-strokedark dark:bg-boxdark sm:py-14"
+          >
+            <input
+              type="file"
+              accept="image/*"
+              class="absolute inset-0 z-50 m-0 h-full w-full p-0 opacity-0 outline-none"
+              x-on:change="files = $event.target.files;"
+              x-on:dragover="$el.classList.add('active')"
+              x-on:dragleave="$el.classList.remove('active')"
+              x-on:drop="$el.classList.remove('active')"
+            />
+            <div class="flex flex-col items-center justify-center space-y-3">
+              <span
+                class="flex h-11 w-11 items-center justify-center rounded-full border border-stroke bg-primary/5 dark:border-strokedark"
+              >
+              <i class="fa-solid fa-upload" style="color: #1d5ac3;"></i>
+              </span>
+              <p class="text-xs">
+                <span class="text-blue-500">Click to upload</span> or drag and
+                drop
+              </p>
+            </div>
+          </div>
+
+          <template x-if="files !== null">
+            <div
+              class="mt-4.5 border border-stroke bg-white px-4 py-3 dark:border-strokedark dark:bg-boxdark"
+            >
+              <div class="flex items-center justify-between">
+                <template
+                  x-for="(_,index) in Array.from({ length: files.length })"
+                >
+                  <span x-text="files[index].name">Uploading</span>
+                </template>
+
+                <button @click="files = null">
+                    <i class="fa-regular fa-cancel" style="color: #b7babe;"></i>
+                </button>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+      <button
+        class="flex w-full items-center justify-center gap-2 rounded bg-blue-500 px-4 py-2 font-medium text-white"
+      >
+      <i class="fa-regular fa-plus" style="color: #feffff;"></i>
+        Add task
+      </button>
+    </form>
+  </div>
+</div>
+
+                    <!-- ===== Task Popup End ===== -->
+                  </div>
+                </div>
+              </div>
+              <!-- Task Header End -->
+
+              <!-- Task List Wrapper Start -->
+              <div class="mt-9 flex flex-col gap-9">
+                <!-- Todo list -->
+                <div class="swim-lane flex flex-col gap-5.5">
+                  <h4 class="text-xl font-bold text-black dark:text-white pb-4">
+                    To Do's (03)
+                  </h4>
+
+                  <div
+                    draggable="true"
+                    class="task relative flex cursor-move justify-between rounded-sm border border-stroke bg-white p-7 shadow-default dark:border-strokedark dark:bg-boxdark pb-4"
+                  >
+                    <div>
+                      <h5
+                        class="mb-4 text-lg font-medium text-black dark:text-white pb-4"
+                      >
+                        Task title
+                      </h5>
+
+                      <div class="flex flex-col gap-2">
+                        <label for="taskCheckbox1" class="cursor-pointer">
+                          <div class="relative flex items-center pt-0.5">
+                            <input
+                              type="checkbox"
+                              id="taskCheckbox1"
+                              class="taskCheckbox sr-only"
+                            />
+                            <div
+                              class="box mr-3 flex h-5 w-5 items-center justify-center rounded border border-stroke dark:border-strokedark dark:bg-blue-500"
+                            >
+                              <span class="text-white opacity-0">
+                                <i class="fa-solid fa-check"></i>
+                              </span>
+                            </div>
+                            <p>Here is task one</p>
+                          </div>
+                        </label>
+
+                        <label for="taskCheckbox2" class="cursor-pointer">
+                          <div class="relative flex items-center pt-0.5">
+                            <input
+                              type="checkbox"
+                              id="taskCheckbox2"
+                              class="taskCheckbox sr-only"
+                              checked
+                            />
+                            <div
+                              class="box mr-3 flex h-5 w-5 items-center justify-center rounded border border-stroke dark:border-strokedark dark:bg-boxdark-2"
+                            >
+                              <span class="text-white opacity-0">
+                                <i class="fa-solid fa-check"></i>
+                              </span>
+                            </div>
+                            <p>Here is task Two</p>
+                          </div>
+                        </label>
+
+                        <label for="taskCheckbox3" class="cursor-pointer">
+                          <div class="relative flex items-center pt-0.5">
+                            <input
+                              type="checkbox"
+                              id="taskCheckbox3"
+                              class="taskCheckbox sr-only"
+                            />
+                            <div
+                              class="box mr-3 flex h-5 w-5 items-center justify-center rounded border border-stroke dark:border-strokedark dark:bg-boxdark-2"
+                            >
+                              <span class="text-white opacity-0">
+                                <i class="fa-solid fa-check"></i>
+                              </span>
+                            </div>
+                            <p>Here is task Three</p>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="absolute right-4 top-4">
+                      <div x-data="{openDropDown: false}" class="relative">
+                        <button @click="openDropDown = !openDropDown">
+                            <i class="fa-solid fa-ellipsis" style="color: #9a9b9e;"></i>
+                        </button>
+                        <div
+                          x-show="openDropDown"
+                          @click.outside="openDropDown = false"
+                          class="absolute right-0 top-full z-40 w-40 space-y-1 rounded-sm border border-stroke bg-white p-1.5 shadow-default dark:border-strokedark dark:bg-boxdark"
+                        >
+                          <button
+                            class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray-100 text-gray-500"
+                          >
+                          <i class="fa-solid fa-pen-to-square" style="color: #89898a;"></i>
+                            Edit
+                          </button>
+                          <button
+                            class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray-200 text-gray-500"
+                          >
+                          <i class="fa-solid fa-trash" style="color: #7d7d80;"></i>
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    draggable="true"
+                    class="task relative flex cursor-move justify-between rounded-sm border border-stroke bg-white p-7 shadow-default dark:border-strokedark dark:bg-boxdark"
+                  >
+                    <div>
+                      <h5
+                        class="mb-4 text-lg font-medium text-black dark:text-white"
+                      >
+                        Task title
+                      </h5>
+
+                      <div class="flex flex-col gap-2">
+                        <label for="taskCheckbox4" class="cursor-pointer">
+                          <div class="relative flex items-center pt-0.5">
+                            <input
+                              type="checkbox"
+                              id="taskCheckbox4"
+                              class="taskCheckbox sr-only"
+                            />
+                            <div
+                              class="box mr-3 flex h-5 w-5 items-center justify-center rounded border border-stroke dark:border-strokedark dark:bg-boxdark-2"
+                            >
+                              <span class="text-white opacity-0">
+                                <i class="fa-solid fa-check"></i>
+                              </span>
+                            </div>
+                            <p>Here is task one</p>
+                          </div>
+                        </label>
+
+                        <label for="taskCheckbox5" class="cursor-pointer">
+                          <div class="relative flex items-center pt-0.5">
+                            <input
+                              type="checkbox"
+                              id="taskCheckbox5"
+                              class="taskCheckbox sr-only"
+                              checked
+                            />
+                            <div
+                              class="box mr-3 flex h-5 w-5 items-center justify-center rounded border border-stroke dark:border-strokedark dark:bg-boxdark-2"
+                            >
+                              <span class="text-white opacity-0">
+                                <i class="fa-solid fa-check"></i>
+                              </span>
+                            </div>
+                            <p>Here is task Two</p>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="absolute right-4 top-4">
+                      <div x-data="{openDropDown: false}" class="relative">
+                        <button @click="openDropDown = !openDropDown">
+                          <i class="fa-solid fa-ellipsis" style="color:#7d7d80"></i>
+                        </button>
+                        <div
+                          x-show="openDropDown"
+                          @click.outside="openDropDown = false"
+                          class="absolute right-0 top-full z-40 w-40 space-y-1 rounded-sm border border-stroke bg-white p-1.5 shadow-default dark:border-strokedark dark:bg-boxdark"
+                        >
+                          <button
+                            class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray-200 text-gray-500"
+                          >
+                          <i class="fa-solid fa-pen-to-square" style="color:#7d7d80"></i>
+                            Edit
+                          </button>
+                          <button
+                            class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray-200 text-gray-500"
+                          >
+                          <i class="fa-solid fa-trash" style="color:#7d7d80"></i>
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    draggable="true"
+                    class="task relative flex cursor-move justify-between rounded-sm border border-stroke bg-white p-7 shadow-default dark:border-strokedark dark:bg-boxdark"
+                  >
+                    <div>
+                      <h5
+                        class="mb-4 text-lg font-medium text-black dark:text-white"
+                      >
+                        Task title
+                      </h5>
+
+                      <div class="flex flex-col gap-2">
+                        <label for="taskCheckbox6" class="cursor-pointer">
+                          <div class="relative flex items-center pt-0.5">
+                            <input
+                              type="checkbox"
+                              id="taskCheckbox6"
+                              class="taskCheckbox sr-only"
+                            />
+                            <div
+                              class="box mr-3 flex h-5 w-5 items-center justify-center rounded border border-stroke dark:border-strokedark dark:bg-boxdark-2"
+                            >
+                              <span class="text-white opacity-0">
+                                <i class="fa-solid fa-check"></i>
+                              </span>
+                            </div>
+                            <p>Here is task one</p>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="absolute right-4 top-4">
+                      <div x-data="{openDropDown: false}" class="relative">
+                        <button @click="openDropDown = !openDropDown">
+                          <i class="fa-solid fa-ellipsis" style="color:#7d7d80"></i>
+                        </button>
+                        <div
+                          x-show="openDropDown"
+                          @click.outside="openDropDown = false"
+                          class="absolute right-0 top-full z-40 w-40 space-y-1 rounded-sm border border-stroke bg-white p-1.5 shadow-default dark:border-strokedark dark:bg-boxdark"
+                        >
+                          <button
+                            class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray-200 text-gray-500"
+                          >
+                          <i class="fa-solid fa-pen-to-square" style="color:#7d7d80"></i>
+                            Edit
+                          </button>
+                          <button
+                            class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray-200 text-gray-500"
+                          >
+                          <i class="fa-solid fa-trash" style="color:#7d7d80"></i>
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Progress list -->
+                <div class="swim-lane flex flex-col gap-5.5">
+                  <h4 class="text-xl font-bold text-black dark:text-white">
+                    In Progress (01)
+                  </h4>
+
+                  <div
+                    draggable="true"
+                    class="task relative flex cursor-move justify-between rounded-sm border border-stroke bg-white p-7 shadow-default dark:border-strokedark dark:bg-boxdark"
+                  >
+                    <div>
+                      <h5
+                        class="mb-4 text-lg font-medium text-black dark:text-white"
+                      >
+                        Task title
+                      </h5>
+
+                      <div class="flex flex-col gap-2">
+                        <label for="taskCheckbox7" class="cursor-pointer">
+                          <div class="relative flex items-center pt-0.5">
+                            <input
+                              type="checkbox"
+                              id="taskCheckbox7"
+                              class="taskCheckbox sr-only"
+                            />
+                            <div
+                              class="box mr-3 flex h-5 w-5 items-center justify-center rounded border border-stroke dark:border-strokedark dark:bg-boxdark-2"
+                            >
+                              <span class="text-white opacity-0">
+                                <i class="fa-solid fa-check"></i>
+                              </span>
+                            </div>
+                            <p>Here is task one</p>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="absolute right-4 top-4">
+                      <div x-data="{openDropDown: false}" class="relative">
+                        <button @click="openDropDown = !openDropDown">
+                          <i class="fa-solid fa-ellipsis" style="color:#7d7d80"></i>
+                        </button>
+                        <div
+                          x-show="openDropDown"
+                          @click.outside="openDropDown = false"
+                          class="absolute right-0 top-full z-40 w-40 space-y-1 rounded-sm border border-stroke bg-white p-1.5 shadow-default dark:border-strokedark dark:bg-boxdark"
+                        >
+                          <button
+                            class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray-200 text-gray-500"
+                          >
+                          <i class="fa-solid fa-pen-to-square"></i>
+                            Edit
+                          </button>
+                          <button
+                            class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray-200 text-gray-500"
+                          >
+                          <i class="fa-solid fa-trash" style="color:#7d7d80"></i>
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Completed list -->
+                <div class="swim-lane flex flex-col gap-5.5">
+                  <h4 class="text-xl font-bold text-black dark:text-white">
+                    Completed (01)
+                  </h4>
+
+                  <div
+                    draggable="true"
+                    class="task relative flex cursor-move justify-between rounded-sm border border-stroke bg-white p-7 shadow-default dark:border-strokedark dark:bg-boxdark"
+                  >
+                    <div>
+                      <h5
+                        class="mb-4 text-lg font-medium text-black dark:text-white"
+                      >
+                        Task title
+                      </h5>
+
+                      <div class="flex flex-col gap-2">
+                        <label for="taskCheckbox8" class="cursor-pointer">
+                          <div class="relative flex items-center pt-0.5">
+                            <input
+                              type="checkbox"
+                              id="taskCheckbox8"
+                              class="taskCheckbox sr-only"
+                              checked
+                            />
+                            <div
+                              class="box mr-3 flex h-5 w-5 items-center justify-center rounded border border-stroke dark:border-strokedark dark:bg-boxdark-2"
+                            >
+                              <span class="text-white opacity-0">
+                                <i class="fa-solid fa-check"></i>
+                              </span>
+                            </div>
+                            <p>Here is task one</p>
+                          </div>
+                        </label>
+
+                        <label for="taskCheckbox9" class="cursor-pointer">
+                          <div class="relative flex items-center pt-0.5">
+                            <input
+                              type="checkbox"
+                              id="taskCheckbox9"
+                              class="taskCheckbox sr-only"
+                              checked
+                            />
+                            <div
+                              class="box mr-3 flex h-5 w-5 items-center justify-center rounded border border-stroke dark:border-strokedark dark:bg-boxdark-2"
+                            >
+                              <span class="text-white opacity-0">
+                                <i class="fa-solid fa-check"></i>
+                              </span>
+                            </div>
+                            <p>Here is task Two</p>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="absolute right-4 top-4">
+                      <div x-data="{openDropDown: false}" class="relative">
+                        <button @click="openDropDown = !openDropDown">
+                          <i class="fa-solid fa-ellipsis" style="color:#7d7d80"></i>
+                        </button>
+                        <div
+                          x-show="openDropDown"
+                          @click.outside="openDropDown = false"
+                          class="absolute right-0 top-full z-40 w-40 space-y-1 rounded-sm border border-stroke bg-white p-1.5 shadow-default dark:border-strokedark dark:bg-boxdark"
+                        >
+                          <button
+                            class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray-200 text-gray-500"
+                          >
+                          <i class="fa-solid fa-pen-to-square" style="color:#7d7d80"></i>
+                            Edit
+                          </button>
+                          <button
+                            class="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray-200 text-gray-500"
+                          >
+                          <i class="fa-solid fa-trash" style="color:#7d7d80"></i>
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Task List Wrapper End -->
+            </div>
+          </div>
+        </main>
+        <!-- ===== Main Content End ===== -->
+      </div>
+      <!-- ===== Content Area End ===== -->
+    </div>
+    <!-- ===== Page Wrapper End ===== -->
+  <script defer src="bundle.js"></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8cef01c1a91ecd4c","version":"2024.8.0","r":1,"token":"67f7a278e3374824ae6dd92295d38f77","serverTiming":{"name":{"cfExtPri":true,"cfL4":true}}}' crossorigin="anonymous"></script>
+</body>
+</html>
