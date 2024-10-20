@@ -1,22 +1,35 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alerts | TailAdmin - Tailwind CSS Admin Dashboard Template</title>
+    <title>
+      Pricing Table | TailAdmin - Tailwind CSS Admin Dashboard Template
+    </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
     <link rel="stylesheet" href="output.css">
   </head>
 
   <body
-    x-data="{ page: 'alerts', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+    x-data="{ page: 'pricingTables', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
     x-init="
           darkMode = JSON.parse(localStorage.getItem('darkMode'));
           $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
     :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}"
   >
     <!-- ===== Preloader Start ===== -->
-    <include src="./partials/preloader.html"></include>
+    <div
+  x-show="loaded"
+  x-init="window.addEventListener('DOMContentLoaded', () => {setTimeout(() => loaded = false, 500)})"
+  class="fixed left-0 top-0 z-999999 flex h-screen w-screen items-center justify-center bg-white dark:bg-black"
+>
+  <div
+    class="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent"
+  ></div>
+</div>
+
     <!-- ===== Preloader End ===== -->
 
     <!-- ===== Page Wrapper Start ===== -->
@@ -97,9 +110,7 @@
                     Profile
                   </a>
                 </li>
-                <!-- Menu Item Profile -->
-      
-                
+                <!-- Menu Item Profile -->         
       
                 <!-- Menu Item Forms -->
                 <li>
@@ -186,7 +197,10 @@
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pricing-tables.html" :class="page === 'pricingTables' && '!text-white'">Pricing Tables
                           <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
-                      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="error-page.html" :class="page === 'errorPage' && '!text-white'">Error Page
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="faq.html" :class="page === 'faq' && 'text-white'">Faq's
                           <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
@@ -433,14 +447,11 @@
       <include src="./partials/sidebar.html"></include>
       <!-- ===== Sidebar End ===== -->
 
-
       <!-- ===== Content Area Start ===== -->
       <div
-        class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden"
+        class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden bg-gray-200"
       >
-        <!-- ===== Header Start ===== -->
-        <include src="./partials/header.html" />
-        <!-- ===== Header End ===== -->
+        
 
         <!-- ===== Main Content Start ===== -->
         <main>
@@ -450,7 +461,7 @@
               class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
             >
               <h2 class="text-title-md2 font-bold text-black dark:text-white">
-                Alerts
+                Pricing Table
               </h2>
 
               <nav>
@@ -458,115 +469,431 @@
                   <li>
                     <a class="font-medium" href="index.html">Dashboard /</a>
                   </li>
-                  <li class="font-medium text-primary">Alerts</li>
+                  <li class="font-medium text-royal-blue">Pricing Table</li>
                 </ol>
               </nav>
             </div>
             <!-- Breadcrumb End -->
 
-            <div
-              class="rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark md:p-6 xl:p-9"
-            >
-              <div class="flex flex-col gap-7.5">
-                <!-- Alerts Item -->
+            <div class="flex flex-col gap-5 md:gap-7 2xl:gap-10">
+              <!-- ====== Pricing Table One Start -->
+              <div
+                class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-3 2xl:gap-7"
+              >
+                <!-- Pricing Item -->
                 <div
-                  class="flex w-full border-l-6 border-warning bg-warning bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9"
+                  class="relative rounded-sm border border-stroke bg-white p-6 shadow-default dark:border-strokedark dark:bg-boxdark md:p-9 xl:p-11"
                 >
-                  <div
-                    class="mr-5 flex h-9 w-9 items-center justify-center rounded-lg bg-warning bg-opacity-30"
+                  <span
+                    class="mb-2.5 block text-title-sm2 font-bold text-black dark:text-white"
+                    >Starter</span
                   >
-                    <svg
-                      width="19"
-                      height="16"
-                      viewBox="0 0 19 16"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
+                  <h3>
+                    <span class="text-xl font-medium text-black dark:text-white"
+                      >$</span
                     >
-                      <path
-                        d="M1.50493 16H17.5023C18.6204 16 19.3413 14.9018 18.8354 13.9735L10.8367 0.770573C10.2852 -0.256858 8.70677 -0.256858 8.15528 0.770573L0.156617 13.9735C-0.334072 14.8998 0.386764 16 1.50493 16ZM10.7585 12.9298C10.7585 13.6155 10.2223 14.1433 9.45583 14.1433C8.6894 14.1433 8.15311 13.6155 8.15311 12.9298V12.9015C8.15311 12.2159 8.6894 11.688 9.45583 11.688C10.2223 11.688 10.7585 12.2159 10.7585 12.9015V12.9298ZM8.75236 4.01062H10.2548C10.6674 4.01062 10.9127 4.33826 10.8671 4.75288L10.2071 10.1186C10.1615 10.5049 9.88572 10.7455 9.50142 10.7455C9.11929 10.7455 8.84138 10.5028 8.79579 10.1186L8.13574 4.75288C8.09449 4.33826 8.33984 4.01062 8.75236 4.01062Z"
-                        fill="#FBBF24"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div class="w-full">
-                    <h5 class="mb-3 text-lg font-bold text-[#9D5425]">
-                      Attention needed
-                    </h5>
-                    <p class="leading-relaxed text-[#D0915C]">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when
-                    </p>
-                  </div>
+                    <span
+                      class="text-title-xxl2 font-bold text-black dark:text-white"
+                    >
+                      25.00</span
+                    >
+                    <span class="font-medium text-gray-600"> Per Month</span>
+                  </h3>
+
+                  <h4
+                    class="mb-5 mt-7.5 text-lg font-medium text-black dark:text-white"
+                  >
+                    Features
+                  </h4>
+
+                  <ul class="flex flex-col gap-3">
+                    <li class="font-medium text-gray-600">Get Figma Source File</li>
+                    <li class="font-medium text-gray-600">Use on Unlimited Projects</li>
+                    <li class="font-medium text-gray-600">Personal & Commercial Use</li>
+                    <li class="font-medium text-gray-600">Downloadable Offline Files</li>
+                    <li class="font-medium text-gray-600
+                    ">Lifetime Free Updates</li>
+                  </ul>
+
+                  <button
+                    class="mt-9 flex rounded-md border border-royal-blue px-9 py-3 font-medium text-royal-blue hover:bg-royal-blue hover:text-white"
+                  >
+                    Purchase Now
+                  </button>
                 </div>
 
-                <!-- Alerts Item -->
+                <!-- Pricing Item -->
                 <div
-                  class="flex w-full border-l-6 border-[#34D399] bg-[#34D399] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9"
+                  class="relative rounded-sm border border-stroke bg-white p-6 shadow-default dark:border-strokedark dark:bg-boxdark md:p-9 xl:p-11.5"
                 >
-                  <div
-                    class="mr-5 flex h-9 w-full max-w-[36px] items-center justify-center rounded-lg bg-[#34D399]"
-                  >
+                  <span class="absolute -right-1 top-3.5">
                     <svg
-                      width="16"
-                      height="12"
-                      viewBox="0 0 16 12"
+                      width="109"
+                      height="34"
+                      viewBox="0 0 109 34"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        d="M15.2984 0.826822L15.2868 0.811827L15.2741 0.797751C14.9173 0.401867 14.3238 0.400754 13.9657 0.794406L5.91888 9.45376L2.05667 5.2868C1.69856 4.89287 1.10487 4.89389 0.747996 5.28987C0.417335 5.65675 0.417335 6.22337 0.747996 6.59026L0.747959 6.59029L0.752701 6.59541L4.86742 11.0348C5.14445 11.3405 5.52858 11.5 5.89581 11.5C6.29242 11.5 6.65178 11.3355 6.92401 11.035L15.2162 2.11161C15.5833 1.74452 15.576 1.18615 15.2984 0.826822Z"
-                        fill="white"
-                        stroke="white"
-                      ></path>
+                        d="M24 0L106 0C107.657 0 109 1.34315 109 3V30L24 30L24 0Z"
+                        fill="#3C50E0"
+                      />
+                      <foreignObject x="24" y="0" width="81" height="30">
+                        <div xmlns="http://www.w3.org/1999/xhtml">
+                          <div class="mt-1 text-center font-satoshi text-sm font-medium text-white"
+                          >
+                            Best Value
+                          </div>
+                        </div>
+                      </foreignObject>
+                      <path d="M0 0H24V30H0L19 15L0 0Z" fill="#3C50E0" />
+                      <path d="M105 34L109 30H105V34Z" fill="#2539C8" />
                     </svg>
-                  </div>
-                  <div class="w-full">
-                    <h5
-                      class="mb-3 text-lg font-bold text-black dark:text-[#34D399]"
+                  </span>
+                  <span
+                    class="mb-2.5 block text-title-sm2 font-bold text-black dark:text-white"
+                    >Basic</span
+                  >
+                  <h3>
+                    <span class="text-xl font-medium text-black dark:text-white"
+                      >$</span
                     >
-                      Message Sent Successfully
-                    </h5>
-                    <p class="text-base leading-relaxed text-body">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry.
-                    </p>
-                  </div>
+                    <span
+                      class="text-title-xxl2 font-bold text-black dark:text-white"
+                    >
+                      59.00</span
+                    >
+                    <span class="font-medium text-gray-600"> Per Month</span>
+                  </h3>
+
+                  <h4
+                    class="mb-5 mt-7.5 text-lg font-medium text-black dark:text-white"
+                  >
+                    Features
+                  </h4>
+
+                  <ul class="flex flex-col gap-3">
+                    <li class="font-medium text-gray-600">Get Figma Source File</li>
+                    <li class="font-medium text-gray-600">Use on Unlimited Projects</li>
+                    <li class="font-medium text-gray-600">Personal & Commercial Use</li>
+                    <li class="font-medium text-gray-600">Downloadable Offline Files</li>
+                    <li class="font-medium text-gray-600">Lifetime Free Updates</li>
+                  </ul>
+
+                  <button
+                    class="mt-9 flex rounded-md border border-royal-blue px-9 py-3 font-medium text-royal-blue hover:bg-royal-blue hover:text-white"
+                  >
+                    Purchase Now
+                  </button>
                 </div>
 
-                <!-- Alerts Item -->
+                <!-- Pricing Item -->
                 <div
-                  class="flex w-full border-l-6 border-[#F87171] bg-[#F87171] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9"
+                  class="relative rounded-sm border border-stroke bg-white p-6 shadow-default dark:border-strokedark dark:bg-boxdark md:p-9 xl:p-11"
                 >
-                  <div
-                    class="mr-5 flex h-9 w-full max-w-[36px] items-center justify-center rounded-lg bg-[#F87171]"
+                  <span
+                    class="mb-2 block text-title-sm2 font-bold text-black dark:text-white"
+                    >Premium</span
                   >
-                    <svg
-                      width="13"
-                      height="13"
-                      viewBox="0 0 13 13"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
+                  <h3>
+                    <span class="text-xl font-medium text-black dark:text-white"
+                      >$</span
                     >
-                      <path
-                        d="M6.4917 7.65579L11.106 12.2645C11.2545 12.4128 11.4715 12.5 11.6738 12.5C11.8762 12.5 12.0931 12.4128 12.2416 12.2645C12.5621 11.9445 12.5623 11.4317 12.2423 11.1114C12.2422 11.1113 12.2422 11.1113 12.2422 11.1113C12.242 11.1111 12.2418 11.1109 12.2416 11.1107L7.64539 6.50351L12.2589 1.91221L12.2595 1.91158C12.5802 1.59132 12.5802 1.07805 12.2595 0.757793C11.9393 0.437994 11.4268 0.437869 11.1064 0.757418C11.1063 0.757543 11.1062 0.757668 11.106 0.757793L6.49234 5.34931L1.89459 0.740581L1.89396 0.739942C1.57364 0.420019 1.0608 0.420019 0.740487 0.739944C0.42005 1.05999 0.419837 1.57279 0.73985 1.89309L6.4917 7.65579ZM6.4917 7.65579L1.89459 12.2639L1.89395 12.2645C1.74546 12.4128 1.52854 12.5 1.32616 12.5C1.12377 12.5 0.906853 12.4128 0.758361 12.2645L1.1117 11.9108L0.758358 12.2645C0.437984 11.9445 0.437708 11.4319 0.757539 11.1116C0.757812 11.1113 0.758086 11.111 0.75836 11.1107L5.33864 6.50287L0.740487 1.89373L6.4917 7.65579Z"
-                        fill="#ffffff"
-                        stroke="#ffffff"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div class="w-full">
-                    <h5 class="mb-3 font-bold text-[#B45454]">
-                      There were 1 errors with your submission
-                    </h5>
-                    <ul>
-                      <li class="leading-relaxed text-[#CD5D5D]">
-                        Lorem Ipsum is simply dummy text of the printing
-                      </li>
-                    </ul>
-                  </div>
+                    <span
+                      class="text-title-xxl2 font-bold text-black dark:text-white"
+                    >
+                      99.00</span
+                    >
+                    <span class="font-medium text-gray-600"> Per Month</span>
+                  </h3>
+
+                  <h4
+                    class="mb-5 mt-7.5 text-lg font-medium text-black dark:text-white"
+                  >
+                    Features
+                  </h4>
+
+                  <ul class="flex flex-col gap-3">
+                    <li class="font-medium text-gray-600">Get Figma Source File</li>
+                    <li class="font-medium text-gray-600">Use on Unlimited Projects</li>
+                    <li class="font-medium text-gray-600">Personal & Commercial Use</li>
+                    <li class="font-medium text-gray-600">Downloadable Offline Files</li>
+                    <li class="font-medium text-gray-600">Lifetime Free Updates</li>
+                  </ul>
+
+                  <button
+                    class="mt-9 flex rounded-md border border-royal-blue px-9 py-3 font-medium text-royal-blue hover:bg-royal-blue hover:text-white"
+                  >
+                    Purchase Now
+                  </button>
                 </div>
               </div>
+              <!-- ====== Pricing Table One End -->
+
+              <!-- ====== Pricing Table Two Start -->
+              <div
+                class="relative z-10 overflow-hidden rounded-sm border border-stroke bg-white p-11 shadow-default dark:border-strokedark dark:bg-boxdark"
+              >
+                <div class="w-full overflow-x-auto">
+                  <table class="table-auto">
+                    <thead>
+                      <tr>
+                        <th class="w-1/4 min-w-[200px] px-5">
+                            <span class="top-20 absolute left-9">
+                                <i class="fa-solid fa-grip fa-xl fa-rotate-90" style="color: #1047a8;"></i>
+                                <i class="fa-solid fa-grip fa-xl fa-rotate-90" style="color: #1047a8;"></i>
+                            </span>
+                            <span class="absolute top-28 left-9">
+                                <i class="fa-solid fa-grip fa-xl fa-rotate-90" style="color: #1047a8;"></i>
+                            <i class="fa-solid fa-grip fa-xl fa-rotate-90" style="color: #1047a8;"></i>
+                            </span>
+                        </th>
+                        <th class="w-1/4 min-w-[200px] px-5">
+                          <div class="mb-10 text-left">
+                            
+                            <span
+                              class="mb-3.5 block text-xl font-bold text-black dark:text-white"
+                            >
+                              Starter
+                            </span>
+                            <h4 class="mb-4">
+                              <span
+                                class="text-[28px] font-bold text-black dark:text-white lg:text-[32px]"
+                                >$59</span
+                              >
+                              <span class="font-medium text-gray-600">Per Month</span>
+                            </h4>
+                            <p class="mb-6 text-base font-medium text-gray-600">
+                              Best suited for freelancers who works
+                              individually.
+                            </p>
+                            <a
+                              href="javascript:void(0)"
+                              class="block w-full rounded-md bg-royal-blue p-3 text-center font-medium text-white transition hover:bg-opacity-90"
+                            >
+                              Purchase Now
+                            </a>
+                          </div>
+                        </th>
+                        <th class="w-1/4 min-w-[200px] px-5">
+                          <div class="mb-10 text-left">
+                            <span
+                              class="mb-3 block text-xl font-bold text-black dark:text-white"
+                            >
+                              Agency
+                            </span>
+                            <h4 class="mb-4">
+                              <span
+                                class="text-[28px] font-bold text-black dark:text-white lg:text-[32px]"
+                                >$99</span
+                              >
+                              <span class="font-medium text-gray-600">Per Month</span>
+                            </h4>
+                            <p class="mb-6 font-medium text-gray-600">
+                              Best suited for agencies and small business.
+                            </p>
+                            <a
+                              href="javascript:void(0)"
+                              class="block w-full rounded-md bg-[#13C296] p-3 text-center font-medium text-white transition hover:bg-opacity-90"
+                            >
+                              Purchase Now
+                            </a>
+                          </div>
+                        </th>
+                        <th class="w-1/4 min-w-[200px] px-5">
+                          <div class="mb-10 text-left">
+                            <span
+                              class="mb-3 block text-xl font-bold text-black dark:text-white"
+                            >
+                              Extended
+                            </span>
+                            <h4 class="mb-4">
+                              <span
+                                class="text-[28px] font-bold text-black dark:text-white lg:text-[32px]"
+                                >$149</span
+                              >
+                              <span class="font-medium text-gray-600">Per Month</span>
+                            </h4>
+                            <p class="mb-6 font-medium text-gray-600">
+                              Best suited for agencies and large business.
+                            </p>
+                            <a
+                              href="javascript:void(0)"
+                              class="block w-full rounded-md bg-royal-blue p-3 text-center font-medium text-white transition hover:bg-opacity-90"
+                            >
+                              Purchase Now
+                            </a>
+                          </div>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <h5 class="font-medium text-black dark:text-white">
+                            Key Features
+                          </h5>
+                        </td>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <h5
+                            class="text-center font-medium text-black dark:text-white"
+                          >
+                            Features Limits
+                          </h5>
+                        </td>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <h5
+                            class="text-center font-medium text-black dark:text-white"
+                          >
+                            Features Limits
+                          </h5>
+                        </td>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <h5
+                            class="text-center font-medium text-black dark:text-white"
+                          >
+                            Features Limits
+                          </h5>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <p class="font-medium text-gray-600">Seats</p>
+                        </td>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <p class="text-center font-medium text-gray-600">1 Developer</p>
+                        </td>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <p class="text-center font-medium text-gray-600">5 Developer</p>
+                        </td>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <p class="text-center font-medium text-gray-600">20 Developer</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <p class="font-medium text-gray-600">Domains/Products</p>
+                        </td>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <p class="text-center font-medium text-gray-600">5 Products</p>
+                        </td>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <p class="text-center font-medium text-gray-600">5 Products</p>
+                        </td>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <p class="text-center font-medium text-gray-600">5 Products</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <p class="font-medium text-gray-600">Email Support</p>
+                        </td>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <p class="text-center font-medium text-gray-600">6 Months</p>
+                        </td>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <p class="text-center font-medium text-gray-600">6 Months</p>
+                        </td>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <p class="text-center font-medium text-gray-600">6 Months</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <p class="font-medium text-gray-600">All Pro Components</p>
+                        </td>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <p class="flex justify-center text-center">
+                            <i class="fa-solid fa-check" style="color: #42b875;"></i>  
+                          </p>
+                        </td>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <p class="flex justify-center text-center">
+                            <i class="fa-solid fa-check" style="color: #35b16a;"></i> 
+                          </p>
+                        </td>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <p class="flex justify-center text-center">
+                            <i class="fa-solid fa-check rounded" style="color: #ea2f0a;"></i>
+                          </p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <p class="font-medium text-gray-600">Design Source Files</p>
+                        </td>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <p class="flex justify-center text-center">
+                            <i class="fa-solid fa-xmark" style="color: #e82f0a;"></i>
+                          </p>
+                        </td>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <p class="flex justify-center text-center rounded bg-white">
+                            <i class="fa-solid fa-check" style="color: #35b16a;"></i>
+                          </p>
+                        </td>
+                        <td
+                          class="border-t border-stroke px-7 py-5 dark:border-strokedark"
+                        >
+                          <p class="flex justify-center text-center">
+                            <i class="fa-solid fa-check" style="color: #35b16a;"></i>
+                          </p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div>
+                  
+                </div>
+              </div>
+              <!-- ====== Pricing Table Two End -->
             </div>
           </div>
         </main>
@@ -575,5 +902,6 @@
       <!-- ===== Content Area End ===== -->
     </div>
     <!-- ===== Page Wrapper End ===== -->
-  </body>
+  <script defer src="bundle.js"></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8cf58c5bcb0960f0","version":"2024.8.0","r":1,"token":"67f7a278e3374824ae6dd92295d38f77","serverTiming":{"name":{"cfExtPri":true,"cfL4":true}}}' crossorigin="anonymous"></script>
+</body>
 </html>

@@ -111,33 +111,6 @@
                 </li>
                 <!-- Menu Item Profile -->
       
-                <!-- Menu Item Task -->
-                <li>
-                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="#" @click.prevent="selected = (selected === 'Task' ? '':'Task')" :class="{ 'bg-black': (selected === 'Task') || (page === 'list' || page === 'kanban') }">
-                    <i class="fa-solid fa-list-check"></i>
-      
-                    Task
-      
-                    <i class="fa-solid fa-caret-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20 h-16"></i>
-                  </a>
-      
-                  <!-- Dropdown Menu Start -->
-                  <div class="translate transform overflow-hidden hidden" :class="(selected === 'Task') ? 'block' :'hidden'">
-                    <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="task-list.html" :class="page === 'list' && '!text-white'">List
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="task-kanban.html" :class="page === 'kanban' && '!text-white'">Kanban
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue"></span>Pro</span></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <!-- Dropdown Menu End -->
-                </li>
-                <!-- Menu Item Task -->
-      
                 <!-- Menu Item Forms -->
                 <li>
                   <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="#" @click.prevent="selected = (selected === 'Forms' ? '':'Forms')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Forms') || (page === 'formElements' || page === 'formLayout' || page === 'proFormElements' || page === 'proFormLayout') }">

@@ -1,0 +1,1815 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team | TailAdmin - Tailwind CSS Admin Dashboard Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+    <link rel="stylesheet" href="output.css">
+  </head>
+
+  <body
+    x-data="{ page: 'team', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+    x-init="
+          darkMode = JSON.parse(localStorage.getItem('darkMode'));
+          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+    :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}"
+  >
+    <!-- ===== Preloader Start ===== -->
+    <div
+  x-show="loaded"
+  x-init="window.addEventListener('DOMContentLoaded', () => {setTimeout(() => loaded = false, 500)})"
+  class="fixed left-0 top-0 z-999999 flex h-screen w-screen items-center justify-center bg-white dark:bg-black"
+>
+  <div
+    class="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent"
+  ></div>
+</div>
+
+    <!-- ===== Preloader End ===== -->
+
+    <!-- ===== Page Wrapper Start ===== -->
+    <div class="flex h-screen overflow-hidden">
+      <!-- ===== Sidebar Start ===== -->
+      <aside :class="sidebarToggle ? 'translate-x-0' : '-translate-x-full'" class="absolute left-0 top-0 z-9999 flex h-screen w-72 flex-col overflow-y-hidden bg-blue-950 dark:bg-opacity-70 duration-300 ease-linear lg:static lg:translate-x-0 -translate-x-full" @click.outside="sidebarToggle = false">
+        <!-- SIDEBAR HEADER -->
+        <div class="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6">
+          <a href="index.html">
+            <img src="./images/logo/logo.svg" alt="Logo">
+          </a>
+          <span><i class="fa-solid fa-arrow-left" style="color:rgb(232, 228, 228)"></i></span>
+          <button class="block lg:hidden" @click.stop="sidebarToggle = !sidebarToggle">
+            <i class="fa-solid fa-arrow-left" style="color:rgb(232, 228, 228)"></i>
+          </button> 
+        </div>
+        <!-- SIDEBAR HEADER -->
+      
+        <div class="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
+          <!-- Sidebar Menu -->
+          <nav class="mt-5 px-4 py-4 lg:mt-9 lg:px-6 lg-" x-data="{selected: $persist('Dashboard')}">
+            <!-- Menu Group -->
+            <div>
+              <h3 class="mb-4 ml-4 text-sm font-medium text-gray-200">MENU</h3>
+      
+              <ul class="mb-6 flex flex-col gap-1.5">
+                <!-- Menu Item Dashboard -->
+                <li>
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 transition duration-300 ease-in-out hover:transparent dark:bg-opacity-70" href="#" @click.prevent="selected = (selected === 'Dashboard' ? '':'Dashboard')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Dashboard') || (page === 'ecommerce' || page === 'analytics' || page === 'stocks') } ">
+                    <i class="fa-solid fa-bars"></i>  
+                    Dashboard
+                    <br>
+                    <i class="fa-solid fa-caret-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20 h-16" style="color:rgb(232, 228, 228)"></i></i>
+                  </a>
+      
+                  <!-- Dropdown Menu Start -->
+                  <div class="translate transform overflow-hidden block" class="(selected === 'Dashboard') ? 'block' :'hidden'">
+                    <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium duration-300 ease-in-out hover:text-white !text-white" href="index.html" :class="page === 'ecommerce' && 'text-white'">eCommerce
+                        </a>
+                      </li>
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="analytics.html" :class="page === 'analytics' && 'text-white'">Analytics
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="marketing.html" :class="page === 'marketing' && 'text-white'">Marketing
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+                      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="stocks.html" :class="page === 'stocks' && '!text-white'">Stocks
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium bg-royal-blue text-white">Pro</span></a>
+                      </li>
+                      
+                    </ul>
+                  </div>
+                  <!-- Dropdown Menu End -->
+                </li>
+                <!-- Menu Item Dashboard -->
+      
+                <!-- Menu Item Calendar -->
+                <li>
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="calendar.html" @click="selected = (selected === 'Calendar' ? '':'Calendar')" :class="{ 'bg-black': (selected === 'Calendar') && (page === 'calendar') }">
+                    <i class="fa-regular fa-calendar"></i>  
+      
+                    Calendar
+                  </a>
+                </li>
+                <!-- Menu Item Calendar -->
+      
+                <!-- Menu Item Profile -->
+                <li>
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="profile.html" @click="selected = (selected === 'Profile' ? '':'Profile')" :class="{ 'bg-black': (selected === 'Profile') && (page === 'profile') }">
+                    <i class="fa-solid fa-user"></i>
+      
+                    Profile
+                  </a>
+                </li>
+                <!-- Menu Item Profile -->
+      
+                <!-- Menu Item Task -->
+                <li>
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="#" @click.prevent="selected = (selected === 'Task' ? '':'Task')" :class="{ 'bg-black': (selected === 'Task') || (page === 'list' || page === 'kanban') }">
+                    <i class="fa-solid fa-list-check"></i>
+      
+                    Task
+      
+                    <i class="fa-solid fa-caret-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20 h-16"></i>
+                  </a>
+      
+                  <!-- Dropdown Menu Start -->
+                  <div class="translate transform overflow-hidden hidden" :class="(selected === 'Task') ? 'block' :'hidden'">
+                    <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="task-list.html" :class="page === 'list' && '!text-white'">List
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="task-kanban.html" :class="page === 'kanban' && '!text-white'">Kanban
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue"></span>Pro</span></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- Dropdown Menu End -->
+                </li>
+                <!-- Menu Item Task -->
+      
+                <!-- Menu Item Forms -->
+                <li>
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="#" @click.prevent="selected = (selected === 'Forms' ? '':'Forms')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Forms') || (page === 'formElements' || page === 'formLayout' || page === 'proFormElements' || page === 'proFormLayout') }">
+                    <i class="fa-brands fa-wpforms"></i>
+      
+                    Forms
+                    <i class="fa-solid fa-caret-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20 h-16"></i>
+                    
+                  </a>
+      
+                  <!-- Dropdown Menu Start -->
+                  <div class="translate transform overflow-hidden hidden" :class="(selected === 'Forms') ? 'block' :'hidden'">
+                    <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="form-elements.html" :class="page === 'formElements' && 'text-white'">Form Elements</a>
+                      </li>
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pro-form-elements.html" :class="page === 'proFormElements' && 'text-white'">Pro Form Elements
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="form-layout.html" :class="page === 'formLayout' && 'text-white'">Form Layout</a>
+                      </li>
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pro-form-layout.html" :class="page === 'proFormLayout' && 'text-white'">Pro Form Layout
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- Dropdown Menu End -->
+                </li>
+                <!-- Menu Item Forms -->
+      
+                <!-- Menu Item Tables -->
+                <li>
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="#" @click.prevent="selected = (selected === 'Tables' ? '':'Tables')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Tables') || (page === 'tables' || page === 'proTables') }">
+                    <i class="fa-solid fa-table"></i>
+      
+                    Tables
+
+                    <i class="fa-solid fa-caret-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20 h-16"></i>
+      
+                
+                  </a>
+      
+                  <!-- Dropdown Menu Start -->
+                  <div class="translate transform overflow-hidden hidden" :class="(selected === 'Tables') ? 'block' :'hidden'">
+                    <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="tables.html" :class="page === 'tables' && 'text-white'">Tables</a>
+                      </li>
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pro-tables.html" :class="page === 'proTables' && 'text-black hover:text-white'">Pro Tables
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- Dropdown Menu End -->
+                </li>
+                <!-- Menu Item Tables -->
+                
+                <!-- Menu Item Pages -->
+                <li>
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="#" @click.prevent="selected = (selected === 'Pages' ? '':'Pages')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Pages') || (page === 'settings' || page === 'fileManager' || page === 'dataTables' || page === 'pricingTables' || page === 'errorPage' || page === 'mailSuccess' || page === 'faq' || page === 'team' || page === 'termsCondition') }">
+                    <i class="fa-solid fa-table-columns"></i>
+      
+                    Pages
+      
+                    <i class="fa-solid fa-caret-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20 h-16"></i>
+                  </a>
+      
+                  <!-- Dropdown Menu Start -->
+                  <div class="translate transform overflow-hidden hidden" :class="(selected === 'Pages') ? 'block' :'hidden'">
+                    <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="settings.html" :class="page === 'settings' && 'text-black'">
+                          Settings
+                        </a>
+                      </li>
+                      
+                     
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pricing-tables.html" :class="page === 'pricingTables' && '!text-white'">Pricing Tables
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+                      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="faq.html" :class="page === 'faq' && 'text-white'">Faq's
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="team.html" :class="page === 'team' && 'text-white'">Teams
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="terms-conditions.html" :class="page === 'termsCondition' && 'text-white'">Terms & Conditions
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="mail-success.html" :class="page === 'mailSuccess' && 'text-white'">Mail Success
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+                      <!-- Menu Item Invoice -->
+                
+                <!-- Menu Item Invoice -->
+                    </ul>
+                  </div>
+                  <!-- Dropdown Menu End -->
+                </li>
+                <!-- Menu Item Pages -->
+
+                <li></li>
+                <a class="group relative flex items-center gap-2.5 rounded-sm px-4 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="invoice.html" @click="selected = (selected === 'Invoice' ? '':'Invoice')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Invoice') && (page === 'Invoice') }">
+                  <i class="fa-solid fa-file-invoice"></i>
+                  Invoice
+                  <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span>
+                </a>
+              </li>
+              </ul>
+            </div>
+      
+            
+            <div>
+              <h3 class="mb-4 ml-4 text-sm font-medium text-gray-400">OTHERS</h3>
+      
+              <ul class="mb-6 flex flex-col gap-1.5">
+                <!-- Menu Item Chart -->
+                <li>
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out dark:text-white" href="#" @click.prevent="selected = (selected === 'Charts' ? '':'Charts')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Charts') || (page === 'basicChart' || page === 'advancedChart') }">
+                    <i class="fa-solid fa-chart-pie"></i>
+      
+                    Charts
+      
+                    <i class="fa-solid fa-caret-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20 h-16"></i>
+                    
+                  </a>
+      
+                  <!-- Dropdown Menu Start -->
+                  <div class="translate transform overflow-hidden hidden" :class="(selected === 'Charts') ? 'block' :'hidden'">
+                    <ul class="mb-3 mt-4 flex flex-col gap-2 pl-6">
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="basic-chart.html" :class="page === 'basicChart' && 'text-white'">Basic Chart</a>
+                      </li>
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="advanced-chart.html" :class="page === 'advancedChart' && 'text-black'">Advanced Chart
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- Dropdown Menu End -->
+                </li>
+                <!-- Menu Item Chart -->
+      
+                <!-- Menu Item Ui Elements -->
+                <li>
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4" href="#" @click.prevent="selected = (selected === 'UiElements' ? '':'UiElements')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'UiElements') || (page === 'alerts' || page === 'buttons' || page === 'buttonsGroup' || page === 'badge' || page === 'breadcrumb' || page === 'card'|| page === 'dropdowns' || page === 'Modals' || page === 'tabs' || page === 'tooltips' || page === 'popovers' || page === 'accordion' || page === 'notifications' || page === 'pagination' || page === 'progress' || page === 'carousel' || page === 'images' || page === 'videos' || page === 'spinners' || page === 'uiList' || page === 'avatars') }">
+                    <i class="fa-brands fa-elementor"></i>
+      
+                    UI Elements
+      
+                    <i class="fa-solid fa-caret-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20 h-16"></i>
+      
+                  <!-- Dropdown Menu Start -->
+                  <div class="translate transform overflow-hidden hidden" :class="(selected === 'UiElements') ? 'block' :'hidden'">
+                    <ul class="mb-3 mt-4 flex flex-col gap-2 pl-6">
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="accordion.html" :class="page === 'accordion' && '!text-white'">Accordion
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="alerts.html" :class="page === 'alerts' && '!text-white'">Alerts</a>
+                      </li>
+      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="avatars.html" :class="page === 'avatars' && '!text-white'">Avatars
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="badge.html" :class="page === 'badge' && '!text-white'">Badge
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="breadcrumb.html" :class="page === 'breadcrumb' &&'!text-white'">Breadcrumb
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="buttons.html" :class="page === 'buttons' && '!text-white'">Buttons</a>
+                      </li>
+      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="buttons-group.html" :class="page === 'buttonsGroup' && '!text-white'">Buttons Group
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="cards.html" :class="page === 'card' && '!text-white'">Cards
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="carousel.html" :class="page === 'carousel' && '!text-white'">Carousel
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400
+                         duration-300 ease-in-out hover:text-white" href="dropdowns.html" :class="page === 'dropdowns' &&'!text-white'">Dropdowns
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="images.html" :class="page === 'images' && '!text-white'">Images
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="list.html" :class="page === 'uiList' && '!text-white'">List
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="modals.html" :class="page === 'Modals' && '!text-white'">Modals
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="notifications.html" :class="page === 'notifications' && '!text-white'">Notifications
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pagination.html" :class="page === 'pagination' && '!text-white'">Pagination
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="popovers.html" :class="page === 'popovers' && '!text-white'">Popovers
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="progress.html" :class="page === 'progress' && '!text-white'">Progress
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="spinners.html" :class="page === 'spinners' && '!text-white'">Spinners
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="tabs.html" :class="page === 'tabs' && '!text-white'">Tabs
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="tooltips.html" :class="page === 'tooltips' && '!text-white'">Tooltips
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="videos.html" :class="page === 'videos' && '!text-white'">Videos
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- Dropdown Menu End -->
+                </li>
+                <!-- Menu Item Ui Elements -->
+      
+                <!-- Menu Item Auth Pages -->
+                <li>
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4" href="#" @click.prevent="selected = (selected === 'AuthPages' ? '':'AuthPages')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'AuthPages') || (page === 'register' || page === 'login' || page === 'forgetPassword' || page === 'comingSoon' || page === 'twoStepVerification' || page === 'underMaintenance') }">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
+      
+                    Authentication
+      
+                    <i class="fa-solid fa-caret-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20 h-16"></i>
+                    
+      
+                  <!-- Dropdown Menu Start -->
+                  <div class="translate transform overflow-hidden hidden" :class="(selected === 'AuthPages') ? 'block' :'hidden'">
+                    <ul class="mb-3 mt-4 flex flex-col gap-2 pl-6">
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="signin.html" :class="page === 'signin' && '!text-white'">Sign In</a>
+                      </li>
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="signup.html" :class="page === 'signup' && '!text-white'">Sign Up</a>
+                      </li>
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="reset-password.html" :class="page === 'resetPassword' && '!text-white'">Reset Password
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="coming-soon.html" :class="page === 'comingSoon' && '!text-black'">Coming Soon
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="two-step-verification.html" :class="page === 'twoStepVerification' && 'text-black'">2 Step Verification
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="under-maintenance.html" :class="page === 'underMaintenance' && '!text-white'">Under Maintenance
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- Dropdown Menu End -->
+                </li>
+                <!-- Menu Item Auth Pages -->
+              </ul>
+            </div>
+          </nav>
+          <!-- Sidebar Menu -->
+      
+          <!-- Promo Box -->
+          <div class="mx-auto mb-8 w-full max-w-60 rounded-sm border border-strokedark bg-boxdark px-4 py-6 text-center shadow-default">
+            <h3 class="mb-1 font-semibold text-white">TailAdmin Pro</h3>
+            <p class="mb-4 text-xs text-gray-200">Get All Dashboards and 300+ UI Elements</p>
+            <a href="https://tailadmin.com/pricing" target="_blank" rel="nofollow" class="flex items-center justify-center rounded-md bg-blue-600 p-2 text-white hover:bg-opacity-95">
+              Purchase Now
+            </a>
+          </div>
+          <!-- Promo Box -->
+        </div>
+      </aside>
+      <include src="./partials/sidebar.html"></include>
+      <!-- ===== Sidebar End ===== -->
+
+      <!-- ===== Content Area Start ===== -->
+      <div
+        class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden"
+      >
+       
+
+        <!-- ===== Main Content Start ===== -->
+        <main>
+          <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 bg-gray-200">
+            <!-- Breadcrumb Start -->
+            <div
+              class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+            >
+              <h2 class="text-title-md2 font-bold text-black dark:text-white">
+                Team
+              </h2>
+
+              <nav>
+                <ol class="flex items-center gap-2">
+                  <li>
+                    <a class="font-medium" href="index.html">Dashboard /</a>
+                  </li>
+                  <li class="font-medium text-royal-blue">Team</li>
+                </ol>
+              </nav>
+            </div>
+            <!-- Breadcrumb End -->
+
+            <div class="flex flex-col gap-7 pb-6 ">
+              <div
+                class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-4"
+              >
+                <div
+                  class="border-b border-stroke px-4 py-4 dark:border-strokedark sm:px-6 xl:px-9"
+                >
+                  <h3 class="font-medium text-black dark:text-white">
+                    Style 1
+                  </h3>
+                </div>
+
+                <div class="p-4 sm:p-6 xl:p-9">
+                  <div
+                    class="grid grid-cols-1 gap-15 py-4 sm:grid-cols-2 sm:py-6 xl:grid-cols-4 xl:py-7 2xl:py-15"
+                  >
+                    <!-- team item -->
+                    <div>
+                      <div
+                        class="relative z-1 mx-auto h-[170px] w-full max-w-[170px] rounded-full pl-2 pr-2"
+                      >
+                        <img
+                          class="rounded-full items-center justify-between"
+                          src="./images/user/user-02.png"
+                          alt="team"
+                        />
+
+                        
+                        <span class="absolute bottom-0 right-1 z-2 pl-4 pr-8">
+                          <svg
+                            width="22"
+                            height="22"
+                            viewBox="0 0 22 22"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M21.5 21.5L0.505701 21.5C0.767606 10.023 10.023 0.767604 21.5 0.505697L21.5 21.5Z"
+                              stroke="#10B981"
+                            />
+                          </svg>
+                        </span>
+                      </div>
+
+                      <div class="my-5">
+                        <h4
+                          class="mb-0.5 text-lg font-bold text-black dark:text-white pt-4"
+                        >
+                          Adveen Desuza
+                        </h4>
+                        <p class=" font-medium text-gray-600 text-xs pl-6 pb-2 pt-1">Ui Designer</p>
+                      </div>
+
+                      <div class="flex gap-5 pr-4 pl-4">
+                        <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                            <i class="fa-brands fa-facebook-f fa-lg"></i>  
+                        </a>
+
+                        <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                            <i class="fa-brands fa-twitter fa-lg"></i>  
+                        </a>
+
+                        <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                      </div>
+                    </div>
+
+                    <!-- team item -->
+                    <div>
+                      <div
+                        class="relative z-1 mx-auto h-[170px] w-full max-w-[170px] rounded-full"
+                      >
+                        <img
+                          class="rounded-full items-center justify-between"
+                          src="./images/user/user-03.png"
+                          alt="team"
+                        />
+
+                        <span class="absolute bottom-0 right-1 z-2 pr-8 pl-4">
+                          <svg
+                            width="22"
+                            height="22"
+                            viewBox="0 0 22 22"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M21.5 21.5L0.505701 21.5C0.767606 10.023 10.023 0.767604 21.5 0.505697L21.5 21.5Z"
+                              stroke="#10B981"
+                            />
+                          </svg>
+                        </span>
+                      </div>
+
+                      <div class="my-5">
+                        <h4
+                          class="mb-0.5 text-lg font-bold text-black dark:text-white pt-4"
+                        >
+                          Jezmin uniya
+                        </h4>
+                        <p class="text-xs font-medium text-gray-600 pl-2 pb-3 pt-1">Product Designer</p>
+                      </div>
+
+                      <div class="flex gap-5 pl-4 pr-4">
+                        <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                          <i class="fa-brands fa-facebook-f fa-lg"></i> 
+                        </a>
+
+                        <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                          <i class="fa-brands fa-twitter fa-lg"></i>
+                        </a>
+
+                        <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                          <i class="fa-brands fa-instagram fa-lg"></i>
+                        </a>
+                      </div>
+                    </div>
+
+                    <!-- team item -->
+                    <div>
+                      <div
+                        class="relative z-1 mx-auto h-[170px] w-full max-w-[170px] rounded-full"
+                      >
+                        <img
+                          class="rounded-full items-center justify-between"
+                          src="./images/user/user-05.png"
+                          alt="team"
+                        />
+
+                        
+
+                        <span class="absolute bottom-0 right-1 z-2 pr-8 pl-4">
+                          <svg
+                            width="22"
+                            height="22"
+                            viewBox="0 0 22 22"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M21.5 21.5L0.505701 21.5C0.767606 10.023 10.023 0.767604 21.5 0.505697L21.5 21.5Z"
+                              stroke="#10B981"
+                            />
+                          </svg>
+                        </span>
+                      </div>
+
+                      <div class="my-5">
+                        <h4
+                          class="mb-0.5 text-lg font-bold text-black dark:text-white pt-4"
+                        >
+                          Andrieo Gloree
+                        </h4>
+                        <p class="text-xs font-medium text-gray-600 pl-1 pb-3 pt-1">App Developer</p>
+                      </div>
+
+                      <div class="flex gap-5 pl-2 pt-1">
+                        <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                          <i class="fa-brands fa-facebook-f fa-lg"></i>
+                        </a>
+
+                        <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                          <i class="fa-brands fa-twitter fa-lg"></i>
+                        </a>
+
+                        <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                          <i class="fa-brands fa-instagram fa-lg"></i>
+                        </a>
+                      </div>
+                    </div>
+
+                    <!-- team item -->
+                    <div>
+                      <div
+                        class="relative z-1 mx-auto h-[170px] w-full max-w-[170px] rounded-full"
+                      >
+                        <img
+                          class="rounded-full items-center justify-between"
+                          src="./images/user/user-04.png"
+                          alt="team"
+                        />
+
+                        <span class="absolute bottom-0 right-1 z-1 pr-8 pl-4">
+                          <svg
+                            width="22"
+                            height="22"
+                            viewBox="0 0 22 22"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M21.5 21.5L0.505701 21.5C0.767606 10.023 10.023 0.767604 21.5 0.505697L21.5 21.5Z"
+                              stroke="#10B981"
+                            />
+                          </svg>
+                        </span>
+                      </div>
+
+                      <div class="my-5">
+                        <h4
+                          class="mb-0.5 text-lg font-bold text-black dark:text-white pt-4"
+                        >
+                          Jackie Sanders
+                        </h4>
+                        <p class="text-xs font-medium text-gray-600 pl-2 pb-3 pt-1">Content Writer</p>
+                      </div>
+
+                      <div class="flex gap-5 pl-4 pr-4">
+                        <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                          <i class="fa-brands fa-facebook-f fa-lg"></i>
+                        </a>
+
+                        <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                          <i class="fa-brands fa-twitter fa-lg"></i>
+                        </a>
+
+                        <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                          <i class="fa-brands fa-instagram fa-lg"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
+              >
+                <div
+                  class="border-b border-stroke px-4 py-4 dark:border-strokedark sm:px-6 xl:px-9"
+                >
+                  <h3 class="font-medium text-black dark:text-white">
+                    Style 2
+                  </h3>
+                </div>
+
+                <div class="p-4 sm:p-6 xl:p-9 2xl:p-15">
+                  <div class="mx-auto w-full max-w-[1170px]">
+                    <div
+                      class="grid grid-cols-1 gap-7 sm:grid-cols-2 xl:grid-cols-4"
+                    >
+                      <!-- team item -->
+                      <div
+                        class="group rounded-[10px] border border-stroke px-4 pb-10 pt-12 dark:border-strokedark"
+                      >
+                        <div
+                          class="relative z-2 h-30 w-full w-30 rounded-full pl-6 pt-4 items-center justify-between"
+                        >
+                          <img
+                            class="rounded-full"
+                            src="./images/user/user-05.png"
+                            alt="team"
+                          />
+
+                          <span
+                            class="absolute right-0 top-1 -z-1 opacity-0 transition-all group-hover:opacity-100"
+                          >
+                            <svg
+                              width="55"
+                              height="53"
+                              viewBox="0 0 55 53"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 3.1009C13.3677 3.1009 14.0618 2.40674 14.0618 1.55045C14.0618 0.69416 13.3677 0 12.5114 0C11.6551 0 10.9609 0.69416 10.9609 1.55045C10.9609 2.40674 11.6551 3.1009 12.5114 3.1009Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 3.1009C23.3599 3.1009 24.054 2.40674 24.054 1.55045C24.054 0.69416 23.3599 0 22.5036 0C21.6473 0 20.9531 0.69416 20.9531 1.55045C20.9531 2.40674 21.6473 3.1009 22.5036 3.1009Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 3.1009C33.3521 3.1009 34.0462 2.40674 34.0462 1.55045C34.0462 0.69416 33.3521 0 32.4958 0C31.6395 0 30.9453 0.69416 30.9453 1.55045C30.9453 2.40674 31.6395 3.1009 32.4958 3.1009Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 3.1009C43.3442 3.1009 44.0384 2.40674 44.0384 1.55045C44.0384 0.69416 43.3442 0 42.4879 0C41.6317 0 40.9375 0.69416 40.9375 1.55045C40.9375 2.40674 41.6317 3.1009 42.4879 3.1009Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 3.1009C53.3364 3.1009 54.0306 2.40674 54.0306 1.55045C54.0306 0.69416 53.3364 0 52.4801 0C51.6238 0 50.9297 0.69416 50.9297 1.55045C50.9297 2.40674 51.6238 3.1009 52.4801 3.1009Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.5192 13.0804C3.37549 13.0804 4.06965 12.3862 4.06965 11.5299C4.06965 10.6737 3.37549 9.97949 2.5192 9.97949C1.66291 9.97949 0.96875 10.6737 0.96875 11.5299C0.96875 12.3862 1.66291 13.0804 2.5192 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 13.0804C13.3677 13.0804 14.0618 12.3862 14.0618 11.5299C14.0618 10.6737 13.3677 9.97949 12.5114 9.97949C11.6551 9.97949 10.9609 10.6737 10.9609 11.5299C10.9609 12.3862 11.6551 13.0804 12.5114 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 13.0804C23.3599 13.0804 24.054 12.3862 24.054 11.5299C24.054 10.6737 23.3599 9.97949 22.5036 9.97949C21.6473 9.97949 20.9531 10.6737 20.9531 11.5299C20.9531 12.3862 21.6473 13.0804 22.5036 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 13.0804C33.3521 13.0804 34.0462 12.3862 34.0462 11.5299C34.0462 10.6737 33.3521 9.97949 32.4958 9.97949C31.6395 9.97949 30.9453 10.6737 30.9453 11.5299C30.9453 12.3862 31.6395 13.0804 32.4958 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 13.0804C43.3442 13.0804 44.0384 12.3862 44.0384 11.5299C44.0384 10.6737 43.3442 9.97949 42.4879 9.97949C41.6317 9.97949 40.9375 10.6737 40.9375 11.5299C40.9375 12.3862 41.6317 13.0804 42.4879 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 13.0804C53.3364 13.0804 54.0306 12.3862 54.0306 11.5299C54.0306 10.6737 53.3364 9.97949 52.4801 9.97949C51.6238 9.97949 50.9297 10.6737 50.9297 11.5299C50.9297 12.3862 51.6238 13.0804 52.4801 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.5192 23.0604C3.37549 23.0604 4.06965 22.3662 4.06965 21.5099C4.06965 20.6536 3.37549 19.9595 2.5192 19.9595C1.66291 19.9595 0.96875 20.6536 0.96875 21.5099C0.96875 22.3662 1.66291 23.0604 2.5192 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 23.0604C13.3677 23.0604 14.0618 22.3662 14.0618 21.5099C14.0618 20.6536 13.3677 19.9595 12.5114 19.9595C11.6551 19.9595 10.9609 20.6536 10.9609 21.5099C10.9609 22.3662 11.6551 23.0604 12.5114 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 23.0604C23.3599 23.0604 24.054 22.3662 24.054 21.5099C24.054 20.6536 23.3599 19.9595 22.5036 19.9595C21.6473 19.9595 20.9531 20.6536 20.9531 21.5099C20.9531 22.3662 21.6473 23.0604 22.5036 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 23.0604C33.3521 23.0604 34.0462 22.3662 34.0462 21.5099C34.0462 20.6536 33.3521 19.9595 32.4958 19.9595C31.6395 19.9595 30.9453 20.6536 30.9453 21.5099C30.9453 22.3662 31.6395 23.0604 32.4958 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 23.0604C43.3442 23.0604 44.0384 22.3662 44.0384 21.5099C44.0384 20.6536 43.3442 19.9595 42.4879 19.9595C41.6317 19.9595 40.9375 20.6536 40.9375 21.5099C40.9375 22.3662 41.6317 23.0604 42.4879 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 23.0604C53.3364 23.0604 54.0306 22.3662 54.0306 21.5099C54.0306 20.6536 53.3364 19.9595 52.4801 19.9595C51.6238 19.9595 50.9297 20.6536 50.9297 21.5099C50.9297 22.3662 51.6238 23.0604 52.4801 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.5192 33.0404C3.37549 33.0404 4.06965 32.3462 4.06965 31.4899C4.06965 30.6336 3.37549 29.9395 2.5192 29.9395C1.66291 29.9395 0.96875 30.6336 0.96875 31.4899C0.96875 32.3462 1.66291 33.0404 2.5192 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 33.0404C13.3677 33.0404 14.0618 32.3462 14.0618 31.4899C14.0618 30.6336 13.3677 29.9395 12.5114 29.9395C11.6551 29.9395 10.9609 30.6336 10.9609 31.4899C10.9609 32.3462 11.6551 33.0404 12.5114 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 33.0404C23.3599 33.0404 24.054 32.3462 24.054 31.4899C24.054 30.6336 23.3599 29.9395 22.5036 29.9395C21.6473 29.9395 20.9531 30.6336 20.9531 31.4899C20.9531 32.3462 21.6473 33.0404 22.5036 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 33.0404C33.3521 33.0404 34.0462 32.3462 34.0462 31.4899C34.0462 30.6336 33.3521 29.9395 32.4958 29.9395C31.6395 29.9395 30.9453 30.6336 30.9453 31.4899C30.9453 32.3462 31.6395 33.0404 32.4958 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 33.0404C43.3442 33.0404 44.0384 32.3462 44.0384 31.4899C44.0384 30.6336 43.3442 29.9395 42.4879 29.9395C41.6317 29.9395 40.9375 30.6336 40.9375 31.4899C40.9375 32.3462 41.6317 33.0404 42.4879 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 33.0404C53.3364 33.0404 54.0306 32.3462 54.0306 31.4899C54.0306 30.6336 53.3364 29.9395 52.4801 29.9395C51.6238 29.9395 50.9297 30.6336 50.9297 31.4899C50.9297 32.3462 51.6238 33.0404 52.4801 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.5192 43.0203C3.37549 43.0203 4.06965 42.3262 4.06965 41.4699C4.06965 40.6136 3.37549 39.9194 2.5192 39.9194C1.66291 39.9194 0.96875 40.6136 0.96875 41.4699C0.96875 42.3262 1.66291 43.0203 2.5192 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 43.0203C13.3677 43.0203 14.0618 42.3262 14.0618 41.4699C14.0618 40.6136 13.3677 39.9194 12.5114 39.9194C11.6551 39.9194 10.9609 40.6136 10.9609 41.4699C10.9609 42.3262 11.6551 43.0203 12.5114 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 43.0203C23.3599 43.0203 24.054 42.3262 24.054 41.4699C24.054 40.6136 23.3599 39.9194 22.5036 39.9194C21.6473 39.9194 20.9531 40.6136 20.9531 41.4699C20.9531 42.3262 21.6473 43.0203 22.5036 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 43.0203C33.3521 43.0203 34.0462 42.3262 34.0462 41.4699C34.0462 40.6136 33.3521 39.9194 32.4958 39.9194C31.6395 39.9194 30.9453 40.6136 30.9453 41.4699C30.9453 42.3262 31.6395 43.0203 32.4958 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 43.0203C43.3442 43.0203 44.0384 42.3262 44.0384 41.4699C44.0384 40.6136 43.3442 39.9194 42.4879 39.9194C41.6317 39.9194 40.9375 40.6136 40.9375 41.4699C40.9375 42.3262 41.6317 43.0203 42.4879 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 43.0203C53.3364 43.0203 54.0306 42.3262 54.0306 41.4699C54.0306 40.6136 53.3364 39.9194 52.4801 39.9194C51.6238 39.9194 50.9297 40.6136 50.9297 41.4699C50.9297 42.3262 51.6238 43.0203 52.4801 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.5192 53.0001C3.37549 53.0001 4.06965 52.3059 4.06965 51.4496C4.06965 50.5933 3.37549 49.8992 2.5192 49.8992C1.66291 49.8992 0.96875 50.5933 0.96875 51.4496C0.96875 52.3059 1.66291 53.0001 2.5192 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 53.0001C13.3677 53.0001 14.0618 52.3059 14.0618 51.4496C14.0618 50.5933 13.3677 49.8992 12.5114 49.8992C11.6551 49.8992 10.9609 50.5933 10.9609 51.4496C10.9609 52.3059 11.6551 53.0001 12.5114 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 53.0001C23.3599 53.0001 24.054 52.3059 24.054 51.4496C24.054 50.5933 23.3599 49.8992 22.5036 49.8992C21.6473 49.8992 20.9531 50.5933 20.9531 51.4496C20.9531 52.3059 21.6473 53.0001 22.5036 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 53.0001C33.3521 53.0001 34.0462 52.3059 34.0462 51.4496C34.0462 50.5933 33.3521 49.8992 32.4958 49.8992C31.6395 49.8992 30.9453 50.5933 30.9453 51.4496C30.9453 52.3059 31.6395 53.0001 32.4958 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 53.0001C43.3442 53.0001 44.0384 52.3059 44.0384 51.4496C44.0384 50.5933 43.3442 49.8992 42.4879 49.8992C41.6317 49.8992 40.9375 50.5933 40.9375 51.4496C40.9375 52.3059 41.6317 53.0001 42.4879 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 53.0001C53.3364 53.0001 54.0306 52.3059 54.0306 51.4496C54.0306 50.5933 53.3364 49.8992 52.4801 49.8992C51.6238 49.8992 50.9297 50.5933 50.9297 51.4496C50.9297 52.3059 51.6238 53.0001 52.4801 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                            </svg>
+                          </span>
+
+                          <span
+                            class="absolute bottom-0 left-0 -z-1 h-9 w-9 rounded-full bg-green-600 opacity-0 transition-all group-hover:opacity-100"
+                          ></span>
+                        </div>
+
+                        <div class="my-5">
+                          <h4
+                            class="mb-0.5 text-lg font-bold text-black dark:text-white pt-2"
+                          >
+                            Matheus Ferrero
+                          </h4>
+                          <p class="text-xs font-medium pt-1 text-gray-600 pl-4">Marketing Expert</p>
+                        </div>
+
+                        <div class="flex pb-3 pl-5 pt-3 gap-5">
+                          <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                            <i class="fa-brands fa-facebook-f fa-lg"></i>
+                          </a>
+
+                          <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                            <i class="fa-brands fa-twitter fa-lg"></i>
+                          </a>
+
+                          <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                            <i class="fa-brands fa-instagram fa-lg"></i>
+                          </a>
+                        </div>
+                      </div>
+
+                      <!-- team item -->
+                      <div
+                        class="group rounded-[10px] border border-stroke px-4 pb-10 pt-12 dark:border-strokedark"
+                      >
+                        <div
+                          class="relative z-2 mx-auto h-28 w-full w-30 rounded-full pl-6 pt-4 items-center justify-between"
+                        >
+                          <img
+                            class="rounded-full"
+                            src="./images/user/user-01.png"
+                            alt="team"
+                          />
+
+                          <span
+                            class="absolute right-0 top-1 -z-1 opacity-0 transition-all group-hover:opacity-100"
+                          >
+                            <svg
+                              width="55"
+                              height="53"
+                              viewBox="0 0 55 53"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 3.1009C13.3677 3.1009 14.0618 2.40674 14.0618 1.55045C14.0618 0.69416 13.3677 0 12.5114 0C11.6551 0 10.9609 0.69416 10.9609 1.55045C10.9609 2.40674 11.6551 3.1009 12.5114 3.1009Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 3.1009C23.3599 3.1009 24.054 2.40674 24.054 1.55045C24.054 0.69416 23.3599 0 22.5036 0C21.6473 0 20.9531 0.69416 20.9531 1.55045C20.9531 2.40674 21.6473 3.1009 22.5036 3.1009Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 3.1009C33.3521 3.1009 34.0462 2.40674 34.0462 1.55045C34.0462 0.69416 33.3521 0 32.4958 0C31.6395 0 30.9453 0.69416 30.9453 1.55045C30.9453 2.40674 31.6395 3.1009 32.4958 3.1009Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 3.1009C43.3442 3.1009 44.0384 2.40674 44.0384 1.55045C44.0384 0.69416 43.3442 0 42.4879 0C41.6317 0 40.9375 0.69416 40.9375 1.55045C40.9375 2.40674 41.6317 3.1009 42.4879 3.1009Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 3.1009C53.3364 3.1009 54.0306 2.40674 54.0306 1.55045C54.0306 0.69416 53.3364 0 52.4801 0C51.6238 0 50.9297 0.69416 50.9297 1.55045C50.9297 2.40674 51.6238 3.1009 52.4801 3.1009Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.5192 13.0804C3.37549 13.0804 4.06965 12.3862 4.06965 11.5299C4.06965 10.6737 3.37549 9.97949 2.5192 9.97949C1.66291 9.97949 0.96875 10.6737 0.96875 11.5299C0.96875 12.3862 1.66291 13.0804 2.5192 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 13.0804C13.3677 13.0804 14.0618 12.3862 14.0618 11.5299C14.0618 10.6737 13.3677 9.97949 12.5114 9.97949C11.6551 9.97949 10.9609 10.6737 10.9609 11.5299C10.9609 12.3862 11.6551 13.0804 12.5114 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 13.0804C23.3599 13.0804 24.054 12.3862 24.054 11.5299C24.054 10.6737 23.3599 9.97949 22.5036 9.97949C21.6473 9.97949 20.9531 10.6737 20.9531 11.5299C20.9531 12.3862 21.6473 13.0804 22.5036 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 13.0804C33.3521 13.0804 34.0462 12.3862 34.0462 11.5299C34.0462 10.6737 33.3521 9.97949 32.4958 9.97949C31.6395 9.97949 30.9453 10.6737 30.9453 11.5299C30.9453 12.3862 31.6395 13.0804 32.4958 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 13.0804C43.3442 13.0804 44.0384 12.3862 44.0384 11.5299C44.0384 10.6737 43.3442 9.97949 42.4879 9.97949C41.6317 9.97949 40.9375 10.6737 40.9375 11.5299C40.9375 12.3862 41.6317 13.0804 42.4879 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 13.0804C53.3364 13.0804 54.0306 12.3862 54.0306 11.5299C54.0306 10.6737 53.3364 9.97949 52.4801 9.97949C51.6238 9.97949 50.9297 10.6737 50.9297 11.5299C50.9297 12.3862 51.6238 13.0804 52.4801 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.5192 23.0604C3.37549 23.0604 4.06965 22.3662 4.06965 21.5099C4.06965 20.6536 3.37549 19.9595 2.5192 19.9595C1.66291 19.9595 0.96875 20.6536 0.96875 21.5099C0.96875 22.3662 1.66291 23.0604 2.5192 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 23.0604C13.3677 23.0604 14.0618 22.3662 14.0618 21.5099C14.0618 20.6536 13.3677 19.9595 12.5114 19.9595C11.6551 19.9595 10.9609 20.6536 10.9609 21.5099C10.9609 22.3662 11.6551 23.0604 12.5114 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 23.0604C23.3599 23.0604 24.054 22.3662 24.054 21.5099C24.054 20.6536 23.3599 19.9595 22.5036 19.9595C21.6473 19.9595 20.9531 20.6536 20.9531 21.5099C20.9531 22.3662 21.6473 23.0604 22.5036 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 23.0604C33.3521 23.0604 34.0462 22.3662 34.0462 21.5099C34.0462 20.6536 33.3521 19.9595 32.4958 19.9595C31.6395 19.9595 30.9453 20.6536 30.9453 21.5099C30.9453 22.3662 31.6395 23.0604 32.4958 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 23.0604C43.3442 23.0604 44.0384 22.3662 44.0384 21.5099C44.0384 20.6536 43.3442 19.9595 42.4879 19.9595C41.6317 19.9595 40.9375 20.6536 40.9375 21.5099C40.9375 22.3662 41.6317 23.0604 42.4879 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 23.0604C53.3364 23.0604 54.0306 22.3662 54.0306 21.5099C54.0306 20.6536 53.3364 19.9595 52.4801 19.9595C51.6238 19.9595 50.9297 20.6536 50.9297 21.5099C50.9297 22.3662 51.6238 23.0604 52.4801 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.5192 33.0404C3.37549 33.0404 4.06965 32.3462 4.06965 31.4899C4.06965 30.6336 3.37549 29.9395 2.5192 29.9395C1.66291 29.9395 0.96875 30.6336 0.96875 31.4899C0.96875 32.3462 1.66291 33.0404 2.5192 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 33.0404C13.3677 33.0404 14.0618 32.3462 14.0618 31.4899C14.0618 30.6336 13.3677 29.9395 12.5114 29.9395C11.6551 29.9395 10.9609 30.6336 10.9609 31.4899C10.9609 32.3462 11.6551 33.0404 12.5114 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 33.0404C23.3599 33.0404 24.054 32.3462 24.054 31.4899C24.054 30.6336 23.3599 29.9395 22.5036 29.9395C21.6473 29.9395 20.9531 30.6336 20.9531 31.4899C20.9531 32.3462 21.6473 33.0404 22.5036 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 33.0404C33.3521 33.0404 34.0462 32.3462 34.0462 31.4899C34.0462 30.6336 33.3521 29.9395 32.4958 29.9395C31.6395 29.9395 30.9453 30.6336 30.9453 31.4899C30.9453 32.3462 31.6395 33.0404 32.4958 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 33.0404C43.3442 33.0404 44.0384 32.3462 44.0384 31.4899C44.0384 30.6336 43.3442 29.9395 42.4879 29.9395C41.6317 29.9395 40.9375 30.6336 40.9375 31.4899C40.9375 32.3462 41.6317 33.0404 42.4879 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 33.0404C53.3364 33.0404 54.0306 32.3462 54.0306 31.4899C54.0306 30.6336 53.3364 29.9395 52.4801 29.9395C51.6238 29.9395 50.9297 30.6336 50.9297 31.4899C50.9297 32.3462 51.6238 33.0404 52.4801 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.5192 43.0203C3.37549 43.0203 4.06965 42.3262 4.06965 41.4699C4.06965 40.6136 3.37549 39.9194 2.5192 39.9194C1.66291 39.9194 0.96875 40.6136 0.96875 41.4699C0.96875 42.3262 1.66291 43.0203 2.5192 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 43.0203C13.3677 43.0203 14.0618 42.3262 14.0618 41.4699C14.0618 40.6136 13.3677 39.9194 12.5114 39.9194C11.6551 39.9194 10.9609 40.6136 10.9609 41.4699C10.9609 42.3262 11.6551 43.0203 12.5114 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 43.0203C23.3599 43.0203 24.054 42.3262 24.054 41.4699C24.054 40.6136 23.3599 39.9194 22.5036 39.9194C21.6473 39.9194 20.9531 40.6136 20.9531 41.4699C20.9531 42.3262 21.6473 43.0203 22.5036 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 43.0203C33.3521 43.0203 34.0462 42.3262 34.0462 41.4699C34.0462 40.6136 33.3521 39.9194 32.4958 39.9194C31.6395 39.9194 30.9453 40.6136 30.9453 41.4699C30.9453 42.3262 31.6395 43.0203 32.4958 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 43.0203C43.3442 43.0203 44.0384 42.3262 44.0384 41.4699C44.0384 40.6136 43.3442 39.9194 42.4879 39.9194C41.6317 39.9194 40.9375 40.6136 40.9375 41.4699C40.9375 42.3262 41.6317 43.0203 42.4879 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 43.0203C53.3364 43.0203 54.0306 42.3262 54.0306 41.4699C54.0306 40.6136 53.3364 39.9194 52.4801 39.9194C51.6238 39.9194 50.9297 40.6136 50.9297 41.4699C50.9297 42.3262 51.6238 43.0203 52.4801 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.5192 53.0001C3.37549 53.0001 4.06965 52.3059 4.06965 51.4496C4.06965 50.5933 3.37549 49.8992 2.5192 49.8992C1.66291 49.8992 0.96875 50.5933 0.96875 51.4496C0.96875 52.3059 1.66291 53.0001 2.5192 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 53.0001C13.3677 53.0001 14.0618 52.3059 14.0618 51.4496C14.0618 50.5933 13.3677 49.8992 12.5114 49.8992C11.6551 49.8992 10.9609 50.5933 10.9609 51.4496C10.9609 52.3059 11.6551 53.0001 12.5114 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 53.0001C23.3599 53.0001 24.054 52.3059 24.054 51.4496C24.054 50.5933 23.3599 49.8992 22.5036 49.8992C21.6473 49.8992 20.9531 50.5933 20.9531 51.4496C20.9531 52.3059 21.6473 53.0001 22.5036 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 53.0001C33.3521 53.0001 34.0462 52.3059 34.0462 51.4496C34.0462 50.5933 33.3521 49.8992 32.4958 49.8992C31.6395 49.8992 30.9453 50.5933 30.9453 51.4496C30.9453 52.3059 31.6395 53.0001 32.4958 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 53.0001C43.3442 53.0001 44.0384 52.3059 44.0384 51.4496C44.0384 50.5933 43.3442 49.8992 42.4879 49.8992C41.6317 49.8992 40.9375 50.5933 40.9375 51.4496C40.9375 52.3059 41.6317 53.0001 42.4879 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 53.0001C53.3364 53.0001 54.0306 52.3059 54.0306 51.4496C54.0306 50.5933 53.3364 49.8992 52.4801 49.8992C51.6238 49.8992 50.9297 50.5933 50.9297 51.4496C50.9297 52.3059 51.6238 53.0001 52.4801 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                            </svg>
+                          </span>
+
+                          <span
+                            class="absolute bottom-0 left-0 -z-1 h-9 w-9 rounded-full bg-green-600 opacity-0 transition-all group-hover:opacity-100"
+                          ></span>
+                        </div>
+
+                        <div class="my-5">
+                          <h4
+                            class="mb-0.5 text-lg font-bold text-black dark:text-white pt-2 pl-5"
+                          >
+                            Stuard Ferrel
+                          </h4>
+                          <p class="text-xs font-medium text-gray-600 pt-1 pl-6">Digital Marketer</p>
+                        </div>
+
+                        <div class="flex gap-5 pb-3 pl-6 pt-3">
+                          <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                          <i class="fa-brands fa-facebook-f fa-lg"></i>       
+                          </a>
+
+                          <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                          <i class="fa-brands fa-twitter fa-lg"></i>
+                          </a>
+
+                          <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                            <i class="fa-brands fa-instagram fa-lg"></i>
+                          </a>
+                        </div>
+                      </div>
+
+                      <!-- team item -->
+                      <div
+                        class="group rounded-[10px] border border-stroke px-4 pb-10 pt-12 dark:border-strokedark"
+                      >
+                        <div
+                          class="relative z-1 mx-auto h-30 w-full w-30 rounded-full justify-between items-center pl-6 pt-4"
+                        >
+                          <img
+                            class="rounded-full"
+                            src="./images/user/user-02.png"
+                            alt="team"
+                          />
+
+                          <span
+                            class="absolute right-0 top-1 -z-1 opacity-0 transition-all group-hover:opacity-100"
+                          >
+                            <svg
+                              width="55"
+                              height="53"
+                              viewBox="0 0 55 53"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 3.1009C13.3677 3.1009 14.0618 2.40674 14.0618 1.55045C14.0618 0.69416 13.3677 0 12.5114 0C11.6551 0 10.9609 0.69416 10.9609 1.55045C10.9609 2.40674 11.6551 3.1009 12.5114 3.1009Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 3.1009C23.3599 3.1009 24.054 2.40674 24.054 1.55045C24.054 0.69416 23.3599 0 22.5036 0C21.6473 0 20.9531 0.69416 20.9531 1.55045C20.9531 2.40674 21.6473 3.1009 22.5036 3.1009Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 3.1009C33.3521 3.1009 34.0462 2.40674 34.0462 1.55045C34.0462 0.69416 33.3521 0 32.4958 0C31.6395 0 30.9453 0.69416 30.9453 1.55045C30.9453 2.40674 31.6395 3.1009 32.4958 3.1009Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 3.1009C43.3442 3.1009 44.0384 2.40674 44.0384 1.55045C44.0384 0.69416 43.3442 0 42.4879 0C41.6317 0 40.9375 0.69416 40.9375 1.55045C40.9375 2.40674 41.6317 3.1009 42.4879 3.1009Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 3.1009C53.3364 3.1009 54.0306 2.40674 54.0306 1.55045C54.0306 0.69416 53.3364 0 52.4801 0C51.6238 0 50.9297 0.69416 50.9297 1.55045C50.9297 2.40674 51.6238 3.1009 52.4801 3.1009Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.5192 13.0804C3.37549 13.0804 4.06965 12.3862 4.06965 11.5299C4.06965 10.6737 3.37549 9.97949 2.5192 9.97949C1.66291 9.97949 0.96875 10.6737 0.96875 11.5299C0.96875 12.3862 1.66291 13.0804 2.5192 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 13.0804C13.3677 13.0804 14.0618 12.3862 14.0618 11.5299C14.0618 10.6737 13.3677 9.97949 12.5114 9.97949C11.6551 9.97949 10.9609 10.6737 10.9609 11.5299C10.9609 12.3862 11.6551 13.0804 12.5114 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 13.0804C23.3599 13.0804 24.054 12.3862 24.054 11.5299C24.054 10.6737 23.3599 9.97949 22.5036 9.97949C21.6473 9.97949 20.9531 10.6737 20.9531 11.5299C20.9531 12.3862 21.6473 13.0804 22.5036 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 13.0804C33.3521 13.0804 34.0462 12.3862 34.0462 11.5299C34.0462 10.6737 33.3521 9.97949 32.4958 9.97949C31.6395 9.97949 30.9453 10.6737 30.9453 11.5299C30.9453 12.3862 31.6395 13.0804 32.4958 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 13.0804C43.3442 13.0804 44.0384 12.3862 44.0384 11.5299C44.0384 10.6737 43.3442 9.97949 42.4879 9.97949C41.6317 9.97949 40.9375 10.6737 40.9375 11.5299C40.9375 12.3862 41.6317 13.0804 42.4879 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 13.0804C53.3364 13.0804 54.0306 12.3862 54.0306 11.5299C54.0306 10.6737 53.3364 9.97949 52.4801 9.97949C51.6238 9.97949 50.9297 10.6737 50.9297 11.5299C50.9297 12.3862 51.6238 13.0804 52.4801 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.5192 23.0604C3.37549 23.0604 4.06965 22.3662 4.06965 21.5099C4.06965 20.6536 3.37549 19.9595 2.5192 19.9595C1.66291 19.9595 0.96875 20.6536 0.96875 21.5099C0.96875 22.3662 1.66291 23.0604 2.5192 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 23.0604C13.3677 23.0604 14.0618 22.3662 14.0618 21.5099C14.0618 20.6536 13.3677 19.9595 12.5114 19.9595C11.6551 19.9595 10.9609 20.6536 10.9609 21.5099C10.9609 22.3662 11.6551 23.0604 12.5114 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 23.0604C23.3599 23.0604 24.054 22.3662 24.054 21.5099C24.054 20.6536 23.3599 19.9595 22.5036 19.9595C21.6473 19.9595 20.9531 20.6536 20.9531 21.5099C20.9531 22.3662 21.6473 23.0604 22.5036 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 23.0604C33.3521 23.0604 34.0462 22.3662 34.0462 21.5099C34.0462 20.6536 33.3521 19.9595 32.4958 19.9595C31.6395 19.9595 30.9453 20.6536 30.9453 21.5099C30.9453 22.3662 31.6395 23.0604 32.4958 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 23.0604C43.3442 23.0604 44.0384 22.3662 44.0384 21.5099C44.0384 20.6536 43.3442 19.9595 42.4879 19.9595C41.6317 19.9595 40.9375 20.6536 40.9375 21.5099C40.9375 22.3662 41.6317 23.0604 42.4879 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 23.0604C53.3364 23.0604 54.0306 22.3662 54.0306 21.5099C54.0306 20.6536 53.3364 19.9595 52.4801 19.9595C51.6238 19.9595 50.9297 20.6536 50.9297 21.5099C50.9297 22.3662 51.6238 23.0604 52.4801 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.5192 33.0404C3.37549 33.0404 4.06965 32.3462 4.06965 31.4899C4.06965 30.6336 3.37549 29.9395 2.5192 29.9395C1.66291 29.9395 0.96875 30.6336 0.96875 31.4899C0.96875 32.3462 1.66291 33.0404 2.5192 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 33.0404C13.3677 33.0404 14.0618 32.3462 14.0618 31.4899C14.0618 30.6336 13.3677 29.9395 12.5114 29.9395C11.6551 29.9395 10.9609 30.6336 10.9609 31.4899C10.9609 32.3462 11.6551 33.0404 12.5114 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 33.0404C23.3599 33.0404 24.054 32.3462 24.054 31.4899C24.054 30.6336 23.3599 29.9395 22.5036 29.9395C21.6473 29.9395 20.9531 30.6336 20.9531 31.4899C20.9531 32.3462 21.6473 33.0404 22.5036 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 33.0404C33.3521 33.0404 34.0462 32.3462 34.0462 31.4899C34.0462 30.6336 33.3521 29.9395 32.4958 29.9395C31.6395 29.9395 30.9453 30.6336 30.9453 31.4899C30.9453 32.3462 31.6395 33.0404 32.4958 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 33.0404C43.3442 33.0404 44.0384 32.3462 44.0384 31.4899C44.0384 30.6336 43.3442 29.9395 42.4879 29.9395C41.6317 29.9395 40.9375 30.6336 40.9375 31.4899C40.9375 32.3462 41.6317 33.0404 42.4879 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 33.0404C53.3364 33.0404 54.0306 32.3462 54.0306 31.4899C54.0306 30.6336 53.3364 29.9395 52.4801 29.9395C51.6238 29.9395 50.9297 30.6336 50.9297 31.4899C50.9297 32.3462 51.6238 33.0404 52.4801 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.5192 43.0203C3.37549 43.0203 4.06965 42.3262 4.06965 41.4699C4.06965 40.6136 3.37549 39.9194 2.5192 39.9194C1.66291 39.9194 0.96875 40.6136 0.96875 41.4699C0.96875 42.3262 1.66291 43.0203 2.5192 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 43.0203C13.3677 43.0203 14.0618 42.3262 14.0618 41.4699C14.0618 40.6136 13.3677 39.9194 12.5114 39.9194C11.6551 39.9194 10.9609 40.6136 10.9609 41.4699C10.9609 42.3262 11.6551 43.0203 12.5114 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 43.0203C23.3599 43.0203 24.054 42.3262 24.054 41.4699C24.054 40.6136 23.3599 39.9194 22.5036 39.9194C21.6473 39.9194 20.9531 40.6136 20.9531 41.4699C20.9531 42.3262 21.6473 43.0203 22.5036 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 43.0203C33.3521 43.0203 34.0462 42.3262 34.0462 41.4699C34.0462 40.6136 33.3521 39.9194 32.4958 39.9194C31.6395 39.9194 30.9453 40.6136 30.9453 41.4699C30.9453 42.3262 31.6395 43.0203 32.4958 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 43.0203C43.3442 43.0203 44.0384 42.3262 44.0384 41.4699C44.0384 40.6136 43.3442 39.9194 42.4879 39.9194C41.6317 39.9194 40.9375 40.6136 40.9375 41.4699C40.9375 42.3262 41.6317 43.0203 42.4879 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 43.0203C53.3364 43.0203 54.0306 42.3262 54.0306 41.4699C54.0306 40.6136 53.3364 39.9194 52.4801 39.9194C51.6238 39.9194 50.9297 40.6136 50.9297 41.4699C50.9297 42.3262 51.6238 43.0203 52.4801 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.5192 53.0001C3.37549 53.0001 4.06965 52.3059 4.06965 51.4496C4.06965 50.5933 3.37549 49.8992 2.5192 49.8992C1.66291 49.8992 0.96875 50.5933 0.96875 51.4496C0.96875 52.3059 1.66291 53.0001 2.5192 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 53.0001C13.3677 53.0001 14.0618 52.3059 14.0618 51.4496C14.0618 50.5933 13.3677 49.8992 12.5114 49.8992C11.6551 49.8992 10.9609 50.5933 10.9609 51.4496C10.9609 52.3059 11.6551 53.0001 12.5114 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 53.0001C23.3599 53.0001 24.054 52.3059 24.054 51.4496C24.054 50.5933 23.3599 49.8992 22.5036 49.8992C21.6473 49.8992 20.9531 50.5933 20.9531 51.4496C20.9531 52.3059 21.6473 53.0001 22.5036 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 53.0001C33.3521 53.0001 34.0462 52.3059 34.0462 51.4496C34.0462 50.5933 33.3521 49.8992 32.4958 49.8992C31.6395 49.8992 30.9453 50.5933 30.9453 51.4496C30.9453 52.3059 31.6395 53.0001 32.4958 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 53.0001C43.3442 53.0001 44.0384 52.3059 44.0384 51.4496C44.0384 50.5933 43.3442 49.8992 42.4879 49.8992C41.6317 49.8992 40.9375 50.5933 40.9375 51.4496C40.9375 52.3059 41.6317 53.0001 42.4879 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 53.0001C53.3364 53.0001 54.0306 52.3059 54.0306 51.4496C54.0306 50.5933 53.3364 49.8992 52.4801 49.8992C51.6238 49.8992 50.9297 50.5933 50.9297 51.4496C50.9297 52.3059 51.6238 53.0001 52.4801 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                            </svg>
+                          </span>
+
+                          <span
+                            class="absolute bottom-0 left-0 -z-1 h-9 w-9 rounded-full bg-green-600 opacity-0 transition-all group-hover:opacity-100"
+                          ></span>
+                        </div>
+
+                        <div class="my-5">
+                          <h4
+                            class="mb-0.5 text-lg font-bold text-black dark:text-white pt-2 pl-6"
+                          >
+                            Eva Hudson
+                          </h4>
+                          <p class="text-xs font-medium text-gray-600 pt-1 pl-6">Creative Designer</p>
+                        </div>
+
+                        <div class="flex pb-3 pl-6 pt-3 gap-5">
+                          <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                            <i class="fa-brands fa-facebook-f fa-lg"></i>
+                          </a>
+
+                          <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                            <i class="fa-brands fa-twitter fa-lg"></i> 
+                          </a>
+
+                          <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                            <i class="fa-brands fa-instagram fa-lg"></i>
+                          </a>
+                        </div>
+                      </div>
+
+                      <!-- team item -->
+                      <div
+                        class="group rounded-[10px] border border-stroke px-4 pb-10 pt-12 dark:border-strokedark"
+                      >
+                        <div
+                          class="relative z-2 mx-auto h-30 w-full w-30 rounded-full items-center justify-between pl-6 pt-4"
+                        >
+                          <img
+                            class="rounded-full"
+                            src="./images/user/user-03.png"
+                            alt="team"
+                          />
+
+                          <span
+                            class="absolute right-0 top-1 -z-1 opacity-0 transition-all group-hover:opacity-100"
+                          >
+                            <svg
+                              width="55"
+                              height="53"
+                              viewBox="0 0 55 53"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 3.1009C13.3677 3.1009 14.0618 2.40674 14.0618 1.55045C14.0618 0.69416 13.3677 0 12.5114 0C11.6551 0 10.9609 0.69416 10.9609 1.55045C10.9609 2.40674 11.6551 3.1009 12.5114 3.1009Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 3.1009C23.3599 3.1009 24.054 2.40674 24.054 1.55045C24.054 0.69416 23.3599 0 22.5036 0C21.6473 0 20.9531 0.69416 20.9531 1.55045C20.9531 2.40674 21.6473 3.1009 22.5036 3.1009Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 3.1009C33.3521 3.1009 34.0462 2.40674 34.0462 1.55045C34.0462 0.69416 33.3521 0 32.4958 0C31.6395 0 30.9453 0.69416 30.9453 1.55045C30.9453 2.40674 31.6395 3.1009 32.4958 3.1009Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 3.1009C43.3442 3.1009 44.0384 2.40674 44.0384 1.55045C44.0384 0.69416 43.3442 0 42.4879 0C41.6317 0 40.9375 0.69416 40.9375 1.55045C40.9375 2.40674 41.6317 3.1009 42.4879 3.1009Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 3.1009C53.3364 3.1009 54.0306 2.40674 54.0306 1.55045C54.0306 0.69416 53.3364 0 52.4801 0C51.6238 0 50.9297 0.69416 50.9297 1.55045C50.9297 2.40674 51.6238 3.1009 52.4801 3.1009Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.5192 13.0804C3.37549 13.0804 4.06965 12.3862 4.06965 11.5299C4.06965 10.6737 3.37549 9.97949 2.5192 9.97949C1.66291 9.97949 0.96875 10.6737 0.96875 11.5299C0.96875 12.3862 1.66291 13.0804 2.5192 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 13.0804C13.3677 13.0804 14.0618 12.3862 14.0618 11.5299C14.0618 10.6737 13.3677 9.97949 12.5114 9.97949C11.6551 9.97949 10.9609 10.6737 10.9609 11.5299C10.9609 12.3862 11.6551 13.0804 12.5114 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 13.0804C23.3599 13.0804 24.054 12.3862 24.054 11.5299C24.054 10.6737 23.3599 9.97949 22.5036 9.97949C21.6473 9.97949 20.9531 10.6737 20.9531 11.5299C20.9531 12.3862 21.6473 13.0804 22.5036 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 13.0804C33.3521 13.0804 34.0462 12.3862 34.0462 11.5299C34.0462 10.6737 33.3521 9.97949 32.4958 9.97949C31.6395 9.97949 30.9453 10.6737 30.9453 11.5299C30.9453 12.3862 31.6395 13.0804 32.4958 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 13.0804C43.3442 13.0804 44.0384 12.3862 44.0384 11.5299C44.0384 10.6737 43.3442 9.97949 42.4879 9.97949C41.6317 9.97949 40.9375 10.6737 40.9375 11.5299C40.9375 12.3862 41.6317 13.0804 42.4879 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 13.0804C53.3364 13.0804 54.0306 12.3862 54.0306 11.5299C54.0306 10.6737 53.3364 9.97949 52.4801 9.97949C51.6238 9.97949 50.9297 10.6737 50.9297 11.5299C50.9297 12.3862 51.6238 13.0804 52.4801 13.0804Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.5192 23.0604C3.37549 23.0604 4.06965 22.3662 4.06965 21.5099C4.06965 20.6536 3.37549 19.9595 2.5192 19.9595C1.66291 19.9595 0.96875 20.6536 0.96875 21.5099C0.96875 22.3662 1.66291 23.0604 2.5192 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 23.0604C13.3677 23.0604 14.0618 22.3662 14.0618 21.5099C14.0618 20.6536 13.3677 19.9595 12.5114 19.9595C11.6551 19.9595 10.9609 20.6536 10.9609 21.5099C10.9609 22.3662 11.6551 23.0604 12.5114 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 23.0604C23.3599 23.0604 24.054 22.3662 24.054 21.5099C24.054 20.6536 23.3599 19.9595 22.5036 19.9595C21.6473 19.9595 20.9531 20.6536 20.9531 21.5099C20.9531 22.3662 21.6473 23.0604 22.5036 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 23.0604C33.3521 23.0604 34.0462 22.3662 34.0462 21.5099C34.0462 20.6536 33.3521 19.9595 32.4958 19.9595C31.6395 19.9595 30.9453 20.6536 30.9453 21.5099C30.9453 22.3662 31.6395 23.0604 32.4958 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 23.0604C43.3442 23.0604 44.0384 22.3662 44.0384 21.5099C44.0384 20.6536 43.3442 19.9595 42.4879 19.9595C41.6317 19.9595 40.9375 20.6536 40.9375 21.5099C40.9375 22.3662 41.6317 23.0604 42.4879 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 23.0604C53.3364 23.0604 54.0306 22.3662 54.0306 21.5099C54.0306 20.6536 53.3364 19.9595 52.4801 19.9595C51.6238 19.9595 50.9297 20.6536 50.9297 21.5099C50.9297 22.3662 51.6238 23.0604 52.4801 23.0604Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.5192 33.0404C3.37549 33.0404 4.06965 32.3462 4.06965 31.4899C4.06965 30.6336 3.37549 29.9395 2.5192 29.9395C1.66291 29.9395 0.96875 30.6336 0.96875 31.4899C0.96875 32.3462 1.66291 33.0404 2.5192 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 33.0404C13.3677 33.0404 14.0618 32.3462 14.0618 31.4899C14.0618 30.6336 13.3677 29.9395 12.5114 29.9395C11.6551 29.9395 10.9609 30.6336 10.9609 31.4899C10.9609 32.3462 11.6551 33.0404 12.5114 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 33.0404C23.3599 33.0404 24.054 32.3462 24.054 31.4899C24.054 30.6336 23.3599 29.9395 22.5036 29.9395C21.6473 29.9395 20.9531 30.6336 20.9531 31.4899C20.9531 32.3462 21.6473 33.0404 22.5036 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 33.0404C33.3521 33.0404 34.0462 32.3462 34.0462 31.4899C34.0462 30.6336 33.3521 29.9395 32.4958 29.9395C31.6395 29.9395 30.9453 30.6336 30.9453 31.4899C30.9453 32.3462 31.6395 33.0404 32.4958 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 33.0404C43.3442 33.0404 44.0384 32.3462 44.0384 31.4899C44.0384 30.6336 43.3442 29.9395 42.4879 29.9395C41.6317 29.9395 40.9375 30.6336 40.9375 31.4899C40.9375 32.3462 41.6317 33.0404 42.4879 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 33.0404C53.3364 33.0404 54.0306 32.3462 54.0306 31.4899C54.0306 30.6336 53.3364 29.9395 52.4801 29.9395C51.6238 29.9395 50.9297 30.6336 50.9297 31.4899C50.9297 32.3462 51.6238 33.0404 52.4801 33.0404Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.5192 43.0203C3.37549 43.0203 4.06965 42.3262 4.06965 41.4699C4.06965 40.6136 3.37549 39.9194 2.5192 39.9194C1.66291 39.9194 0.96875 40.6136 0.96875 41.4699C0.96875 42.3262 1.66291 43.0203 2.5192 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 43.0203C13.3677 43.0203 14.0618 42.3262 14.0618 41.4699C14.0618 40.6136 13.3677 39.9194 12.5114 39.9194C11.6551 39.9194 10.9609 40.6136 10.9609 41.4699C10.9609 42.3262 11.6551 43.0203 12.5114 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 43.0203C23.3599 43.0203 24.054 42.3262 24.054 41.4699C24.054 40.6136 23.3599 39.9194 22.5036 39.9194C21.6473 39.9194 20.9531 40.6136 20.9531 41.4699C20.9531 42.3262 21.6473 43.0203 22.5036 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 43.0203C33.3521 43.0203 34.0462 42.3262 34.0462 41.4699C34.0462 40.6136 33.3521 39.9194 32.4958 39.9194C31.6395 39.9194 30.9453 40.6136 30.9453 41.4699C30.9453 42.3262 31.6395 43.0203 32.4958 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 43.0203C43.3442 43.0203 44.0384 42.3262 44.0384 41.4699C44.0384 40.6136 43.3442 39.9194 42.4879 39.9194C41.6317 39.9194 40.9375 40.6136 40.9375 41.4699C40.9375 42.3262 41.6317 43.0203 42.4879 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 43.0203C53.3364 43.0203 54.0306 42.3262 54.0306 41.4699C54.0306 40.6136 53.3364 39.9194 52.4801 39.9194C51.6238 39.9194 50.9297 40.6136 50.9297 41.4699C50.9297 42.3262 51.6238 43.0203 52.4801 43.0203Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2.5192 53.0001C3.37549 53.0001 4.06965 52.3059 4.06965 51.4496C4.06965 50.5933 3.37549 49.8992 2.5192 49.8992C1.66291 49.8992 0.96875 50.5933 0.96875 51.4496C0.96875 52.3059 1.66291 53.0001 2.5192 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12.5114 53.0001C13.3677 53.0001 14.0618 52.3059 14.0618 51.4496C14.0618 50.5933 13.3677 49.8992 12.5114 49.8992C11.6551 49.8992 10.9609 50.5933 10.9609 51.4496C10.9609 52.3059 11.6551 53.0001 12.5114 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M22.5036 53.0001C23.3599 53.0001 24.054 52.3059 24.054 51.4496C24.054 50.5933 23.3599 49.8992 22.5036 49.8992C21.6473 49.8992 20.9531 50.5933 20.9531 51.4496C20.9531 52.3059 21.6473 53.0001 22.5036 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M32.4958 53.0001C33.3521 53.0001 34.0462 52.3059 34.0462 51.4496C34.0462 50.5933 33.3521 49.8992 32.4958 49.8992C31.6395 49.8992 30.9453 50.5933 30.9453 51.4496C30.9453 52.3059 31.6395 53.0001 32.4958 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M42.4879 53.0001C43.3442 53.0001 44.0384 52.3059 44.0384 51.4496C44.0384 50.5933 43.3442 49.8992 42.4879 49.8992C41.6317 49.8992 40.9375 50.5933 40.9375 51.4496C40.9375 52.3059 41.6317 53.0001 42.4879 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M52.4801 53.0001C53.3364 53.0001 54.0306 52.3059 54.0306 51.4496C54.0306 50.5933 53.3364 49.8992 52.4801 49.8992C51.6238 49.8992 50.9297 50.5933 50.9297 51.4496C50.9297 52.3059 51.6238 53.0001 52.4801 53.0001Z"
+                                fill="#3C50E0"
+                              />
+                            </svg>
+                          </span>
+
+                          <span
+                            class="absolute bottom-0 left-0 -z-1 h-9 w-9 rounded-full bg-green-600 opacity-0 transition-all group-hover:opacity-100"
+                          ></span>
+                        </div>
+
+                        <div class="my-5">
+                          <h4
+                            class="mb-0.5 text-lg font-bold text-black dark:text-white pt-2 pl-2"
+                          >
+                            Jackie Sanders
+                          </h4>
+                          <p class="text-xs font-medium text-gray-600 pl-6 pt-1">SEO Expert</p>
+                        </div>
+
+                        <div class="flex pb-3 pl-5 pt-3 gap-5">
+                          <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                            <i class="fa-brands fa-facebook-f fa-lg"></i>
+                          </a>
+
+                          <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                            <i class="fa-brands fa-twitter fa-lg"></i>
+                          </a>
+
+                          <a href="#" class="text-bodydark2 hover:text-royal-blue">
+                            <i class="fa-brands fa-instagram fa-lg"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+        <!-- ===== Main Content End ===== -->
+      </div>
+      <!-- ===== Content Area End ===== -->
+    </div>
+    <!-- ===== Page Wrapper End ===== -->
+  <script defer src="bundle.js"></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8cf62e1c8a710696","version":"2024.8.0","r":1,"token":"67f7a278e3374824ae6dd92295d38f77","serverTiming":{"name":{"cfExtPri":true,"cfL4":true}}}' crossorigin="anonymous"></script>
+</body>
+</html>

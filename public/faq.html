@@ -1,22 +1,33 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alerts | TailAdmin - Tailwind CSS Admin Dashboard Template</title>
+    <title>Faq's | TailAdmin - Tailwind CSS Admin Dashboard Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
     <link rel="stylesheet" href="output.css">
   </head>
 
   <body
-    x-data="{ page: 'alerts', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+    x-data="{ page: 'faq', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
     x-init="
           darkMode = JSON.parse(localStorage.getItem('darkMode'));
           $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
     :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}"
   >
     <!-- ===== Preloader Start ===== -->
-    <include src="./partials/preloader.html"></include>
+    <div
+  x-show="loaded"
+  x-init="window.addEventListener('DOMContentLoaded', () => {setTimeout(() => loaded = false, 500)})"
+  class="fixed left-0 top-0 z-999999 flex h-screen w-screen items-center justify-center bg-white   dark:bg-black"
+>
+  <div
+    class="h-16 w-16 animate-spin rounded-full border-4 border-solid border-royal-blue border-t-transparent"
+  ></div>
+</div>
+
     <!-- ===== Preloader End ===== -->
 
     <!-- ===== Page Wrapper Start ===== -->
@@ -61,16 +72,16 @@
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="analytics.html" :class="page === 'analytics' && 'text-white'">Analytics
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="marketing.html" :class="page === 'marketing' && 'text-white'">Marketing
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="stocks.html" :class="page === 'stocks' && '!text-white'">Stocks
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium bg-royal-blue text-white">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium bg-royal-blue text-white">Pro</span></a>
                       </li>
                       
                     </ul>
@@ -99,7 +110,32 @@
                 </li>
                 <!-- Menu Item Profile -->
       
-                
+                <!-- Menu Item Task -->
+                <li>
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="#" @click.prevent="selected = (selected === 'Task' ? '':'Task')" :class="{ 'bg-black': (selected === 'Task') || (page === 'list' || page === 'kanban') }">
+                    <i class="fa-solid fa-list-check"></i>
+      
+                    Task
+      
+                    <i class="fa-solid fa-caret-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20 h-16"></i>
+                  </a>
+      
+                  <!-- Dropdown Menu Start -->
+                  <div class="translate transform overflow-hidden hidden" :class="(selected === 'Task') ? 'block' :'hidden'">
+                    <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="task-list.html" :class="page === 'list' && '!text-white'">List
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="task-kanban.html" :class="page === 'kanban' && '!text-white'">Kanban
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue"></span>Pro</span></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- Dropdown Menu End -->
+                </li>
+                <!-- Menu Item Task -->
       
                 <!-- Menu Item Forms -->
                 <li>
@@ -119,14 +155,14 @@
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pro-form-elements.html" :class="page === 'proFormElements' && 'text-white'">Pro Form Elements
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="form-layout.html" :class="page === 'formLayout' && 'text-white'">Form Layout</a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pro-form-layout.html" :class="page === 'proFormLayout' && 'text-white'">Pro Form Layout
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                     </ul>
                   </div>
@@ -154,7 +190,7 @@
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pro-tables.html" :class="page === 'proTables' && 'text-black hover:text-white'">Pro Tables
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                     </ul>
                   </div>
@@ -184,24 +220,24 @@
                      
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pricing-tables.html" :class="page === 'pricingTables' && '!text-white'">Pricing Tables
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="faq.html" :class="page === 'faq' && 'text-white'">Faq's
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="team.html" :class="page === 'team' && 'text-white'">Teams
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="terms-conditions.html" :class="page === 'termsCondition' && 'text-white'">Terms & Conditions
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="mail-success.html" :class="page === 'mailSuccess' && 'text-white'">Mail Success
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <!-- Menu Item Invoice -->
                 
@@ -216,7 +252,7 @@
                 <a class="group relative flex items-center gap-2.5 rounded-sm px-4 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="invoice.html" @click="selected = (selected === 'Invoice' ? '':'Invoice')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Invoice') && (page === 'Invoice') }">
                   <i class="fa-solid fa-file-invoice"></i>
                   Invoice
-                  <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span>
+                  <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span>
                 </a>
               </li>
               </ul>
@@ -246,7 +282,7 @@
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="advanced-chart.html" :class="page === 'advancedChart' && 'text-black'">Advanced Chart
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                     </ul>
                   </div>
@@ -268,7 +304,7 @@
                     <ul class="mb-3 mt-4 flex flex-col gap-2 pl-6">
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="accordion.html" :class="page === 'accordion' && '!text-white'">Accordion
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
@@ -277,17 +313,17 @@
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="avatars.html" :class="page === 'avatars' && '!text-white'">Avatars
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="badge.html" :class="page === 'badge' && '!text-white'">Badge
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="breadcrumb.html" :class="page === 'breadcrumb' &&'!text-white'">Breadcrumb
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
@@ -296,77 +332,77 @@
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="buttons-group.html" :class="page === 'buttonsGroup' && '!text-white'">Buttons Group
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="cards.html" :class="page === 'card' && '!text-white'">Cards
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="carousel.html" :class="page === 'carousel' && '!text-white'">Carousel
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400
                          duration-300 ease-in-out hover:text-white" href="dropdowns.html" :class="page === 'dropdowns' &&'!text-white'">Dropdowns
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="images.html" :class="page === 'images' && '!text-white'">Images
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="list.html" :class="page === 'uiList' && '!text-white'">List
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="modals.html" :class="page === 'Modals' && '!text-white'">Modals
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="notifications.html" :class="page === 'notifications' && '!text-white'">Notifications
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pagination.html" :class="page === 'pagination' && '!text-white'">Pagination
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="popovers.html" :class="page === 'popovers' && '!text-white'">Popovers
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="progress.html" :class="page === 'progress' && '!text-white'">Progress
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="spinners.html" :class="page === 'spinners' && '!text-white'">Spinners
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="tabs.html" :class="page === 'tabs' && '!text-white'">Tabs
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="tooltips.html" :class="page === 'tooltips' && '!text-white'">Tooltips
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="videos.html" :class="page === 'videos' && '!text-white'">Videos
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                     </ul>
                   </div>
@@ -395,19 +431,19 @@
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="reset-password.html" :class="page === 'resetPassword' && '!text-white'">Reset Password
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="coming-soon.html" :class="page === 'comingSoon' && '!text-black'">Coming Soon
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="two-step-verification.html" :class="page === 'twoStepVerification' && 'text-black'">2 Step Verification
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="under-maintenance.html" :class="page === 'underMaintenance' && '!text-white'">Under Maintenance
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                          <span class="absolute right-4 block rounded bg-royal-blue px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                     </ul>
                   </div>
@@ -433,15 +469,11 @@
       <include src="./partials/sidebar.html"></include>
       <!-- ===== Sidebar End ===== -->
 
-
       <!-- ===== Content Area Start ===== -->
       <div
-        class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden"
+        class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden bg-gray-200"
       >
-        <!-- ===== Header Start ===== -->
-        <include src="./partials/header.html" />
-        <!-- ===== Header End ===== -->
-
+        
         <!-- ===== Main Content Start ===== -->
         <main>
           <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
@@ -450,7 +482,7 @@
               class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
             >
               <h2 class="text-title-md2 font-bold text-black dark:text-white">
-                Alerts
+                Faq's
               </h2>
 
               <nav>
@@ -458,112 +490,119 @@
                   <li>
                     <a class="font-medium" href="index.html">Dashboard /</a>
                   </li>
-                  <li class="font-medium text-primary">Alerts</li>
+                  <li class="font-medium text-royal-blue">Faq's</li>
                 </ol>
               </nav>
             </div>
             <!-- Breadcrumb End -->
 
-            <div
-              class="rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark md:p-6 xl:p-9"
-            >
-              <div class="flex flex-col gap-7.5">
-                <!-- Alerts Item -->
+            <div class="flex flex-cols gap-7">
+              <div
+                class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
+              >
                 <div
-                  class="flex w-full border-l-6 border-warning bg-warning bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9"
+                  class="border-b border-stroke px-4 py-4 dark:border-strokedark sm:px-6 xl:px-9"
                 >
-                  <div
-                    class="mr-5 flex h-9 w-9 items-center justify-center rounded-lg bg-warning bg-opacity-30"
-                  >
-                    <svg
-                      width="19"
-                      height="16"
-                      viewBox="0 0 19 16"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M1.50493 16H17.5023C18.6204 16 19.3413 14.9018 18.8354 13.9735L10.8367 0.770573C10.2852 -0.256858 8.70677 -0.256858 8.15528 0.770573L0.156617 13.9735C-0.334072 14.8998 0.386764 16 1.50493 16ZM10.7585 12.9298C10.7585 13.6155 10.2223 14.1433 9.45583 14.1433C8.6894 14.1433 8.15311 13.6155 8.15311 12.9298V12.9015C8.15311 12.2159 8.6894 11.688 9.45583 11.688C10.2223 11.688 10.7585 12.2159 10.7585 12.9015V12.9298ZM8.75236 4.01062H10.2548C10.6674 4.01062 10.9127 4.33826 10.8671 4.75288L10.2071 10.1186C10.1615 10.5049 9.88572 10.7455 9.50142 10.7455C9.11929 10.7455 8.84138 10.5028 8.79579 10.1186L8.13574 4.75288C8.09449 4.33826 8.33984 4.01062 8.75236 4.01062Z"
-                        fill="#FBBF24"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div class="w-full">
-                    <h5 class="mb-3 text-lg font-bold text-[#9D5425]">
-                      Attention needed
-                    </h5>
-                    <p class="leading-relaxed text-[#D0915C]">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when
-                    </p>
-                  </div>
+                  <h3 class="font-medium text-black dark:text-white">
+                    Style 1
+                  </h3>
                 </div>
 
-                <!-- Alerts Item -->
-                <div
-                  class="flex w-full border-l-6 border-[#34D399] bg-[#34D399] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9"
-                >
+                <div class="p-4 sm:p-6 xl:p-9">
                   <div
-                    class="mr-5 flex h-9 w-full max-w-[36px] items-center justify-center rounded-lg bg-[#34D399]"
+                    class="grid grid-cols-1 gap-x-7 gap-y-7 sm:gap-y-12 xl:grid-cols-2 xl:gap-y-17"
                   >
-                    <svg
-                      width="16"
-                      height="12"
-                      viewBox="0 0 16 12"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M15.2984 0.826822L15.2868 0.811827L15.2741 0.797751C14.9173 0.401867 14.3238 0.400754 13.9657 0.794406L5.91888 9.45376L2.05667 5.2868C1.69856 4.89287 1.10487 4.89389 0.747996 5.28987C0.417335 5.65675 0.417335 6.22337 0.747996 6.59026L0.747959 6.59029L0.752701 6.59541L4.86742 11.0348C5.14445 11.3405 5.52858 11.5 5.89581 11.5C6.29242 11.5 6.65178 11.3355 6.92401 11.035L15.2162 2.11161C15.5833 1.74452 15.576 1.18615 15.2984 0.826822Z"
-                        fill="white"
-                        stroke="white"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div class="w-full">
-                    <h5
-                      class="mb-3 text-lg font-bold text-black dark:text-[#34D399]"
-                    >
-                      Message Sent Successfully
-                    </h5>
-                    <p class="text-base leading-relaxed text-body">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry.
-                    </p>
-                  </div>
-                </div>
+                    <!-- faq item -->
+                    <div class="flex gap-6 pb-8">
+                      <div
+                        class="flex h-10 w-12 items-center justify-center rounded-xl bg-royal-blue text-white"
+                      >
+                      <i class="fa-solid fa-question"></i>
+                      </div>
 
-                <!-- Alerts Item -->
-                <div
-                  class="flex w-full border-l-6 border-[#F87171] bg-[#F87171] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9"
-                >
-                  <div
-                    class="mr-5 flex h-9 w-full max-w-[36px] items-center justify-center rounded-lg bg-[#F87171]"
-                  >
-                    <svg
-                      width="13"
-                      height="13"
-                      viewBox="0 0 13 13"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M6.4917 7.65579L11.106 12.2645C11.2545 12.4128 11.4715 12.5 11.6738 12.5C11.8762 12.5 12.0931 12.4128 12.2416 12.2645C12.5621 11.9445 12.5623 11.4317 12.2423 11.1114C12.2422 11.1113 12.2422 11.1113 12.2422 11.1113C12.242 11.1111 12.2418 11.1109 12.2416 11.1107L7.64539 6.50351L12.2589 1.91221L12.2595 1.91158C12.5802 1.59132 12.5802 1.07805 12.2595 0.757793C11.9393 0.437994 11.4268 0.437869 11.1064 0.757418C11.1063 0.757543 11.1062 0.757668 11.106 0.757793L6.49234 5.34931L1.89459 0.740581L1.89396 0.739942C1.57364 0.420019 1.0608 0.420019 0.740487 0.739944C0.42005 1.05999 0.419837 1.57279 0.73985 1.89309L6.4917 7.65579ZM6.4917 7.65579L1.89459 12.2639L1.89395 12.2645C1.74546 12.4128 1.52854 12.5 1.32616 12.5C1.12377 12.5 0.906853 12.4128 0.758361 12.2645L1.1117 11.9108L0.758358 12.2645C0.437984 11.9445 0.437708 11.4319 0.757539 11.1116C0.757812 11.1113 0.758086 11.111 0.75836 11.1107L5.33864 6.50287L0.740487 1.89373L6.4917 7.65579Z"
-                        fill="#ffffff"
-                        stroke="#ffffff"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div class="w-full">
-                    <h5 class="mb-3 font-bold text-[#B45454]">
-                      There were 1 errors with your submission
-                    </h5>
-                    <ul>
-                      <li class="leading-relaxed text-[#CD5D5D]">
-                        Lorem Ipsum is simply dummy text of the printing
-                      </li>
-                    </ul>
+                      <div class="flex w-full flex-col gap-6">
+                        <h4
+                          class="text-title-sm2 font-bold text-black dark:text-white"
+                        >
+                          Is Windy UI Well-documented?
+                        </h4>
+                        <p class="w-full max-w-[452px] font-medium text-gray-600">
+                          It takes 2-3 weeks to get your first blog post ready.
+                          That includes the in-depth research & creation of your
+                          monthly content ui/ux strategy that we your first blog
+                          post.
+                        </p>
+                      </div>
+                    </div>
+
+                    <!-- faq item -->
+                    <div class="flex gap-6">
+                      <div
+                        class="flex h-10 w-12 items-center justify-center rounded-xl bg-royal-blue text-white"
+                      >
+                      <i class="fa-solid fa-question"></i>
+                      </div>
+
+                      <div class="flex w-full flex-col gap-6">
+                        <h4
+                          class="text-title-sm2 font-bold text-black dark:text-white"
+                        >
+                          Is Windy UI Well-documented?
+                        </h4>
+                        <p class="w-full max-w-[452px] font-medium text-gray-600">
+                          It takes 2-3 weeks to get your first blog post ready.
+                          That includes the in-depth research & creation of your
+                          monthly content ui/ux strategy that we your first blog
+                          post.
+                        </p>
+                      </div>
+                    </div>
+
+                    <!-- faq item -->
+                    <div class="flex gap-6">
+                      <div
+                        class="flex h-10 w-12 items-center justify-center rounded-xl bg-royal-blue text-white"
+                      >
+                      <i class="fa-solid fa-question"></i>
+                      </div>
+
+                      <div class="flex w-full flex-col gap-6">
+                        <h4
+                          class="text-title-sm2 font-bold text-black dark:text-white"
+                        >
+                          Is Windy UI Well-documented?
+                        </h4>
+                        <p class="w-full max-w-[452px] font-medium text-gray-600">
+                          It takes 2-3 weeks to get your first blog post ready.
+                          That includes the in-depth research & creation of your
+                          monthly content ui/ux strategy that we your first blog
+                          post.
+                        </p>
+                      </div>
+                    </div>
+
+                    <!-- faq item -->
+                    <div class="flex gap-6">
+                      <div
+                        class="flex h-10 w-12 items-center justify-center rounded-xl bg-royal-blue text-white"
+                      >
+                      <i class="fa-solid fa-question"></i>
+                      </div>
+
+                      <div class="flex w-full flex-col gap-6">
+                        <h4
+                          class="text-title-sm2 font-bold text-black dark:text-white"
+                        >
+                          Is Windy UI Well-documented?
+                        </h4>
+                        <p class="w-full max-w-[452px] font-medium text-gray-600">
+                          It takes 2-3 weeks to get your first blog post ready.
+                          That includes the in-depth research & creation of your
+                          monthly content ui/ux strategy that we your first blog
+                          post.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -575,5 +614,6 @@
       <!-- ===== Content Area End ===== -->
     </div>
     <!-- ===== Page Wrapper End ===== -->
-  </body>
+  <script defer src="bundle.js"></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8cf5dcb1cb869589","version":"2024.8.0","r":1,"token":"67f7a278e3374824ae6dd92295d38f77","serverTiming":{"name":{"cfExtPri":true,"cfL4":true}}}' crossorigin="anonymous"></script>
+</body>
 </html>

@@ -1,22 +1,33 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alerts | TailAdmin - Tailwind CSS Admin Dashboard Template</title>
+    <title>Invoice | TailAdmin - Tailwind CSS Admin Dashboard Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
     <link rel="stylesheet" href="output.css">
   </head>
 
   <body
-    x-data="{ page: 'alerts', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+    x-data="{ page: 'Invoice', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
     x-init="
           darkMode = JSON.parse(localStorage.getItem('darkMode'));
           $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
     :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}"
   >
     <!-- ===== Preloader Start ===== -->
-    <include src="./partials/preloader.html"></include>
+    <div
+  x-show="loaded"
+  x-init="window.addEventListener('DOMContentLoaded', () => {setTimeout(() => loaded = false, 500)})"
+  class="fixed left-0 top-0 z-999999 flex h-screen w-screen items-center justify-center bg-white dark:bg-black"
+>
+  <div
+    class="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent"
+  ></div>
+</div>
+
     <!-- ===== Preloader End ===== -->
 
     <!-- ===== Page Wrapper Start ===== -->
@@ -99,7 +110,32 @@
                 </li>
                 <!-- Menu Item Profile -->
       
-                
+                <!-- Menu Item Task -->
+                <li>
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="#" @click.prevent="selected = (selected === 'Task' ? '':'Task')" :class="{ 'bg-black': (selected === 'Task') || (page === 'list' || page === 'kanban') }">
+                    <i class="fa-solid fa-list-check"></i>
+      
+                    Task
+      
+                    <i class="fa-solid fa-caret-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20 h-16"></i>
+                  </a>
+      
+                  <!-- Dropdown Menu Start -->
+                  <div class="translate transform overflow-hidden hidden" :class="(selected === 'Task') ? 'block' :'hidden'">
+                    <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="task-list.html" :class="page === 'list' && '!text-white'">List
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
+                      </li>
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="task-kanban.html" :class="page === 'kanban' && '!text-white'">Kanban
+                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue"></span>Pro</span></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- Dropdown Menu End -->
+                </li>
+                <!-- Menu Item Task -->
       
                 <!-- Menu Item Forms -->
                 <li>
@@ -433,24 +469,21 @@
       <include src="./partials/sidebar.html"></include>
       <!-- ===== Sidebar End ===== -->
 
-
       <!-- ===== Content Area Start ===== -->
       <div
-        class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden"
+        class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden bg-gray-200"
       >
-        <!-- ===== Header Start ===== -->
-        <include src="./partials/header.html" />
-        <!-- ===== Header End ===== -->
+        
 
         <!-- ===== Main Content Start ===== -->
-        <main>
+        <main class="u-min-h-screen">
           <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
             <!-- Breadcrumb Start -->
             <div
               class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
             >
               <h2 class="text-title-md2 font-bold text-black dark:text-white">
-                Alerts
+                Invoice
               </h2>
 
               <nav>
@@ -458,116 +491,516 @@
                   <li>
                     <a class="font-medium" href="index.html">Dashboard /</a>
                   </li>
-                  <li class="font-medium text-primary">Alerts</li>
+                  <li class="font-medium text-royal-blue">Invoice</li>
                 </ol>
               </nav>
             </div>
             <!-- Breadcrumb End -->
 
+            <!-- ====== Invoice One Start -->
             <div
-              class="rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark md:p-6 xl:p-9"
+              class="mb-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
             >
-              <div class="flex flex-col gap-7.5">
-                <!-- Alerts Item -->
+              <div
+                class="border-b border-stroke px-4 py-4 dark:border-strokedark sm:px-6 xl:px-9"
+              >
+                <h3 class="font-medium text-black dark:text-white">Style 1</h3>
+              </div>
+
+              <div class="p-4 sm:p-6 xl:p-9">
                 <div
-                  class="flex w-full border-l-6 border-warning bg-warning bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9"
+                  class="flex flex-col-reverse gap-5 xl:flex-row xl:justify-between"
                 >
-                  <div
-                    class="mr-5 flex h-9 w-9 items-center justify-center rounded-lg bg-warning bg-opacity-30"
-                  >
-                    <svg
-                      width="19"
-                      height="16"
-                      viewBox="0 0 19 16"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M1.50493 16H17.5023C18.6204 16 19.3413 14.9018 18.8354 13.9735L10.8367 0.770573C10.2852 -0.256858 8.70677 -0.256858 8.15528 0.770573L0.156617 13.9735C-0.334072 14.8998 0.386764 16 1.50493 16ZM10.7585 12.9298C10.7585 13.6155 10.2223 14.1433 9.45583 14.1433C8.6894 14.1433 8.15311 13.6155 8.15311 12.9298V12.9015C8.15311 12.2159 8.6894 11.688 9.45583 11.688C10.2223 11.688 10.7585 12.2159 10.7585 12.9015V12.9298ZM8.75236 4.01062H10.2548C10.6674 4.01062 10.9127 4.33826 10.8671 4.75288L10.2071 10.1186C10.1615 10.5049 9.88572 10.7455 9.50142 10.7455C9.11929 10.7455 8.84138 10.5028 8.79579 10.1186L8.13574 4.75288C8.09449 4.33826 8.33984 4.01062 8.75236 4.01062Z"
-                        fill="#FBBF24"
-                      ></path>
-                    </svg>
+                  <div class="flex flex-col gap-4 sm:flex-row xl:gap-9">
+                    <div>
+                      <p class="mb-1.5 font-medium text-black dark:text-white">
+                        From
+                      </p>
+                      <h4
+                        class="mb-4 text-title-sm2 font-medium leading-[30px] text-black dark:text-white"
+                      >
+                        Roger Culhane
+                      </h4>
+                      <a href="#" class="block"
+                        ><span class="font-medium text-gray-600">Email:</span>
+                        <span>contact@example.com</span></a
+                      >
+                      <span class="mt-2 block"
+                        ><span class="font-medium text-gray-600">Address:</span> 2972
+                        Westheimer Rd. Santa Ana.</span
+                      >
+                    </div>
+                    <div>
+                      <p class="mb-1.5 font-medium text-black dark:text-white">
+                        To
+                      </p>
+                      <h4
+                        class="mb-4 text-title-sm2 font-medium leading-[30px] text-black dark:text-white"
+                      >
+                        Cristofer Levin
+                      </h4>
+                      <a href="#" class="block"
+                        ><span class="font-medium text-gray-600">Email:</span>
+                        <span>contact@example.com</span></a
+                      >
+                      <span class="mt-2 block pb-6"
+                        ><span class="font-medium text-gray-600">Address:</span> New York, USA
+                        2707 Davis Anenue
+                      </span>
+                    </div>
                   </div>
-                  <div class="w-full">
-                    <h5 class="mb-3 text-lg font-bold text-[#9D5425]">
-                      Attention needed
-                    </h5>
-                    <p class="leading-relaxed text-[#D0915C]">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when
-                    </p>
+                  <h3 class="text-2xl font-medium text-black dark:text-white">
+                    Order #15478
+                  </h3>
+                </div>
+
+                <div
+                  class="my-10 rounded-sm border border-stroke p-5 dark:border-strokedark pt-4"
+                >
+                  <div class="items-center sm:flex gap-4">
+                    <div class="mb-3 mr-6 h-16 w-16 sm:mb-0">
+                      <img
+                        src="./images/product/product-thumb.png"
+                        alt="product"
+                        class="h-full w-full rounded-sm object-cover object-center"
+                      />
+                    </div>
+                    <div class="w-full items-center justify-between md:flex">
+                      <div class="mb-3 md:mb-0">
+                        <a
+                          href="#"
+                          class="inline-block font-medium text-black hover:text-royal-blue dark:text-white"
+                        >
+                          Mist Black Triblend
+                        </a>
+                        <p class="flex text-sm font-medium text-gray-600">
+                          <span class="mr-5"> Color: White </span>
+                          <span class="mr-5"> Size: Medium </span>
+                        </p>
+                      </div>
+                      <div class="flex items-center md:justify-end">
+                        <p class="mr-20 font-medium text-black dark:text-white">
+                          Qty: 01
+                        </p>
+                        <p class="mr-5 font-medium text-black dark:text-white">
+                          $120.00
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <!-- Alerts Item -->
-                <div
-                  class="flex w-full border-l-6 border-[#34D399] bg-[#34D399] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9"
-                >
-                  <div
-                    class="mr-5 flex h-9 w-full max-w-[36px] items-center justify-center rounded-lg bg-[#34D399]"
-                  >
-                    <svg
-                      width="16"
-                      height="12"
-                      viewBox="0 0 16 12"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M15.2984 0.826822L15.2868 0.811827L15.2741 0.797751C14.9173 0.401867 14.3238 0.400754 13.9657 0.794406L5.91888 9.45376L2.05667 5.2868C1.69856 4.89287 1.10487 4.89389 0.747996 5.28987C0.417335 5.65675 0.417335 6.22337 0.747996 6.59026L0.747959 6.59029L0.752701 6.59541L4.86742 11.0348C5.14445 11.3405 5.52858 11.5 5.89581 11.5C6.29242 11.5 6.65178 11.3355 6.92401 11.035L15.2162 2.11161C15.5833 1.74452 15.576 1.18615 15.2984 0.826822Z"
-                        fill="white"
-                        stroke="white"
-                      ></path>
-                    </svg>
+                <div class="-mx-4 grid grid-cols-3 pt-6">
+                  <div class="w-full px-4 sm:w-1/2 xl:w-3/12">
+                    <div class="mb-10">
+                      <h4
+                        class="mb-4 text-title-sm2 font-medium leading-[30px] text-black dark:text-white md:text-2xl"
+                      >
+                        Shipping Method
+                      </h4>
+                      <p class="font-medium text-gray-600">
+                        FedEx - Take up to 3 <br />
+                        working days.
+                      </p>
+                    </div>
                   </div>
-                  <div class="w-full">
-                    <h5
-                      class="mb-3 text-lg font-bold text-black dark:text-[#34D399]"
-                    >
-                      Message Sent Successfully
-                    </h5>
-                    <p class="text-base leading-relaxed text-body">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry.
-                    </p>
+                  <div class="w-full px-4 sm:w-1/2 xl:w-3/12">
+                    <div class="mb-10">
+                      <h4
+                        class="mb-4 text-title-sm2 font-medium leading-[30px] text-black dark:text-white md:text-2xl"
+                      >
+                        Payment Method
+                      </h4>
+                      <p class="font-medium text-gray-600">
+                        Apply Pay Mastercard <br />
+                        **** **** **** 5874
+                      </p>
+                    </div>
                   </div>
-                </div>
+                  <div class="w-full px-4">
+                    <div class="mr-10 text-right md:ml-auto">
+                      <div class="ml-auto">
+                        <p
+                          class="mb-4 flex justify-between font-medium text-black dark:text-white"
+                        >
+                          <span> Subtotal </span>
+                          <span> $120.00 </span>
+                        </p>
+                        <p
+                          class="mb-4 flex justify-between font-medium text-black dark:text-white"
+                        >
+                          <span> Shipping Cost (+) </span>
+                          <span> $10.00 </span>
+                        </p>
+                        <p
+                          class="mb-4 mt-2 flex justify-between border-t border-stroke pt-6 font-medium text-black dark:border-strokedark dark:text-white"
+                        >
+                          <span> Total Payable </span>
+                          <span> $130.00 </span>
+                        </p>
+                      </div>
 
-                <!-- Alerts Item -->
-                <div
-                  class="flex w-full border-l-6 border-[#F87171] bg-[#F87171] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9"
-                >
-                  <div
-                    class="mr-5 flex h-9 w-full max-w-[36px] items-center justify-center rounded-lg bg-[#F87171]"
-                  >
-                    <svg
-                      width="13"
-                      height="13"
-                      viewBox="0 0 13 13"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M6.4917 7.65579L11.106 12.2645C11.2545 12.4128 11.4715 12.5 11.6738 12.5C11.8762 12.5 12.0931 12.4128 12.2416 12.2645C12.5621 11.9445 12.5623 11.4317 12.2423 11.1114C12.2422 11.1113 12.2422 11.1113 12.2422 11.1113C12.242 11.1111 12.2418 11.1109 12.2416 11.1107L7.64539 6.50351L12.2589 1.91221L12.2595 1.91158C12.5802 1.59132 12.5802 1.07805 12.2595 0.757793C11.9393 0.437994 11.4268 0.437869 11.1064 0.757418C11.1063 0.757543 11.1062 0.757668 11.106 0.757793L6.49234 5.34931L1.89459 0.740581L1.89396 0.739942C1.57364 0.420019 1.0608 0.420019 0.740487 0.739944C0.42005 1.05999 0.419837 1.57279 0.73985 1.89309L6.4917 7.65579ZM6.4917 7.65579L1.89459 12.2639L1.89395 12.2645C1.74546 12.4128 1.52854 12.5 1.32616 12.5C1.12377 12.5 0.906853 12.4128 0.758361 12.2645L1.1117 11.9108L0.758358 12.2645C0.437984 11.9445 0.437708 11.4319 0.757539 11.1116C0.757812 11.1113 0.758086 11.111 0.75836 11.1107L5.33864 6.50287L0.740487 1.89373L6.4917 7.65579Z"
-                        fill="#ffffff"
-                        stroke="#ffffff"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div class="w-full">
-                    <h5 class="mb-3 font-bold text-[#B45454]">
-                      There were 1 errors with your submission
-                    </h5>
-                    <ul>
-                      <li class="leading-relaxed text-[#CD5D5D]">
-                        Lorem Ipsum is simply dummy text of the printing
-                      </li>
-                    </ul>
+                      <div
+                        class="mt-10 flex flex-col justify-end gap-4 sm:flex-row"
+                      >
+                        <button
+                          class="flex items-center justify-center rounded border border-royal-blue px-8 py-2.5 text-center font-medium text-royal-blue hover:opacity-90"
+                        >
+                          Download Invoice
+                        </button>
+                        <button
+                          class="flex items-center justify-center rounded bg-royal-blue px-8 py-2 text-center font-medium text-white hover:bg-opacity-90"
+                        >
+                          Send Invoice
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <!-- ====== Invoice One End -->
+
+            <!-- ====== Invoice Two Start -->
+            <div
+              class="mb-10 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
+            >
+              <div
+                class="border-b border-stroke px-4 py-4 dark:border-strokedark sm:px-6 xl:px-9"
+              >
+                <h3 class="font-medium text-black dark:text-white">Style 2</h3>
+              </div>
+
+              <div class="p-4 sm:p-6 xl:p-9">
+                <div
+                  class="mb-10 flex flex-wrap items-center justify-end gap-3"
+                >
+                  <button
+                    class="inline-flex items-center gap-2 rounded bg-green-400 px-4 py-[7px] font-medium text-white hover:bg-opacity-90"
+                  >
+                  <i class="fa-solid fa-print"></i>
+                    Print
+                  </button>
+
+                  <button
+                    class="inline-flex items-center gap-2.5 rounded bg-royal-blue px-4 py-[7px] font-medium text-white hover:bg-opacity-90"
+                  >
+                  <i class="fa-solid fa-file-pdf"></i>
+                    Save As PDF
+                  </button>
+                </div>
+
+                <div class="flex flex-wrap justify-between gap-5">
+                  <div>
+                    <p class="mb-1.5 font-medium text-black dark:text-white">
+                      Billing From:
+                    </p>
+                    <h4
+                      class="mb-3 text-xl font-bold text-black dark:text-white"
+                    >
+                      Super Technologies
+                    </h4>
+                    <a href="#" class="block"
+                      ><span class="font-medium text-black dark:text-white"
+                        >Email:</span
+                      >
+                      <span class="text-gray-600 pb-4">contact@example.com</span></a
+                    >
+                    <span class="mt-1.5 block pb-8"
+                      ><span class="font-medium text-black dark:text-white"
+                        >Address:
+                        <span class="text-gray-600" >2972 Westheimer Rd. Santa Ana.</span
+                    >
+                  </div>
+
+                  <div>
+                    <p class="mb-1.5 font-medium text-black dark:text-white">
+                      Billing To:
+                    </p>
+                    <h4
+                      class="mb-3 text-xl font-bold text-black dark:text-white"
+                    >
+                      Devid wilium
+                    </h4>
+                    <a href="#" class="block"
+                      ><span class="font-medium text-black dark:text-white"
+                        >Email:</span
+                      >
+                      <span class="text-gray-600">contact@example.com</span></a
+                    >
+                    <span class="mt-1.5 block pb-8"
+                      ><span class="font-medium text-black dark:text-white"
+                        >Address:<span class="text-gray-600"
+                      >New York, USA 2707 Davis Anenue</span>
+                  </div>
+                </div>
+
+                <div
+                  class="my-7 grid grid-cols-1 border border-stroke dark:border-strokedark xsm:grid-cols-2 sm:grid-cols-4"
+                >
+                  <div
+                    class="border-b border-r border-stroke px-5 py-4 last:border-r-0 dark:border-strokedark sm:border-b-0"
+                  >
+                    <h5 class="mb-1.5 font-bold text-black dark:text-white">
+                      Invoice ID :
+                    </h5>
+                    <span class="text-sm font-medium text-gray-600"> #STK83084398239 </span>
+                  </div>
+
+                  <div
+                    class="border-b border-stroke px-5 py-4 last:border-r-0 dark:border-strokedark sm:border-b-0 sm:border-r"
+                  >
+                    <h5 class="mb-1.5 font-bold text-black dark:text-white">
+                      Date Issued :
+                    </h5>
+                    <span class="text-sm font-medium text-gray-600"> 29, Nov 2027 </span>
+                  </div>
+
+                  <div
+                    class="border-b border-r border-stroke px-5 py-4 last:border-r-0 dark:border-strokedark xsm:border-b-0"
+                  >
+                    <h5 class="mb-1.5 font-bold text-black dark:text-white">
+                      Due Date :
+                    </h5>
+                    <span class="text-sm font-medium text-gray-600"> 29, Dec 2027 </span>
+                  </div>
+
+                  <div
+                    class="border-r border-stroke px-5 py-4 last:border-r-0 dark:border-strokedark"
+                  >
+                    <h5 class="mb-1.5 font-bold text-black dark:text-white">
+                      Due Amount :
+                    </h5>
+                    <span class="text-sm font-medium text-gray-600"> $2,578.90 </span>
+                  </div>
+                </div>
+
+                <div class="border border-stroke dark:border-strokedark">
+                  <div class="max-w-full overflow-x-auto">
+                    <div class="min-w-[670px]">
+                      <!-- table header start -->
+                      <div
+                        class="grid grid-cols-12 border-b border-stroke py-3.5 pl-5 pr-6 dark:border-strokedark"
+                      >
+                        <div class="col-span-3">
+                          <h5 class="font-medium text-black dark:text-white">
+                            Brand name
+                          </h5>
+                        </div>
+
+                        <div class="col-span-4">
+                          <h5 class="font-medium text-black dark:text-white">
+                            Description
+                          </h5>
+                        </div>
+
+                        <div class="col-span-2">
+                          <h5 class="font-medium text-black dark:text-white">
+                            Quantity
+                          </h5>
+                        </div>
+
+                        <div class="col-span-2">
+                          <h5 class="font-medium text-black dark:text-white">
+                            Price Per Unit
+                          </h5>
+                        </div>
+
+                        <div class="col-span-1">
+                          <h5
+                            class="text-right font-medium text-black dark:text-white"
+                          >
+                            Total
+                          </h5>
+                        </div>
+                      </div>
+                      <!-- table header end -->
+
+                      <!-- product item -->
+                      <div
+                        class="grid grid-cols-12 border-b border-stroke py-3 pl-5 pr-6 dark:border-strokedark"
+                      >
+                        <div class="col-span-3">
+                          <p class="font-medium text-gray-600">Techno</p>
+                        </div>
+
+                        <div class="col-span-4">
+                          <p class="font-medium text-gray-600">Kemon 24 smart phone</p>
+                        </div>
+
+                        <div class="col-span-2">
+                          <p class="font-medium text-gray-600">1</p>
+                        </div>
+
+                        <div class="col-span-2">
+                          <p class="font-medium text-gray-600">$200</p>
+                        </div>
+
+                        <div class="col-span-1">
+                          <p class="text-right font-medium text-gray-600">$200</p>
+                        </div>
+                      </div>
+
+                      <!-- product item -->
+                      <div
+                        class="grid grid-cols-12 border-b border-stroke py-3 pl-5 pr-6 dark:border-strokedark"
+                      >
+                        <div class="col-span-3">
+                          <p class="font-medium text-gray-600">Vivo</p>
+                        </div>
+
+                        <div class="col-span-4">
+                          <p class="font-medium text-gray-600">Vivo 32 smart phone</p>
+                        </div>
+
+                        <div class="col-span-2">
+                          <p class="font-medium text-gray-600">3</p>
+                        </div>
+
+                        <div class="col-span-2">
+                          <p class="font-medium text-gray-600">$300</p>
+                        </div>
+
+                        <div class="col-span-1">
+                          <p class="text-right font-medium text-gray-600">$900</p>
+                        </div>
+                      </div>
+
+                      <!-- product item -->
+                      <div
+                        class="grid grid-cols-12 border-b border-stroke py-3 pl-5 pr-6 dark:border-strokedark"
+                      >
+                        <div class="col-span-3">
+                          <p class="font-medium text-gray-600">Samsung</p>
+                        </div>
+
+                        <div class="col-span-4">
+                          <p class="font-medium text-gray-600">S23 Ultra</p>
+                        </div>
+
+                        <div class="col-span-2">
+                          <p class="font-medium text-gray-600">1</p>
+                        </div>
+
+                        <div class="col-span-2">
+                          <p class="font-medium text-gray-600">$1300</p>
+                        </div>
+
+                        <div class="col-span-1">
+                          <p class="text-right font-medium text-gray-600">$1300</p>
+                        </div>
+                      </div>
+
+                      <!-- product item -->
+                      <div
+                        class="grid grid-cols-12 border-b border-stroke py-3 pl-5 pr-6 dark:border-strokedark"
+                      >
+                        <div class="col-span-3">
+                          <p class="font-medium text-gray-600">Apple</p>
+                        </div>
+
+                        <div class="col-span-4">
+                          <p class="font-medium text-gray-600">iPhone 15Pro Max</p>
+                        </div>
+
+                        <div class="col-span-2">
+                          <p class="font-medium text-gray-600">2</p>
+                        </div>
+
+                        <div class="col-span-2">
+                          <p class="font-medium text-gray-600">$1200</p>
+                        </div>
+
+                        <div class="col-span-1">
+                          <p class="text-right font-medium text-gray-600">$2400</p>
+                        </div>
+                      </div>
+
+                      <!-- product item -->
+                      <div
+                        class="grid grid-cols-12 border-b border-stroke py-3 pl-5 pr-6 dark:border-strokedark"
+                      >
+                        <div class="col-span-3">
+                          <p class="font-medium text-gray-600">Oppo</p>
+                        </div>
+
+                        <div class="col-span-4">
+                          <p class="font-medium text-gray-600">Fold X</p>
+                        </div>
+
+                        <div class="col-span-2">
+                          <p class="font-medium text-gray-600">1</p>
+                        </div>
+
+                        <div class="col-span-2">
+                          <p class="font-medium text-gray-600">$900</p>
+                        </div>
+
+                        <div class="col-span-1">
+                          <p class="text-right font-medium text-gray-600">$900</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- total price start -->
+                  <div class="flex justify-end p-6">
+                    <div class="w-full max-w-65">
+                      <div class="flex flex-col gap-4">
+                        <p
+                          class="flex justify-between font-medium text-black dark:text-white"
+                        >
+                          <span> Subtotal </span>
+                          <span> $4700 </span>
+                        </p>
+
+                        <p
+                          class="flex justify-between font-medium text-black dark:text-white"
+                        >
+                          <span> Shipping Cost (+) </span>
+                          <span> $10.00 </span>
+                        </p>
+
+                        <p
+                          class="flex justify-between font-medium text-black dark:text-white"
+                        >
+                          <span>
+                            Coupon Discount
+                            <span class="text-green-500">(10%)</span>
+                          </span>
+                          <span> $470 </span>
+                        </p>
+
+                        <p
+                          class="flex justify-between font-medium text-black dark:text-white"
+                        >
+                          <span> Vat <span class="text-red-500">(5%)</span> </span>
+                          <span> $235 </span>
+                        </p>
+                      </div>
+
+                      <p
+                        class="mt-4 flex justify-between border-t border-stroke pt-5 dark:border-strokedark"
+                      >
+                        <span class="font-medium text-black dark:text-white">
+                          Total
+                        </span>
+                        <span class="font-bold text-green-500"> $4475 </span>
+                      </p>
+
+                      <button
+                        class="float-right mt-10 inline-flex items-center gap-2 rounded bg-royal-blue px-7 py-2 font-medium text-white hover:bg-opacity-90"
+                      >
+                        Download
+                        <i class="fa-solid fa-download"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- total price end -->
+                </div>
+              </div>
+            </div>
+            <!-- ====== Invoice Two End -->
           </div>
         </main>
         <!-- ===== Main Content End ===== -->
@@ -575,5 +1008,6 @@
       <!-- ===== Content Area End ===== -->
     </div>
     <!-- ===== Page Wrapper End ===== -->
-  </body>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script defer src="bundle.js"></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8cfe567d2cb96325","version":"2024.8.0","r":1,"token":"67f7a278e3374824ae6dd92295d38f77","serverTiming":{"name":{"cfExtPri":true,"cfL4":true}}}' crossorigin="anonymous"></script>
+</body>
 </html>
