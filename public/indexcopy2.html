@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,22 +16,30 @@
   <script src = "./js/components/chart-03.js"></script>
   </head>
 
-  <!-- <body
+  <body
     x-data="{ page: 'ecommerce', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
     x-init="
          darkMode = JSON.parse(localStorage.getItem('darkMode'));
          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
     :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}"
-  > -->
-  <body>
+  >
     <!-- ===== Preloader Start ===== -->
-    <include src="./partials/preloader.html"></include>
+    <div
+  x-show="loaded"
+  x-init="window.addEventListener('DOMContentLoaded', () => {setTimeout(() => loaded = false, 500)})"
+  class="fixed left-0 top-0 z-999999 flex h-screen w-screen items-center justify-center bg-white dark:bg-black"
+>
+  <div
+    class="h-16 w-16 animate-spin rounded-full border-4 border-solid border-royal-blue border-t-transparent"
+  ></div>
+</div>
+
     <!-- ===== Preloader End ===== -->
 
     <!-- ===== Page Wrapper Start ===== -->
     <div class="flex h-screen overflow-hidden">
-      <!-- ===== Sidebar Start ===== -->
-      <aside :class="sidebarToggle ? 'translate-x-0' : '-translate-x-full'" class="absolute left-0 top-0 z-9999 flex h-screen w-72 flex-col overflow-y-hidden bg-blue-950 dark:bg-opacity-70 duration-300 ease-linear lg:static lg:translate-x-0 -translate-x-full" @click.outside="sidebarToggle = false">
+    <!-- ===== Sidebar Start ===== -->
+    <aside :class="sidebarToggle ? 'translate-x-0' : '-translate-x-full'" class="absolute left-0 top-0 z-9999 flex h-screen w-72 flex-col overflow-y-hidden bg-blue-950 dark:bg-opacity-70 duration-300 ease-linear lg:static lg:translate-x-0 -translate-x-full" @click.outside="sidebarToggle = false">
         <!-- SIDEBAR HEADER -->
         <div class="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6">
           <a href="index.html">
@@ -187,14 +196,7 @@
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="settings.html" :class="page === 'settings' && 'text-black'">
                           Settings
                         </a>
-                      </li>
-                      
-                     
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pricing-tables.html" :class="page === 'pricingTables' && '!text-white'">Pricing Tables
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-                      
+                    </li>
                       <li>
                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="faq.html" :class="page === 'faq' && 'text-white'">Faq's
                           <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
@@ -204,13 +206,11 @@
                           <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="terms-conditions.html" :class="page === 'termsCondition' && 'text-white'">Terms & Conditions
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pricing-tables.html" :class="page === 'pricingTables' && '!text-white'">Pricing Tables
                           <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="mail-success.html" :class="page === 'mailSuccess' && 'text-white'">Mail Success
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
+                        </li>
+                      
+                      
                       <!-- Menu Item Invoice -->
                 
                 <!-- Menu Item Invoice -->
@@ -340,13 +340,13 @@
 
       <!-- ===== Content Area Start ===== -->
       <div
-        class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden"
->
+        class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden bg-gray-200"
+      >
         <!-- ===== Main Content Start ===== -->
-        <main class="bg-gray-200">
-          <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 pb-4">
+        <main>
+          <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
             <div
-              class="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6  2xl:gap-7"
+              class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7"
             >
               <!-- Card Item Start -->
               <div
@@ -370,7 +370,6 @@
                 </div>
               </div>
               <!-- Card Item End -->
-
               <!-- Card Item Start -->
               <div
                 class="rounded-md border border-stroke bg-white px-6 py-6 shadow-default dark:border-strokedark dark:bg-boxdark"
@@ -398,77 +397,74 @@
               </div>
               <!-- Card Item End -->
 
-              <!-- Card Item Start -->
-              <div
-                class="rounded-md border border-stroke bg-white px-6 py-6 shadow-default dark:border-strokedark dark:bg-boxdark"
-              >
+             <!-- Card Item Start -->
+             <div
+             class="rounded-md border border-stroke bg-white px-6 py-6 shadow-default dark:border-strokedark dark:bg-boxdark"
+           >
 
-              <div class="flex items-center justify-center w-12 h-12 border-2 rounded-full p-3 bg-gray-200"><i class="fa-solid fa-bag-shopping text-royal-blue"></i></div>
+           <div class="flex items-center justify-center w-12 h-12 border-2 rounded-full p-3 bg-gray-200"><i class="fa-solid fa-bag-shopping text-royal-blue"></i></div>
 
-                <div
-                  class="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4"
-                >
+             <div
+               class="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4"
+             >
 
-                </div>
+             </div>
 
-                <div class="mt-4 flex items-end justify-between">
-                  <div>
-                    <h4
-                      class="text-title-md font-bold text-black dark:text-white"
-                    >
-                      2.450
-                    </h4>
-                    <span class="text-sm font-medium text-gray-400">Total Product</span>
-                  </div>
+             <div class="mt-4 flex items-end justify-between">
+               <div>
+                 <h4
+                   class="text-title-md font-bold text-black dark:text-white"
+                 >
+                   2.450
+                 </h4>
+                 <span class="text-sm font-medium text-gray-400">Total Product</span>
+               </div>
 
-                  <span
-                    class="flex items-center gap-1 text-sm font-medium text-meta-3 text-green-500">
-                    2.59%
-                    <i class="fa-solid fa-arrow-up text-green-500"></i>
-                  </span>
-                </div>
-              </div>
-              <!-- Card Item End -->
-
-              <!-- Card Item Start -->
-              <div
-                class="rounded-md border border-stroke bg-white px-6 py-6 shadow-default dark:border-strokedark dark:bg-boxdark"
-              >
-
-              <div class="flex items-center justify-center w-12 h-12 border-2 rounded-full p-3 bg-gray-200"><i class="fa-solid fa-user text-royal-blue"></i></div>
-
-                <div
-                  class="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4"
-                >
-                  
-                </div>
-
-                <div class="mt-4 flex items-end justify-between">
-                  <div>
-                    <h4
-                      class="text-title-md font-bold text-black dark:text-white"
-                    >
-                      3.456
-                    </h4>
-                    <span class="text-sm font-medium text-gray-400">Total Users</span>
-                  </div>
-
-                  <span
-                    class="flex items-center gap-1 text-sm font-medium text-meta-5 text-blue-400"
-                  >
-                    0.95%
-                    <i class="fa-solid fa-arrow-down text-blue-400"></i>
-                  </span>
-                </div>
-              </div>
-          
-              <!-- Card Item End -->
+               <span
+                 class="flex items-center gap-1 text-sm font-medium text-meta-3 text-green-500">
+                 2.59%
+                 <i class="fa-solid fa-arrow-up text-green-500"></i>
+               </span>
+             </div>
+           </div>
+           <!-- Card Item End -->
+           <!-- Card Item Start -->
+            <div
+                            class="rounded-md border border-stroke bg-white px-6 py-6 shadow-default dark:border-strokedark dark:bg-boxdark"
+                          >
+            
+                          <div class="flex items-center justify-center w-12 h-12 border-2 rounded-full p-3 bg-gray-200"><i class="fa-solid fa-user text-royal-blue"></i></div>
+            
+                            <div
+                              class="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4"
+                            >
+                              
+                            </div>
+            
+                            <div class="mt-4 flex items-end justify-between">
+                              <div>
+                                <h4
+                                  class="text-title-md font-bold text-black dark:text-white"
+                                >
+                                  3.456
+                                </h4>
+                                <span class="text-sm font-medium text-gray-400">Total Users</span>
+                              </div>
+            
+                              <span
+                                class="flex items-center gap-1 text-sm font-medium text-meta-5 text-blue-400"
+                              >
+                                0.95%
+                                <i class="fa-solid fa-arrow-down text-blue-400"></i>
+                              </span>
+                            </div>
+             </div>
+                      
+            <!-- Card Item End -->
             </div>
 
-                      <!--chart section start-->
-  
             <div
-              class="grid gap-4 mt-4 md:mt-6 2xl:mt-7 py-4 pb-6"
+              class="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5 p-4"
             >
               <!-- ====== Chart One Start -->
               <div
@@ -530,65 +526,166 @@
   </div>
 </div>
               <!-- ====== Chart One End -->
-            
+
               <!-- ====== Chart Two Start -->
               <div class="col-span-12 rounded-sm border border-stroke bg-white px-5 pt-5 pb-5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4">
-          <div class="mb-4 justify-between gap-4 sm:flex">
-            <div>
-              <h4 class="text-xl font-bold text-black dark:text-white">
-                Profit this week
-              </h4>
-            </div>
-            <div>
-              <div class="relative z-20 inline-block">
-                <select
-                  name="#"
-                  id="#"
-                  class="relative z-20 inline-flex appearance-none bg-transparent py-1 pl-3 pr-8 text-sm font-medium outline-none text-gray-500"
-                >
-                  <option value="">This Week</option>
-                  <option value="">Last Week</option>
-                </select>
-                <span class="absolute right-3 top-1/2 z-10 -translate-y-1/2">
-                  <svg
-                    width="10"
-                    height="6"
-                    viewBox="0 0 10 6"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M0.47072 1.08816C0.47072 1.02932 0.500141 0.955772 0.54427 0.911642C0.647241 0.808672 0.809051 0.808672 0.912022 0.896932L4.85431 4.60386C4.92785 4.67741 5.06025 4.67741 5.14851 4.60386L9.09079 0.896932C9.19376 0.793962 9.35557 0.808672 9.45854 0.911642C9.56151 1.01461 9.5468 1.17642 9.44383 1.27939L5.50155 4.98632C5.22206 5.23639 4.78076 5.23639 4.51598 4.98632L0.558981 1.27939C0.50014 1.22055 0.47072 1.16171 0.47072 1.08816Z"
-                      fill="#637381"
-                    />
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M1.22659 0.546578L5.00141 4.09604L8.76422 0.557869C9.08459 0.244537 9.54201 0.329403 9.79139 0.578788C10.112 0.899434 10.0277 1.36122 9.77668 1.61224L9.76644 1.62248L5.81552 5.33722C5.36257 5.74249 4.6445 5.7544 4.19352 5.32924C4.19327 5.32901 4.19377 5.32948 4.19352 5.32924L0.225953 1.61241C0.102762 1.48922 -4.20186e-08 1.31674 -3.20269e-08 1.08816C-2.40601e-08 0.905899 0.0780105 0.712197 0.211421 0.578787C0.494701 0.295506 0.935574 0.297138 1.21836 0.539529L1.22659 0.546578ZM4.51598 4.98632C4.78076 5.23639 5.22206 5.23639 5.50155 4.98632L9.44383 1.27939C9.5468 1.17642 9.56151 1.01461 9.45854 0.911642C9.35557 0.808672 9.19376 0.793962 9.09079 0.896932L5.14851 4.60386C5.06025 4.67741 4.92785 4.67741 4.85431 4.60386L0.912022 0.896932C0.809051 0.808672 0.647241 0.808672 0.54427 0.911642C0.500141 0.955772 0.47072 1.02932 0.47072 1.08816C0.47072 1.16171 0.50014 1.22055 0.558981 1.27939L4.51598 4.98632Z"
-                      fill="#637381"
-                    />
-                  </svg>
-                </span>
-              </div>
-            </div>
-          </div>
-        
-          <div>
-            <div id="chartTwo" class="-mb-9 mt-4 -ml-5"></div>
-          </div>
-        </div>
-          </div>
-          
-              <!-- ====== Chart Two End -->
-    
+                <div class="mb-4 justify-between gap-4 sm:flex">
+                  <div>
+                    <h4 class="text-xl font-bold text-black dark:text-white">
+                      Profit this week
+                    </h4>
+                  </div>
+                  <div>
+                    <div class="relative z-20 inline-block">
+                      <select
+                        name="#"
+                        id="#"
+                        class="relative z-20 inline-flex appearance-none bg-transparent py-1 pl-3 pr-8 text-sm font-medium outline-none text-gray-500"
+                      >
+                        <option value="">This Week</option>
+                        <option value="">Last Week</option>
+                      </select>
+                      <span class="absolute right-3 top-1/2 z-10 -translate-y-1/2">
+                        <svg
+                          width="10"
+                          height="6"
+                          viewBox="0 0 10 6"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M0.47072 1.08816C0.47072 1.02932 0.500141 0.955772 0.54427 0.911642C0.647241 0.808672 0.809051 0.808672 0.912022 0.896932L4.85431 4.60386C4.92785 4.67741 5.06025 4.67741 5.14851 4.60386L9.09079 0.896932C9.19376 0.793962 9.35557 0.808672 9.45854 0.911642C9.56151 1.01461 9.5468 1.17642 9.44383 1.27939L5.50155 4.98632C5.22206 5.23639 4.78076 5.23639 4.51598 4.98632L0.558981 1.27939C0.50014 1.22055 0.47072 1.16171 0.47072 1.08816Z"
+                            fill="#637381"
+                          />
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M1.22659 0.546578L5.00141 4.09604L8.76422 0.557869C9.08459 0.244537 9.54201 0.329403 9.79139 0.578788C10.112 0.899434 10.0277 1.36122 9.77668 1.61224L9.76644 1.62248L5.81552 5.33722C5.36257 5.74249 4.6445 5.7544 4.19352 5.32924C4.19327 5.32901 4.19377 5.32948 4.19352 5.32924L0.225953 1.61241C0.102762 1.48922 -4.20186e-08 1.31674 -3.20269e-08 1.08816C-2.40601e-08 0.905899 0.0780105 0.712197 0.211421 0.578787C0.494701 0.295506 0.935574 0.297138 1.21836 0.539529L1.22659 0.546578ZM4.51598 4.98632C4.78076 5.23639 5.22206 5.23639 5.50155 4.98632L9.44383 1.27939C9.5468 1.17642 9.56151 1.01461 9.45854 0.911642C9.35557 0.808672 9.19376 0.793962 9.09079 0.896932L5.14851 4.60386C5.06025 4.67741 4.92785 4.67741 4.85431 4.60386L0.912022 0.896932C0.809051 0.808672 0.647241 0.808672 0.54427 0.911642C0.500141 0.955772 0.47072 1.02932 0.47072 1.08816C0.47072 1.16171 0.50014 1.22055 0.558981 1.27939L4.51598 4.98632Z"
+                            fill="#637381"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                </div>
               
-          <!--chart section end-->    
+                <div>
+                  <div id="chartTwo" class="-mb-9 mt-4 -ml-5"></div>
+                </div>
+              </div>
+                </div>
+                
+                    <!-- ====== Chart Two End -->
 
+              <!-- ====== Chart Three Start -->
+              <div
+  class="col-span-12 rounded-sm border border-stroke bg-white p-4 px-5 pb-5 pt-5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-5"
+>
+  <div class="mb-3 justify-between gap-4 sm:flex">
+    <div>
+      <h4 class="text-xl font-bold text-black dark:text-white">
+        Visitors Analytics
+      </h4>
+    </div>
+    <div>
+      <div class="relative z-20 inline-block">
+        <select
+          name=""
+          id=""
+          class="relative z-20 inline-flex appearance-none bg-transparent py-1 pl-3 pr-8 text-sm font-medium outline-none"
+        >
+          <option value="">Monthly</option>
+          <option value="">Yearly</option>
+        </select>
+        <span class="absolute right-3 top-1/2 z-10 -translate-y-1/2">
+          <svg
+            width="10"
+            height="6"
+            viewBox="0 0 10 6"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0.47072 1.08816C0.47072 1.02932 0.500141 0.955772 0.54427 0.911642C0.647241 0.808672 0.809051 0.808672 0.912022 0.896932L4.85431 4.60386C4.92785 4.67741 5.06025 4.67741 5.14851 4.60386L9.09079 0.896932C9.19376 0.793962 9.35557 0.808672 9.45854 0.911642C9.56151 1.01461 9.5468 1.17642 9.44383 1.27939L5.50155 4.98632C5.22206 5.23639 4.78076 5.23639 4.51598 4.98632L0.558981 1.27939C0.50014 1.22055 0.47072 1.16171 0.47072 1.08816Z"
+              fill="#637381"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M1.22659 0.546578L5.00141 4.09604L8.76422 0.557869C9.08459 0.244537 9.54201 0.329403 9.79139 0.578788C10.112 0.899434 10.0277 1.36122 9.77668 1.61224L9.76644 1.62248L5.81552 5.33722C5.36257 5.74249 4.6445 5.7544 4.19352 5.32924C4.19327 5.32901 4.19377 5.32948 4.19352 5.32924L0.225953 1.61241C0.102762 1.48922 -4.20186e-08 1.31674 -3.20269e-08 1.08816C-2.40601e-08 0.905899 0.0780105 0.712197 0.211421 0.578787C0.494701 0.295506 0.935574 0.297138 1.21836 0.539529L1.22659 0.546578ZM4.51598 4.98632C4.78076 5.23639 5.22206 5.23639 5.50155 4.98632L9.44383 1.27939C9.5468 1.17642 9.56151 1.01461 9.45854 0.911642C9.35557 0.808672 9.19376 0.793962 9.09079 0.896932L5.14851 4.60386C5.06025 4.67741 4.92785 4.67741 4.85431 4.60386L0.912022 0.896932C0.809051 0.808672 0.647241 0.808672 0.54427 0.911642C0.500141 0.955772 0.47072 1.02932 0.47072 1.08816C0.47072 1.16171 0.50014 1.22055 0.558981 1.27939L4.51598 4.98632Z"
+              fill="#637381"
+            />
+          </svg>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="mb-2">
+    <div id="chartThree" class="mx-auto flex justify-center"></div>
+  </div>
+  <div class="-mx-8 flex flex-wrap items-center justify-center gap-y-3">
+    <div class="w-full px-8 sm:w-1/2">
+      <div class="flex w-full items-center">
+        <span
+          class="mr-2 block h-3 w-full max-w-3 rounded-full bg-primary"
+        ></span>
+        <p
+          class="flex w-full justify-between text-sm font-medium text-black dark:text-white"
+        >
+          <span> Desktop </span>
+          <span> 65% </span>
+        </p>
+      </div>
+    </div>
+    <div class="w-full px-8 sm:w-1/2">
+      <div class="flex w-full items-center">
+        <span
+          class="mr-2 block h-3 w-full max-w-3 rounded-full bg-[#6577F3]"
+        ></span>
+        <p
+          class="flex w-full justify-between text-sm font-medium text-black dark:text-white"
+        >
+          <span> Tablet </span>
+          <span> 34% </span>
+        </p>
+      </div>
+    </div>
+    <div class="w-full px-8 sm:w-1/2">
+      <div class="flex w-full items-center">
+        <span
+          class="mr-2 block h-3 w-full max-w-3 rounded-full bg-[#8FD0EF]"
+        ></span>
+        <p
+          class="flex w-full justify-between text-sm font-medium text-black dark:text-white"
+        >
+          <span> Mobile </span>
+          <span> 45% </span>
+        </p>
+      </div>
+    </div>
+    <div class="w-full px-8 sm:w-1/2">
+      <div class="flex w-full items-center">
+        <span
+          class="mr-2 block h-3 w-full max-w-3 rounded-full bg-[#0FADCF]"
+        ></span>
+        <p
+          class="flex w-full justify-between text-sm font-medium text-black dark:text-white"
+        >
+          <span> Unknown </span>
+          <span> 12% </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+              <!-- ====== Chart Three End -->
+
+              
               <!-- ====== Table One Start -->
-              <div class="col-span-12 xl:col-span-8">
-        
+              <div class="col-span-12 xl:col-span-8 p-4">
                 <div
-  class="rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1"
+  class="rounded-sm border border-stroke bg-white px-5 pb-5 pt-5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1"
 >
   <h4 class="mb-6 text-xl font-bold text-black dark:text-white">
     Top Channels
@@ -762,176 +859,176 @@
               </div>
               <!-- ====== Table One End -->
 
-              <!-- ====== Chat Card Start -->
-              <div
-                class="col-span-12 rounded-sm border border-stroke bg-white p-4 py-6 px-4 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4"
-              >
-                <h4
-                  class="mb-6 px-7 text-xl font-bold text-black dark:text-white"
-                >
+             <!-- ====== Chat Card Start -->
+             <div
+             class="col-span-12 rounded-sm border border-stroke bg-white p-4 py-5 px-5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4"
+           >
+             <h4
+               class="mb-6 px-7 text-xl font-bold text-black dark:text-white"
+             >
 
-                <!--Chat section starts-->
-                  Chats
-                </h4>
+             <!--Chat section starts-->
+               Chats
+             </h4>
 
-                <div>
-                  <a
-                    href="messages.html"
-                    class="flex items-center gap-5 px-7 py-3 hover:bg-gray-100"
-                  >
-                    <div class="relative h-14 w-14 rounded-full">
-                      <img src="./images/user/user-01.png" alt="User" />
-                      <span
-                        class="absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-green-400"
-                      ></span>
-                    </div>
+             <div>
+               <a
+                 href="messages.html"
+                 class="flex items-center gap-5 px-7 py-3 hover:bg-gray-100"
+               >
+                 <div class="relative h-14 w-14 rounded-full">
+                   <img src="./images/user/user-01.png" alt="User" />
+                   <span
+                     class="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-green-400"
+                   ></span>
+                 </div>
 
-                    <div class="flex flex-1 items-center justify-between">
-                      <div>
-                        <h5 class="font-medium text-black dark:text-white">
-                          Devid Heilo
-                        </h5>
-                        <p>
-                          <span
-                            class="text-sm font-medium text-gray-500"
-                            >Hello, how are you?</span
-                          >
-                          <span class="text-xs text-gray-400"> . 12 min</span>
-                        </p>
-                      </div>
-                      <div
-                        class="flex h-6 w-6 items-center justify-center rounded-full bg-primary"
-                      >
-                        <span class="text-sm flex justify-center items-center w-8 h-6 p-2 font-medium text-white bg-royal-blue rounded-full ">3</span>
-                      </div>
-                    </div>
-                  </a>
-                  <a
-                    href="messages.html"
-                    class="flex items-center gap-5 hover:bg-gray-100 px-7.5 py-3"
-                  >
-                    <div class="relative h-14 w-14 rounded-full">
-                      <img src="./images/user/user-04.png" alt="User" />
-                      <span
-                        class="absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-red-400"
-                      ></span>
-                    </div>
+                 <div class="flex flex-1 items-center justify-between">
+                   <div>
+                     <h5 class="font-medium text-black dark:text-white">
+                       Devid Heilo
+                     </h5>
+                     <p>
+                       <span
+                         class="text-sm font-medium text-gray-500"
+                         >Hello, how are you?</span
+                       >
+                       <span class="text-xs text-gray-400"> . 12 min</span>
+                     </p>
+                   </div>
+                   <div
+                     class="flex h-6 w-6 items-center justify-center rounded-full bg-primary"
+                   >
+                     <span class="text-sm flex justify-center items-center w-8 h-6 p-2 font-medium text-white bg-royal-blue rounded-full ">3</span>
+                   </div>
+                 </div>
+               </a>
+               <a
+                 href="messages.html"
+                 class="flex items-center gap-5 hover:bg-gray-100 px-7 py-3"
+               >
+                 <div class="relative h-14 w-14 rounded-full">
+                   <img src="./images/user/user-04.png" alt="User" />
+                   <span
+                     class="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-red-400"
+                   ></span>
+                 </div>
 
-                    <div class="flex flex-1 items-center justify-between">
-                      <div>
-                        <h5 class="font-medium">Henry Fisher</h5>
-                        <p>
-                          <span class="text-sm font-medium text-gray-500"
-                            >I am waiting for you</span
-                          >
-                          <span class="text-xs text-gray-400"> . 5:54 PM</span>
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                  <a
-                    href="messages.html"
-                    class="flex items-center gap-5 px-7.5 py-3 hover:bg-gray-100"
-                  >
-                    <div class="relative h-14 w-14 rounded-full">
-                      <img src="./images/user/user-05.png" alt="User" />
-                      <span
-                        class="absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-yellow-400"
-                      ></span>
-                    </div>
+                 <div class="flex flex-1 items-center justify-between">
+                   <div>
+                     <h5 class="font-medium">Henry Fisher</h5>
+                     <p>
+                       <span class="text-sm font-medium text-gray-500"
+                         >I am waiting for you</span
+                       >
+                       <span class="text-xs text-gray-400"> . 5:54 PM</span>
+                     </p>
+                   </div>
+                 </div>
+               </a>
+               <a
+                 href="messages.html"
+                 class="flex items-center gap-5 px-7 py-3 hover:bg-gray-100"
+               >
+                 <div class="relative h-14 w-14 rounded-full">
+                   <img src="./images/user/user-05.png" alt="User" />
+                   <span
+                     class="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-yellow-400"
+                   ></span>
+                 </div>
 
-                    <div class="flex flex-1 items-center justify-between">
-                      <div>
-                        <h5 class="font-medium">Wilium Smith</h5>
-                        <p>
-                          <span class="text-sm font-medium text-gray-500"
-                            >Where are you now?</span
-                          >
-                          <span class="text-xs text-gray-400"> . 10:12 PM</span>
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                  <a
-                    href="messages.html"
-                    class="flex items-center gap-5 px-7.5 py-3 hover:bg-gray-100"
-                  >
-                    <div class="relative h-14 w-14 rounded-full">
-                      <img src="./images/user/user-01.png" alt="User" />
-                      <span
-                        class="absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-green-400"
-                      ></span>
-                    </div>
+                 <div class="flex flex-1 items-center justify-between">
+                   <div>
+                     <h5 class="font-medium">Wilium Smith</h5>
+                     <p>
+                       <span class="text-sm font-medium text-gray-500"
+                         >Where are you now?</span
+                       >
+                       <span class="text-xs text-gray-400"> . 10:12 PM</span>
+                     </p>
+                   </div>
+                 </div>
+               </a>
+               <a
+                 href="messages.html"
+                 class="flex items-center gap-5 px-7 py-3 hover:bg-gray-100"
+               >
+                 <div class="relative h-14 w-14 rounded-full">
+                   <img src="./images/user/user-01.png" alt="User" />
+                   <span
+                     class="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-green-400"
+                   ></span>
+                 </div>
 
-                    <div class="flex flex-1 items-center justify-between">
-                      <div>
-                        <h5 class="font-medium text-black dark:text-white">
-                          Henry Deco
-                        </h5>
-                        <p>
-                          <span
-                            class="text-sm font-medium text-gray-500"
-                            >Thank you so much!</span
-                          >
-                          <span class="text-xs text-gray-400"> . Sun</span>
-                        </p>
-                      </div>
-                      <div
-                        class="flex h-6 w-6 items-center justify-center rounded-full bg-primary"
-                      >
-                        <span class="text-sm font-medium text-white flex items-center justify-center w-10 h-6  p-2 rounded-full bg-royal-blue ">2</span>
-                      </div>
-                    </div>
-                  </a>
-                  <a
-                    href="messages.html"
-                    class="flex items-center gap-5 px-7.5 py-3 hover:bg-gray-100"
-                  >
-                    <div class="relative h-14 w-14 rounded-full">
-                      <img src="./images/user/user-02.png" alt="User" />
-                      <span
-                        class="absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-red-400"
-                      ></span>
-                    </div>
+                 <div class="flex flex-1 items-center justify-between">
+                   <div>
+                     <h5 class="font-medium text-black dark:text-white">
+                       Henry Deco
+                     </h5>
+                     <p>
+                       <span
+                         class="text-sm font-medium text-gray-500"
+                         >Thank you so much!</span
+                       >
+                       <span class="text-xs text-gray-400"> . Sun</span>
+                     </p>
+                   </div>
+                   <div
+                     class="flex h-6 w-6 items-center justify-center rounded-full bg-primary"
+                   >
+                     <span class="text-sm font-medium text-white flex items-center justify-center w-8 h-6 p-2 rounded-full bg-royal-blue ">2</span>
+                   </div>
+                 </div>
+               </a>
+               <a
+                 href="messages.html"
+                 class="flex items-center gap-5 px-7 py-3 hover:bg-gray-100"
+               >
+                 <div class="relative h-14 w-14 rounded-full">
+                   <img src="./images/user/user-02.png" alt="User" />
+                   <span
+                     class="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-red-400"
+                   ></span>
+                 </div>
 
-                    <div class="flex flex-1 items-center justify-between">
-                      <div>
-                        <h5 class="font-medium">Jubin Jack</h5>
-                        <p>
-                          <span class="text-sm font-medium text-gray-500"
-                            >I really love that!</span
-                          >
-                          <span class="text-xs text-gray-400"> . Oct 23</span>
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                  <a
-                    href="messages.html"
-                    class="flex items-center gap-5 px-7.5 py-3 hover:bg-gray-100"
-                  >
-                    <div class="relative h-14 w-14 rounded-full">
-                      <img src="./images/user/user-05.png" alt="User" />
-                      <span
-                        class="absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-yellow-400"
-                      ></span>
-                    </div>
+                 <div class="flex flex-1 items-center justify-between">
+                   <div>
+                     <h5 class="font-medium">Jubin Jack</h5>
+                     <p>
+                       <span class="text-sm font-medium text-gray-500"
+                         >I really love that!</span
+                       >
+                       <span class="text-xs text-gray-400"> . Oct 23</span>
+                     </p>
+                   </div>
+                 </div>
+               </a>
+               <a
+                 href="messages.html"
+                 class="flex items-center gap-5 px-7 py-3 hover:bg-gray-100"
+               >
+                 <div class="relative h-14 w-14 rounded-full">
+                   <img src="./images/user/user-05.png" alt="User" />
+                   <span
+                     class="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-yellow-400"
+                   ></span>
+                 </div>
 
-                    <div class="flex flex-1 items-center justify-between">
-                      <div>
-                        <h5 class="font-medium">Wilium Smith</h5>
-                        <p>
-                          <span class="text-sm font-medium text-gray-500"
-                            >Where are you now?</span
-                          >
-                          <span class="text-xs text-gray-400"> . Sep 20</span>
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </div>
-              <!-- ====== Chat Card End -->
+                 <div class="flex flex-1 items-center justify-between">
+                   <div>
+                     <h5 class="font-medium">Wilium Smith</h5>
+                     <p>
+                       <span class="text-sm font-medium text-gray-500"
+                         >Where are you now?</span
+                       >
+                       <span class="text-xs text-gray-400"> . Sep 20</span>
+                     </p>
+                   </div>
+                 </div>
+               </a>
+             </div>
+           </div>
+           <!-- ====== Chat Card End -->
             </div>
           </div>
         </main>
@@ -940,6 +1037,5 @@
       <!-- ===== Content Area End ===== -->
     </div>
     <!-- ===== Page Wrapper End ===== -->
-  </body>
-  <script src="./js/index.js"></script>
+</body>
 </html>
