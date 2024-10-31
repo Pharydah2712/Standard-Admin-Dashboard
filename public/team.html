@@ -33,14 +33,14 @@
     <!-- ===== Page Wrapper Start ===== -->
     <div class="flex h-screen overflow-hidden">
       <!-- ===== Sidebar Start ===== -->
-      <aside :class="sidebarToggle ? 'translate-x-0' : '-translate-x-full'" class="absolute left-0 top-0 z-9999 flex h-screen w-72 flex-col overflow-y-hidden bg-blue-950 dark:bg-opacity-70 duration-300 ease-linear lg:static lg:translate-x-0 -translate-x-full" @click.outside="sidebarToggle = false">
+      <aside class="fixed left-0 top-0 z-9999 flex h-screen w-72 flex-col overflow-y-hidden bg-blue-950 dark:bg-opacity-70 duration-300 ease-linear lg:static lg:translate-x-0 -translate-x-full sidebar-menu transition-transform aside">
         <!-- SIDEBAR HEADER -->
-        <div class="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6">
+        <div class="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6 ">
           <a href="index.html">
             <img src="./images/logo/logo.svg" alt="Logo">
           </a>
           <span><i class="fa-solid fa-arrow-left" style="color:rgb(232, 228, 228)"></i></span>
-          <button class="block lg:hidden" @click.stop="sidebarToggle = !sidebarToggle">
+          <button class="block lg:hidden sidebar-menu transition-transform">
             <i class="fa-solid fa-arrow-left" style="color:rgb(232, 228, 228)"></i>
           </button> 
         </div>
@@ -48,39 +48,39 @@
       
         <div class="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
           <!-- Sidebar Menu -->
-          <nav class="mt-5 px-4 py-4 lg:mt-9 lg:px-6 lg-" x-data="{selected: $persist('Dashboard')}">
+          <nav class="mt-3 px-2 py-2 lg:mt-9 lg:px-6">
             <!-- Menu Group -->
             <div>
-              <h3 class="mb-4 ml-4 text-sm font-medium text-gray-200">MENU</h3>
+              <h3 class="mb-3 ml-4 text-sm font-medium text-gray-200">MENU</h3>
       
               <ul class="mb-6 flex flex-col gap-1.5">
                 <!-- Menu Item Dashboard -->
                 <li>
-                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 transition duration-300 ease-in-out hover:transparent dark:bg-opacity-70" href="#" @click.prevent="selected = (selected === 'Dashboard' ? '':'Dashboard')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Dashboard') || (page === 'ecommerce' || page === 'analytics' || page === 'stocks') } ">
-                    <i class="fa-solid fa-bars"></i>  
+                  <a class="group relative items-center gap-2.5 rounded-sm px-2 py-2 font-medium text-gray-200 transition duration-300 ease-in-out dark:bg-opacity-70 flex sidebar-dropdown-toggle" href="#">
+                  <i class="fa-solid fa-bars">
+                  </i>   
                     Dashboard
-                    <br>
-                    <i class="fa-solid fa-caret-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20 h-16" style="color:rgb(232, 228, 228)"></i></i>
+                  
+                    <!--dropdown menu start-->
+                    <i class="mt-6 fa-solid fa-chevron-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20" style="color:rgb(232, 228, 228)"></i>
                   </a>
-      
-                  <!-- Dropdown Menu Start -->
-                  <div class="translate transform overflow-hidden block" class="(selected === 'Dashboard') ? 'block' :'hidden'">
+                  <div id="dropdownMenu" class="sidebar-dropdown-toggle-child hidden">
                     <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
                       <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium duration-300 ease-in-out hover:text-white !text-white" href="index.html" :class="page === 'ecommerce' && 'text-white'">eCommerce
+                        <a href="#"  class="dropdown-item group relative flex items-center gap-2.5 rounded-md px-2 font-medium duration-300 ease-in-out hover:text-white !text-white" :class="page === 'ecommerce' && 'text-white'">eCommerce
                         </a>
                       </li>
                       <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="analytics.html" :class="page === 'analytics' && 'text-white'">Analytics
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-2 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="analytics.html" :class="page === 'analytics' && 'text-white'">Analytics
                           <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="marketing.html" :class="page === 'marketing' && 'text-white'">Marketing
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-2 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="marketing.html" :class="page === 'marketing' && 'text-white'">Marketing
                           <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       
                       <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="stocks.html" :class="page === 'stocks' && '!text-white'">Stocks
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-2 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="stocks.html" :class="page === 'stocks' && '!text-white'">Stocks
                           <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium bg-royal-blue text-white">Pro</span></a>
                       </li>
                       
@@ -92,7 +92,7 @@
       
                 <!-- Menu Item Calendar -->
                 <li>
-                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="calendar.html" @click="selected = (selected === 'Calendar' ? '':'Calendar')" :class="{ 'bg-black': (selected === 'Calendar') && (page === 'calendar') }">
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-2 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="calendar.html">
                     <i class="fa-regular fa-calendar"></i>  
       
                     Calendar
@@ -102,7 +102,7 @@
       
                 <!-- Menu Item Profile -->
                 <li>
-                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="profile.html" @click="selected = (selected === 'Profile' ? '':'Profile')" :class="{ 'bg-black': (selected === 'Profile') && (page === 'profile') }">
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-2 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="profile.html">
                     <i class="fa-solid fa-user"></i>
       
                     Profile
@@ -110,58 +110,31 @@
                 </li>
                 <!-- Menu Item Profile -->
       
-                <!-- Menu Item Task -->
-                <li>
-                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="#" @click.prevent="selected = (selected === 'Task' ? '':'Task')" :class="{ 'bg-black': (selected === 'Task') || (page === 'list' || page === 'kanban') }">
-                    <i class="fa-solid fa-list-check"></i>
-      
-                    Task
-      
-                    <i class="fa-solid fa-caret-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20 h-16"></i>
-                  </a>
-      
-                  <!-- Dropdown Menu Start -->
-                  <div class="translate transform overflow-hidden hidden" :class="(selected === 'Task') ? 'block' :'hidden'">
-                    <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="task-list.html" :class="page === 'list' && '!text-white'">List
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="task-kanban.html" :class="page === 'kanban' && '!text-white'">Kanban
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue"></span>Pro</span></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <!-- Dropdown Menu End -->
-                </li>
-                <!-- Menu Item Task -->
+                
       
                 <!-- Menu Item Forms -->
                 <li>
-                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="#" @click.prevent="selected = (selected === 'Forms' ? '':'Forms')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Forms') || (page === 'formElements' || page === 'formLayout' || page === 'proFormElements' || page === 'proFormLayout') }">
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-2 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white sidebar-dropdown-toggle hover:bg-transparent" href="#">
                     <i class="fa-brands fa-wpforms"></i>
+                    <!--Dropdown starts-->
       
                     Forms
-                    <i class="fa-solid fa-caret-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20 h-16"></i>
-                    
+                    <i class="mt-4 fa-solid fa-chevron-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20"></i>
                   </a>
-      
-                  <!-- Dropdown Menu Start -->
-                  <div class="translate transform overflow-hidden hidden" :class="(selected === 'Forms') ? 'block' :'hidden'">
+                  <div  class="dropdownMenu hidden sidebar-dropdown-toggle-child">
                     <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
                       <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="form-elements.html" :class="page === 'formElements' && 'text-white'">Form Elements</a>
+                        <a class="dropdown-item group relative flex items-center gap-2.5 rounded-md px-2 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="form-elements.html" :class="page === 'formElements' && 'text-white'">Form Elements</a>
                       </li>
                       <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pro-form-elements.html" :class="page === 'proFormElements' && 'text-white'">Pro Form Elements
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-2 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pro-form-elements.html" :class="page === 'proFormElements' && 'text-white'">Pro Form Element
                           <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="form-layout.html" :class="page === 'formLayout' && 'text-white'">Form Layout</a>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-2 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="form-layout.html" :class="page === 'formLayout' && 'text-white'">Form Layout</a>
                       </li>
                       <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pro-form-layout.html" :class="page === 'proFormLayout' && 'text-white'">Pro Form Layout
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-2 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pro-form-layout.html" :class="page === 'proFormLayout' && 'text-white'">Pro Form Layout
                           <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                     </ul>
@@ -172,24 +145,24 @@
       
                 <!-- Menu Item Tables -->
                 <li>
-                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="#" @click.prevent="selected = (selected === 'Tables' ? '':'Tables')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Tables') || (page === 'tables' || page === 'proTables') }">
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-2 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white sidebar-dropdown-toggle" href="#" >
                     <i class="fa-solid fa-table"></i>
       
                     Tables
-
-                    <i class="fa-solid fa-caret-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20 h-16"></i>
+  
+                    <i class="mt-4 fa-solid fa-chevron-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20"></i>
       
                 
                   </a>
       
                   <!-- Dropdown Menu Start -->
-                  <div class="translate transform overflow-hidden hidden" :class="(selected === 'Tables') ? 'block' :'hidden'">
+                  <div class="dropdownMenu hidden sidebar-dropdown-toggle-child">
                     <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
                       <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="tables.html" :class="page === 'tables' && 'text-white'">Tables</a>
+                        <a class="dropdown-item group relative flex items-center gap-2.5 rounded-md px-2 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="tables.html" :class="page === 'tables' && 'text-white'">Tables</a>
                       </li>
                       <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pro-tables.html" :class="page === 'proTables' && 'text-black hover:text-white'">Pro Tables
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-2 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pro-tables.html" :class="page === 'proTables' && 'text-black hover:text-white'">Pro Tables
                           <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                     </ul>
@@ -200,43 +173,35 @@
                 
                 <!-- Menu Item Pages -->
                 <li>
-                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="#" @click.prevent="selected = (selected === 'Pages' ? '':'Pages')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Pages') || (page === 'settings' || page === 'fileManager' || page === 'dataTables' || page === 'pricingTables' || page === 'errorPage' || page === 'mailSuccess' || page === 'faq' || page === 'team' || page === 'termsCondition') }">
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-2 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white sidebar-dropdown-toggle" href="#">
                     <i class="fa-solid fa-table-columns"></i>
       
                     Pages
       
-                    <i class="fa-solid fa-caret-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20 h-16"></i>
+                    <i class="mt-4 fa-solid fa-chevron-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20"></i>
                   </a>
       
                   <!-- Dropdown Menu Start -->
-                  <div class="translate transform overflow-hidden hidden" :class="(selected === 'Pages') ? 'block' :'hidden'">
-                    <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
+                  <div class="sidebar-dropdown-toggle-child dropdownMenu hidden">
+                    <ul class="dropdown-item mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
                       <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="settings.html" :class="page === 'settings' && 'text-black'">
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-2 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="settings.html" :class="page === 'settings' && 'text-black'">
                           Settings
                         </a>
                       </li>
                       
                      
                       <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pricing-tables.html" :class="page === 'pricingTables' && '!text-white'">Pricing Tables
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-2 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pricing-tables.html" :class="page === 'pricingTables' && '!text-white'">Pricing Tables
                           <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       
                       <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="faq.html" :class="page === 'faq' && 'text-white'">Faq's
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-2 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="faq.html" :class="page === 'faq' && 'text-white'">Faq's
                           <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="team.html" :class="page === 'team' && 'text-white'">Teams
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="terms-conditions.html" :class="page === 'termsCondition' && 'text-white'">Terms & Conditions
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="mail-success.html" :class="page === 'mailSuccess' && 'text-white'">Mail Success
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-2 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="team.html" :class="page === 'team' && 'text-white'">Teams
                           <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
                       <!-- Menu Item Invoice -->
@@ -247,9 +212,9 @@
                   <!-- Dropdown Menu End -->
                 </li>
                 <!-- Menu Item Pages -->
-
+  
                 <li></li>
-                <a class="group relative flex items-center gap-2.5 rounded-sm px-4 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="invoice.html" @click="selected = (selected === 'Invoice' ? '':'Invoice')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Invoice') && (page === 'Invoice') }">
+                <a class="group relative flex items-center gap-2.5 rounded-sm px-2 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white" href="invoice.html">
                   <i class="fa-solid fa-file-invoice"></i>
                   Invoice
                   <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span>
@@ -265,25 +230,22 @@
               <ul class="mb-6 flex flex-col gap-1.5">
                 <!-- Menu Item Chart -->
                 <li>
-                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out dark:text-white" href="#" @click.prevent="selected = (selected === 'Charts' ? '':'Charts')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Charts') || (page === 'basicChart' || page === 'advancedChart') }">
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-2 py-2 font-medium text-gray-200 duration-300 ease-in-out dark:text-white sidebar-dropdown-toggle" href="#">
                     <i class="fa-solid fa-chart-pie"></i>
       
                     Charts
       
-                    <i class="fa-solid fa-caret-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20 h-16"></i>
+                    <i class="mt-4 fa-solid fa-chevron-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20"></i>
                     
                   </a>
       
                   <!-- Dropdown Menu Start -->
-                  <div class="translate transform overflow-hidden hidden" :class="(selected === 'Charts') ? 'block' :'hidden'">
+                  <div class="sidebar-dropdown-toggle-child dropdownMenu hidden">
                     <ul class="mb-3 mt-4 flex flex-col gap-2 pl-6">
                       <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="basic-chart.html" :class="page === 'basicChart' && 'text-white'">Basic Chart</a>
+                        <a class="dropdown-item group relative flex items-center gap-2.5 rounded-md px-2 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="basic-chart.html" :class="page === 'basicChart' && 'text-white'">Basic Chart</a>
                       </li>
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="advanced-chart.html" :class="page === 'advancedChart' && 'text-black'">Advanced Chart
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
+                      
                     </ul>
                   </div>
                   <!-- Dropdown Menu End -->
@@ -292,118 +254,29 @@
       
                 <!-- Menu Item Ui Elements -->
                 <li>
-                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4" href="#" @click.prevent="selected = (selected === 'UiElements' ? '':'UiElements')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'UiElements') || (page === 'alerts' || page === 'buttons' || page === 'buttonsGroup' || page === 'badge' || page === 'breadcrumb' || page === 'card'|| page === 'dropdowns' || page === 'Modals' || page === 'tabs' || page === 'tooltips' || page === 'popovers' || page === 'accordion' || page === 'notifications' || page === 'pagination' || page === 'progress' || page === 'carousel' || page === 'images' || page === 'videos' || page === 'spinners' || page === 'uiList' || page === 'avatars') }">
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-2 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:bg-opacity-70 sidebar-dropdown-toggle" href="#">
                     <i class="fa-brands fa-elementor"></i>
       
                     UI Elements
       
-                    <i class="fa-solid fa-caret-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20 h-16"></i>
-      
+                    <i class="mt-4 fa-solid fa-chevron-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20"></i>
+                  </a>
                   <!-- Dropdown Menu Start -->
-                  <div class="translate transform overflow-hidden hidden" :class="(selected === 'UiElements') ? 'block' :'hidden'">
+                  <div class="sidebar-dropdown-toggle-child dropdownMenu hidden">
                     <ul class="mb-3 mt-4 flex flex-col gap-2 pl-6">
+                      
                       <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="accordion.html" :class="page === 'accordion' && '!text-white'">Accordion
+                        <a class="dropdown-item group relative flex items-center gap-2.5 rounded-md px-3 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="alerts.html" :class="page === 'alerts' && '!text-white'">Alerts</a>
+                      </li>
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-2 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="buttons.html" :class="page === 'buttons' && '!text-white'">Buttons</a>
+                      
+                      <li>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-2 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="notifications.html" :class="page === 'notifications' && '!text-white'">Notifications
                           <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
       
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="alerts.html" :class="page === 'alerts' && '!text-white'">Alerts</a>
-                      </li>
-      
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="avatars.html" :class="page === 'avatars' && '!text-white'">Avatars
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-      
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="badge.html" :class="page === 'badge' && '!text-white'">Badge
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-      
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="breadcrumb.html" :class="page === 'breadcrumb' &&'!text-white'">Breadcrumb
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-      
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="buttons.html" :class="page === 'buttons' && '!text-white'">Buttons</a>
-                      </li>
-      
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="buttons-group.html" :class="page === 'buttonsGroup' && '!text-white'">Buttons Group
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-      
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="cards.html" :class="page === 'card' && '!text-white'">Cards
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-      
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="carousel.html" :class="page === 'carousel' && '!text-white'">Carousel
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-      
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400
-                         duration-300 ease-in-out hover:text-white" href="dropdowns.html" :class="page === 'dropdowns' &&'!text-white'">Dropdowns
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-      
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="images.html" :class="page === 'images' && '!text-white'">Images
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-      
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="list.html" :class="page === 'uiList' && '!text-white'">List
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-      
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="modals.html" :class="page === 'Modals' && '!text-white'">Modals
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-      
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="notifications.html" :class="page === 'notifications' && '!text-white'">Notifications
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-      
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="pagination.html" :class="page === 'pagination' && '!text-white'">Pagination
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-      
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="popovers.html" :class="page === 'popovers' && '!text-white'">Popovers
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-      
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="progress.html" :class="page === 'progress' && '!text-white'">Progress
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-      
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="spinners.html" :class="page === 'spinners' && '!text-white'">Spinners
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-      
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="tabs.html" :class="page === 'tabs' && '!text-white'">Tabs
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="tooltips.html" :class="page === 'tooltips' && '!text-white'">Tooltips
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-      
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="videos.html" :class="page === 'videos' && '!text-white'">Videos
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
+  
                     </ul>
                   </div>
                   <!-- Dropdown Menu End -->
@@ -412,39 +285,33 @@
       
                 <!-- Menu Item Auth Pages -->
                 <li>
-                  <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4" href="#" @click.prevent="selected = (selected === 'AuthPages' ? '':'AuthPages')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'AuthPages') || (page === 'register' || page === 'login' || page === 'forgetPassword' || page === 'comingSoon' || page === 'twoStepVerification' || page === 'underMaintenance') }">
+                  <a class="group relative flex items-center gap-2.5 rounded-sm px-2 py-2 font-medium text-gray-200 duration-300 ease-in-out hover:text-white sidebar-dropdown-toggle" href="#">
                     <i class="fa-solid fa-arrow-right-to-bracket"></i>
       
                     Authentication
       
-                    <i class="fa-solid fa-caret-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20 h-16"></i>
-                    
+                    <i class="mt-4 fa-solid fa-chevron-down absolute right-4 -translate-y-1/2 fill-current rotate-180 w-20"></i>
+                  </a>
       
                   <!-- Dropdown Menu Start -->
-                  <div class="translate transform overflow-hidden hidden" :class="(selected === 'AuthPages') ? 'block' :'hidden'">
+                  <div class="sidebar-dropdown-toggle-child dropdownMenu hidden">
                     <ul class="mb-3 mt-4 flex flex-col gap-2 pl-6">
                       <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="signin.html" :class="page === 'signin' && '!text-white'">Sign In</a>
+                        <a class="dropdown-item group relative flex items-center gap-2.5 rounded-md px-3 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="signin.html" :class="page === 'signin' && '!text-white'">Sign In</a>
                       </li>
                       <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="signup.html" :class="page === 'signup' && '!text-white'">Sign Up</a>
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-2 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="signup.html" :class="page === 'signup' && '!text-white'">Sign Up</a>
                       </li>
                       <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="reset-password.html" :class="page === 'resetPassword' && '!text-white'">Reset Password
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-3 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="reset-password.html" :class="page === 'resetPassword' && '!text-white'">Reset Password
                           <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
+                      
                       <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="coming-soon.html" :class="page === 'comingSoon' && '!text-black'">Coming Soon
+                        <a class="group relative flex items-center gap-2.5 rounded-md px-3 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="two-step-verification.html" :class="page === 'twoStepVerification' && 'text-black'">2 Step Verification
                           <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
                       </li>
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="two-step-verification.html" :class="page === 'twoStepVerification' && 'text-black'">2 Step Verification
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
-                      <li>
-                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-gray-400 duration-300 ease-in-out hover:text-white" href="under-maintenance.html" :class="page === 'underMaintenance' && '!text-white'">Under Maintenance
-                          <span class="absolute right-4 block rounded bg-primary px-2 py-1 text-xs font-medium text-white bg-royal-blue">Pro</span></a>
-                      </li>
+                      
                     </ul>
                   </div>
                   <!-- Dropdown Menu End -->
@@ -456,7 +323,7 @@
           <!-- Sidebar Menu -->
       
           <!-- Promo Box -->
-          <div class="mx-auto mb-8 w-full max-w-60 rounded-sm border border-strokedark bg-boxdark px-4 py-6 text-center shadow-default">
+          <div class="mx-auto mb-8 w-full max-w-60 rounded-sm border border-strokedark bg-boxdark px-2 py-6 text-center shadow-default">
             <h3 class="mb-1 font-semibold text-white">TailAdmin Pro</h3>
             <p class="mb-4 text-xs text-gray-200">Get All Dashboards and 300+ UI Elements</p>
             <a href="https://tailadmin.com/pricing" target="_blank" rel="nofollow" class="flex items-center justify-center rounded-md bg-blue-600 p-2 text-white hover:bg-opacity-95">
@@ -466,14 +333,298 @@
           <!-- Promo Box -->
         </div>
       </aside>
-      <include src="./partials/sidebar.html"></include>
       <!-- ===== Sidebar End ===== -->
 
       <!-- ===== Content Area Start ===== -->
       <div
         class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden"
       >
-       
+       <!--===========header start=============-->
+       <header class="sticky top-0 z-999 flex w-full drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none bg-white" style="z-index: 10000000000;">
+        <div class="flex-grow flex items-center justify-between px-2 py-4 shadow-2 md:px-6 2xl:px-11">
+          <div class="flex items-start gap-2 sm:gap-4 lg:hidden">
+            <!--Hamster Toggle Button-->
+            <button class="z-99999 block rounded-sm border bg-white p-1.5 shadow-sm dark:bg-boxdark lg:hidden">
+              <i class="fa-solid fa-layer-group fa-lg" style="color: #7c7e83"></i>
+              <span class="relative block h-5.5 w-5.5 cursor-pointer">
+                <span class="du-block absolute right-0 h-full w-full">
+                  <span
+                    class="relative left-0 top-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-[0] duration-200 ease-in-out dark:bg-white"
+                    :class="{ '!w-full delay-300': !sidebarToggle }"></span>
+                  <span
+                    class="relative left-0 top-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-150 duration-200 ease-in-out dark:bg-white"
+                    :class="{ '!w-full delay-400': !sidebarToggle }"></span>
+                  <span
+                    class="relative left-0 top-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-200 duration-200 ease-in-out dark:bg-white"
+                    :class="{ '!w-full delay-500': !sidebarToggle }"></span>
+                </span>
+                <span class="du-block absolute right-0 h-full w-full rotate-45">
+                  <span
+                    class="absolute left-2.5 top-0 block h-full w-0.5 rounded-sm bg-black delay-300 duration-200 ease-in-out dark:bg-white"
+                    :class="{ '!h-0 delay-[0]': !sidebarToggle }"></span>
+                  <span
+                    class="delay-400 absolute left-0 top-2.5 block h-0.5 w-full rounded-sm bg-black duration-200 ease-in-out dark:bg-white"
+                    :class="{ '!h-0 dealy-200': !sidebarToggle }"></span>
+                </span>
+              </span>
+            </button>
+            <!--Hamburger Toggle Button-->
+            <a class="block flex-shrink-0 lg:hidden" href="index.html"></a>
+            <img src="./images/logo/logo.svg" class="pt-2 pb-2" alt="Logo" />
+            </a>
+          </div>
+          <div class="sm:block">
+            <form action="https://formbold.com/s/unique_form_id" method="POST">
+              <div class="relative">
+                <button class="absolute left-0 top-1/2 -translate-y-1/2 h-6 w-4">
+                  <i class="fa-solid fa-search w-4 h-4" style="color:#4b5566"></i>
+                </button>
+
+                <input type="text" placeholder="Type to search..."
+                  class="bg-white text-gray-600 pl-9 pr-6 focus:outline-none rounded-lg" />
+              </div>
+            </form>
+          </div>
+          <div class="flex items-center gap-3 2xsm:gap-7">
+            <ul class="flex items-center gap-2 2xsm:gap-4">
+             
+              <!-- Notification Menu Area -->
+              <li class="relative dropdown" x-data="{ dropdownOpen: false, notifying: true }"
+                @click.outside="dropdownOpen = false">
+                <a class="relative dropdown-toggle flex h-8 w-8 items-center justify-center rounded-full border-radius border-stroke bg-gray-200"
+                  href="#">
+                  <span class="absolute -top-0.5 right-0 z-1 h-2 w-2 bg-red-600 rounded-full ">
+                    <span class="absolute -z-1 h-full w-full animate-ping rounded-full bg-red-600"></span>
+                  </span>
+
+                  <i id="notification-btn" class="fa-regular fa-bell" style="color:#4b5566"></i>
+                </a>
+
+                <!-- Dropdown Start -->
+                <div id="notification"
+                  class="hidden absolute -right-27 mt-2.5 h-64 w-65 flex-col rounded-lg border border-stroke bg-white shadow-default dark:bg-boxdark sm:right-0 sm:w-80 overflow-y-auto">
+                  <div class="px-2.5 py-3">
+                    <h5 class="text-sm font-medium text-gray-500">Notification</h5>
+                  </div>
+
+                  <ul class="flex h-auto flex-col overflow-y-auto">
+                    <li>
+                      <a class="flex flex-col gap-2.5 border-t border-stroke px-2.5 p hover:bg-gray-100 dark:border-strokedark"
+                        href="#">
+                        <p class="text-sm text-gray-400">
+                          <span class="text-black">Edit your information in a swipe</span>
+                          Sint occaecat cupidatat non proident, sunt in culpa qui
+                          officia deserunt mollit anim.
+                        </p>
+
+                        <p class="text-xs text-gray-400">12 May, 2025</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="flex flex-col gap-2.5 border-t border-stroke px-2.5 py-3 hover:bg-gray-200 dark:border-strokeblack"
+                        href="#">
+                        <p class="text-sm text-gray-400">
+                          <span class="text-black">It is a long established fact</span>
+                          that a reader will be distracted by the readable.
+                        </p>
+
+                        <p class="text-xs text-gray-400">24 Feb, 2025</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="flex flex-col gap-2.5 border-t border-stroke px-2.5 py-3 hover:bg-gray-200 dark:border-strokedark"
+                        href="#">
+                        <p class="text-sm text-gray-400">
+                          <span class="text-black">There are many variations</span>
+                          of passages of Lorem Ipsum available, but the majority have
+                          suffered
+                        </p>
+
+                        <p class="text-xs text-gray-400">04 Jan, 2025</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="flex flex-col gap-2.5 border-t border-stroke px-2.5 py-3 hover:bg-gray-200 dark:border-strokedark"
+                        href="#">
+                        <p class="text-sm text-gray-400">
+                          <span class="text-black">There are many variations</span>
+                          of passages of Lorem Ipsum available, but the majority have
+                          suffered
+                        </p>
+
+                        <p class="text-xs text-gray-400">01 Dec, 2024</p>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- Dropdown End -->
+              </li>
+              <!-- Notification Menu Area -->
+
+              <!-- Chat Notification Area -->
+              <li class="relative" x-data="{ dropdownOpen: false, notifying: true }"
+                @click.outside="dropdownOpen = false">
+                <a class="relative flex h-8 w-8 items-center justify-center rounded-full border-radius border-stroke bg-gray-200"
+                  href="#" @click.prevent="dropdownOpen = ! dropdownOpen; notifying = false">
+                  <span :class="!notifying && 'hidden'"
+                    class="absolute -right-0.5 -top-0.5 z-1 h-2 w-2 rounded-full bg-red-600">
+                    <span
+                      class="absolute -z-1 inline-flex h-full w-full animate-ping rounded-full opacity-75 bg-red-600"></span>
+                  </span>
+
+                  <i id="message-btn" class="fa-regular fa-message" style="color: #4b5566"></i>
+                </a>
+
+                <!-- Dropdown Start -->
+                <div id="message"
+                  class="hidden absolute -right-16 mt-2.5 h-64  w-65 flex-col rounded-lg border border-stroke bg-white shadow-default overflow-y-auto sm:right-0 sm:w-80">
+                  <div class="px-2.5 py-3">
+                    <h5 class="text-sm font-medium text-gray-600">Messages</h5>
+                  </div>
+
+                  <ul class="flex h-auto flex-col overflow-y-auto">
+                    <li>
+                      <a class="flex border-t border-stroke px-2.5 py-3 hover:bg-gray-200 dark:border-strokedark"
+                        href="messages.html">
+                        <div class="h-10 w-10 rounded-full">
+                          <img src="./images/user/user-02.png" alt="User" />
+                        </div>
+
+                        <br>
+                        <div class="mr-4">
+                          <h6 class="text-sm font-medium text-black dark:text-white">
+                            Mariya Desoja
+                          </h6>
+                          <p class="text-xs text-gray-600">I like your confidence 💪</p>
+                          <p class="text-xs text-gray-400">2min ago</p>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="flex gap-4.5 border-t border-stroke px-2.5 py-3 hover:bg-gray-200 dark:border-strokedark "
+                        href="messages.html">
+                        <div class="h-10 w-10 rounded-full">
+                          <img src="./images/user/user-01.png" alt="User" />
+                        </div>
+
+                        <div class="mr-4">
+                          <h6 class="text-sm font-medium text-black dark:text-white">
+                            Robert Jhon
+                          </h6>
+                          <p class="text-sm text-gray-600">Can you share your offer?</p>
+                          <p class="text-xs text-gray-400">10min ago</p>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="flex gap-4.5 border-t border-stroke px-2.5 py-3 hover:bg-gray-200 dark:border-strokedark"
+                        href="messages.html">
+                        <div class="h-10 w-10 rounded-full">
+                          <img src="./images/user/user-03.png" alt="User" />
+                        </div>
+
+                        <div>
+                          <h6 class="text-sm font-medium text-black dark:text-white">
+                            Henry Dholi
+                          </h6>
+                          <p class="text-sm text-gray-600">I cam across your profile and...</p>
+                          <p class="text-xs text-gray-400">1day ago</p>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="flex gap-4.5 border-t border-stroke px-2.5 py-3 hover:bg-gray-200 dark:border-strokedark"
+                        href="messages.html">
+                        <div class="h-10 w-10 rounded-full">
+                          <img src="./images/user/user-04.png" alt="User" />
+                        </div>
+
+                        <div>
+                          <h6 class="text-sm font-medium text-black dark:text-white">
+                            Cody Fisher
+                          </h6>
+                          <p class="text-sm text-gray-600
+            ">I’m waiting for you response!</p>
+                          <p class="text-xs text-gray-400">5days ago</p>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="flex gap-4.5 border-t border-stroke px-2.5 py-3 hover:bg-gray-200 dark:border-strokedark"
+                        href="messages.html">
+                        <div class="h-10 w-10 rounded-full">
+                          <img src="./images/user/user-02.png" alt="User" />
+                        </div>
+
+                        <div>
+                          <h6 class="text-sm font-medium text-black dark:text-white">
+                            Mariya Desoja
+                          </h6>
+                          <p class="text-sm text-gray-600">I like your confidence 💪</p>
+                          <p class="text-xs text-gray-400">2min ago</p>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- Dropdown End -->
+              </li>
+              <!-- Chat Notification Area -->
+            </ul>
+
+            <!-- User Area -->
+            <div class="relative" x-data="{ dropdownOpen: false }" @click.outside="dropdownOpen = false">
+              <a class="flex items-center gap-4" href="#" @click.prevent="dropdownOpen = ! dropdownOpen">
+                <span class="hidden text-right lg:block">
+                  <span class="block text-sm font-medium text-black">Thomas Anree</span>
+                  <span class="block text-xs font-medium text-gray-500">Frontend Developer</span>
+                </span>
+
+                <span class="h-12 w-12 rounded-full">
+                  <img src="./images/user/user-01.png" alt="User" />
+                </span>
+
+                <i id="user-btn" class="fa-solid fa-chevron-down"></i>
+              </a>
+              <!-- Dropdown Start -->
+              <div id="user"
+                class="absolute right-0 mt-4 hidden w-62 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+                <ul class="flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark">
+                  <li>
+                    <a href="profile.html" class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out text-gray-400
+ hover:text-blue-900 lg:text-base">
+                      <i class="fa-regular fa-user" style="color:#4b5566"></i>
+                      My Profile
+                    </a>
+                  </li>
+                  <li>
+                    <a href="messages.html"
+                      class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-blue-900 text-gray-400 lg:text-base">
+                      <i class="fa-solid fa-address-book" style="color:#4b5566"></i>
+                      My Contacts
+                    </a>
+                  </li>
+                  <li>
+                    <a href="settings.html"
+                      class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out text-gray-400 hover:text-blue-900 lg:text-base">
+                      <i class="fa-solid fa-gear" style="color:#4b5566"></i>
+                      Account Settings
+                    </a>
+                  </li>
+                </ul>
+                <button
+                  class="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-blue-900 lg:text-base text-gray-400">
+                  <i class="fa-solid fa-right-to-bracket" style="color:#4b5566"></i>
+                  Log Out
+                </button>
+              </div>
+              <!-- Dropdown End -->
+            </div>
+            <!--User Area-->
+          </div>
+        </div>
+      </header>
+       <!--============header end===============-->
 
         <!-- ===== Main Content Start ===== -->
         <main>
@@ -1810,6 +1961,7 @@
       <!-- ===== Content Area End ===== -->
     </div>
     <!-- ===== Page Wrapper End ===== -->
-  <script defer src="bundle.js"></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8cf62e1c8a710696","version":"2024.8.0","r":1,"token":"67f7a278e3374824ae6dd92295d38f77","serverTiming":{"name":{"cfExtPri":true,"cfL4":true}}}' crossorigin="anonymous"></script>
+  
 </body>
+<script src="./js/index.js"></script>
 </html>
